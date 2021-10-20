@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using StoreApp.ViewModels;
 
 namespace StoreApp.Views
 {
@@ -15,6 +16,7 @@ namespace StoreApp.Views
         public LogIn()
         {
             InitializeComponent();
+           // this.BindingContext = new LogInViewModel();
         }
     }
 }

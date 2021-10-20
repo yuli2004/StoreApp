@@ -14,14 +14,14 @@ namespace StoreApp.ViewModels
 {
     class LogInViewModel: BaseViewModel
     {
-        private string email;
-        public string Email
+        private string username;
+        public string Username
         {
-            get { return email; }
+            get { return username; }
             set
             {
-                email = value;
-                OnPropertyChanged("Email");
+                username = value;
+                OnPropertyChanged("Username");
             }
         }
         private string password;
@@ -57,7 +57,7 @@ namespace StoreApp.ViewModels
             ServerStatus = "מתחבר לשרת...";
             //await App.Current.MainPage.Navigation.PushModalAsync(new Views.ServerStatusPage(this));
             StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
-            User user = await proxy.LoginAsync(Email, Password);
+            User user = await proxy.LogInAsync(username, Password);
             if (user == null)
             {
                 await App.Current.MainPage.Navigation.PopModalAsync();

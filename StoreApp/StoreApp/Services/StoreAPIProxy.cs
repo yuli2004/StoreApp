@@ -82,11 +82,11 @@ namespace StoreApp.Services
         public string GetBasePhotoUri() { return this.basePhotosUri; }
 
         //Login!
-        public async Task<User> LoginAsync(string email, string pass)
+        public async Task<User> LogInAsync(string username, string pass)
         {
             try
             {
-                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/Login?email={email}&pass={pass}");
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/LogIn?username={username}&pass={pass}");
                 if (response.IsSuccessStatusCode)
                 {
                     JsonSerializerOptions options = new JsonSerializerOptions
