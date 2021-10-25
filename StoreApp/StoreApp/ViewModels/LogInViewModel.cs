@@ -14,6 +14,7 @@ namespace StoreApp.ViewModels
 {
     class LogInViewModel: BaseViewModel
     {
+        #region username
         private string username;
         public string Username
         {
@@ -24,6 +25,8 @@ namespace StoreApp.ViewModels
                 OnPropertyChanged("Username");
             }
         }
+        #endregion
+        #region password
         private string password;
         public string Password
         {
@@ -34,6 +37,7 @@ namespace StoreApp.ViewModels
                 OnPropertyChanged("Password");
             }
         }
+        #endregion
         public ICommand SubmitCommand { protected set; get; }
 
         public LogInViewModel()
@@ -67,7 +71,10 @@ namespace StoreApp.ViewModels
             {
                 ServerStatus = "קורא נתונים...";
                 App theApp = (App)App.Current;
-                theApp.CurrentUser = user;              
+                theApp.CurrentUser = user;
+                await App.Current.MainPage.DisplayAlert("הצלחה", "התחברות הצליחה", "בסדר");
+               // theApp.MainPage.Navigation.PushAsync() מסך הבא
+
             }
         }
     }

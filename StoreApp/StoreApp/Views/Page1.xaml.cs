@@ -6,17 +6,15 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using StoreApp.ViewModels;
 
 namespace StoreApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class LogIn : ContentPage
+    public partial class Page1 : ContentPage
     {
-        public LogIn()
+        public Page1()
         {
             InitializeComponent();
-           //this.BindingContext = new LogInViewModel();
         }
     }
 }
