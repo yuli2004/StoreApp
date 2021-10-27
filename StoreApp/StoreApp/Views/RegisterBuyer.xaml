@@ -6,11 +6,48 @@
     <ContentPage.BindingContext>
         <local:RegisterBuyerViewModel></local:RegisterBuyerViewModel>
     </ContentPage.BindingContext>
+
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout" x:Key="RegisterBuyerStack">
+            <Setter Property="Orientation" Value="Vertical"/>
+            <Setter Property="Padding" Value="30"/>
+            <Setter Property="Spacing" Value="40"/>
+            <Setter Property="FlowDirection" Value="RightToLeft"/>
+        </Style>
+        <Style TargetType="Label" x:Key="FormTitle">
+            <Setter Property="HorizontalOptions" Value="Center"/>
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="FontAttributes" Value="Bold"/>
+        </Style>
+        <Style TargetType="Entry" x:Key="RegisterBuyerEntry">
+            <Setter Property="PlaceholderColor" Value="White"/>
+            <Setter Property="HeightRequest" Value="40"/>
+            <Setter Property="TextColor" Value="White"/>
+        </Style>
+        <Style TargetType="Button" x:Key="RegisterBuyerButton">
+            <Setter Property="FontAttributes" Value="Bold"/>
+            <Setter Property="FontSize" Value="Large"/>
+            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
+            <Setter Property="TextColor" Value="White"/>
+            <Setter Property="BackgroundColor" Value="#088da5"/>
+        </Style>
+    </ContentPage.Resources>
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Style="{StaticResource LogInStack}">
+            <Label Text="הרשמת לקוח" Style="{StaticResource FormTitle}"></Label>
+            <Frame BackgroundColor="#BF043055" HasShadow="False">
+                <StackLayout>
+                    <Entry x:Name="Username" Text="{Binding Username}" Placeholder="שם משתמש"     
+                           Style="{StaticResource LogInEntry}"/>
+                    <Entry x:Name="Password" Text="{Binding Password}" Placeholder="סיסמה"  
+                           Style="{StaticResource LogInEntry}"/>
+                    <Entry x:Name="Email" Text="{Binding Email}" Placeholder="מייל"  
+                           Style="{StaticResource EmailEntry}"/>
+                </StackLayout>
+            </Frame>
+            <Button Command="{Binding SubmitCommand}" Text="הירשם" Style="{StaticResource RegisterBuyerButton}" />
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

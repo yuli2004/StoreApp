@@ -26,6 +26,7 @@ namespace StoreApp.ViewModels
             }
         }
         #endregion
+
         #region password
         private string password;
         public string Password
@@ -38,6 +39,7 @@ namespace StoreApp.ViewModels
             }
         }
         #endregion
+
         public ICommand SubmitCommand { protected set; get; }
 
         public LogInViewModel()

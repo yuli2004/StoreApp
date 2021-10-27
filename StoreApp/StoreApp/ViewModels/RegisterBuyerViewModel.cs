@@ -1,7 +1,11 @@
-﻿using System;
+﻿using StoreApp.Models;
+using StoreApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace StoreApp.ViewModels
 {
@@ -151,8 +155,17 @@ namespace StoreApp.ViewModels
             this.ShowPasswordError = string.IsNullOrEmpty(Password);
         }
         #endregion
+        #region isAdmin
 
-        public RegisterBuyerViewModel()
-        { }
+        #endregion
+        #region isBuyer
+
+        #endregion
+        #region isSeller
+
+        #endregion
+
+        private User userBuyer;
+        public RegisterBuyerViewModel();
     }
 }
