@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace StoreApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Register : ContentPage
+    public partial class RegisterBuyer : ContentPage
     {
-        public Register()
+        public RegisterBuyer()
         {
             InitializeComponent();
         }
