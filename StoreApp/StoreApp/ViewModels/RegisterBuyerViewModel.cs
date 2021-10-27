@@ -165,7 +165,6 @@ namespace StoreApp.ViewModels
 
         #endregion
 
-        private User userBuyer;
-        public RegisterBuyerViewModel();
+        
     }
 }
