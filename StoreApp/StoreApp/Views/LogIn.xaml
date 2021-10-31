@@ -42,7 +42,7 @@
                            Style="{StaticResource LogInEntry}"/>
                 </StackLayout>
             </Frame>
-            <Button Command="{Binding SubmitCommand}" Text="התחבר" Style="{StaticResource LogInButton}" />
+            <Button Command="{Binding LogInCommand}" Text="התחבר" Style="{StaticResource LogInButton}" />
 
         </StackLayout>
     </ContentPage.Content>

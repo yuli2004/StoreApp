@@ -40,11 +40,11 @@ namespace StoreApp.ViewModels
         }
         #endregion
 
-        public ICommand SubmitCommand { protected set; get; }
+        public ICommand LogInCommand { protected set; get; }
 
         public LogInViewModel()
         {
-            SubmitCommand = new Command(OnSubmit);
+            LogInCommand = new Command(LogInSubmit);
         }
 
         private string serverStatus;
@@ -58,7 +58,7 @@ namespace StoreApp.ViewModels
             }
         }
 
-        public async void OnSubmit()
+        public async void LogInSubmit()
         {
             ServerStatus = "מתחבר לשרת...";
             //await App.Current.MainPage.Navigation.PushModalAsync(new Views.ServerStatusPage(this));

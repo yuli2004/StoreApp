@@ -46,7 +46,7 @@
                            Style="{StaticResource EmailEntry}"/>
                 </StackLayout>
             </Frame>
-            <Button Command="{Binding SubmitCommand}" Text="הירשם" Style="{StaticResource RegisterBuyerButton}" />
+            <Button Command="{Binding RegisterBuyerCommand}" Text="הירשם" Style="{StaticResource RegisterBuyerButton}" />
 
         </StackLayout>
     </ContentPage.Content>
