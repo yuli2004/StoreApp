@@ -225,14 +225,39 @@ namespace StoreApp.ViewModels
 
             this.SaveDataCommand = new Command(() => SaveData());
 
-            RegisterBuyerCommand = new Command(RegisterBuyerSubmit);
+        }
+        #endregion
 
+        #region ValidateForm
+        //This function validate the entire form upon submit!
+        private bool ValidateForm()
+        {
+            //Validate all fields first
+            ValidateUsername();
+            ValidateEmail();
+            ValidatePassword();
+
+            //check if any validation failed
+            if (ShowUsernameError || ShowEmailError || ShowPasswordError)
+                return false;
+            return true;
+        }
+        #endregion
+
+        #region ServerStatus
+        private string serverStatus;
+        public string ServerStatus
+        {
+            get { return serverStatus; }
+            set
+            {
+                serverStatus = value;
+                OnPropertyChanged("ServerStatus");
+            }
         }
         #endregion
 
         #region SaveData
-        //This event is fired after the new contact is generated in the system so it can be added to the list of contacts
-        public event Action<User, User> ContactUpdatedEvent;
 
         //The command for saving the contact
         public Command SaveDataCommand { protected set; get; }
@@ -248,7 +273,7 @@ namespace StoreApp.ViewModels
                 await App.Current.MainPage.Navigation.PushModalAsync(new Views.ServerStatusPage(this));
                 StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
                 Object o = null;
-                
+
                 if (o == null)
                 {
                     await App.Current.MainPage.DisplayAlert("שגיאה", "שמירת המשתמש נכשלה", "בסדר");
@@ -256,54 +281,18 @@ namespace StoreApp.ViewModels
                 }
                 else
                 {
-                    if (this.imageFileResult != null)
-                    {
-                        ServerStatus = "מעלה תמונה...";
+                    //close the message and add contact windows!
+                    await App.Current.MainPage.Navigation.PopAsync();
+                    await App.Current.MainPage.Navigation.PopModalAsync();
 
-                        if (isPlayer)
-                        {
-                            bool success = await proxy.UploadImage(new FileInfo()
-                            {
-                                Name = this.imageFileResult.FullPath
-                            }, $"{((Player)o).Id}.jpg");
-                        }
-                        else
+                    App a = (App)App.Current;
 
-                        {
-                            bool success = await proxy.UploadImage(new FileInfo()
-                            {
-                                Name = this.imageFileResult.FullPath
-                            }, $"{((Coach)o).Id}.jpg");
-                        }
-
-                        //close the message and add contact windows!
-                        await App.Current.MainPage.Navigation.PopAsync();
-                        await App.Current.MainPage.Navigation.PopModalAsync();
-
-                        App a = (App)App.Current;
-                    }
-
-                    else
-                        await App.Current.MainPage.DisplayAlert("שמירת נתונים", " יש בעיה עם הנתונים בדוק ונסה שוב", "אישור", FlowDirection.RightToLeft);
                 }
             }
         }
-        #endregion
-
-        private string serverStatus;
-        public string ServerStatus
-        {
-            get { return serverStatus; }
-            set
-            {
-                serverStatus = value;
-                OnPropertyChanged("ServerStatus");
-            }
-        }
-        public async void RegisterBuyerSubmit()
-        {
-            
-        }
-
     }
+    #endregion
+
+
 }
+

@@ -30,6 +30,7 @@ namespace StoreApp.Services
         private string basePhotosUri;
         private static StoreAPIProxy proxy = null;
 
+        #region create proxy
         public static StoreAPIProxy CreateProxy()
         {
             string baseUri;
@@ -65,8 +66,9 @@ namespace StoreApp.Services
                 proxy = new StoreAPIProxy(baseUri, basePhotosUri);
             return proxy;
         }
+        #endregion
 
-
+        #region costructor
         private StoreAPIProxy(string baseUri, string basePhotosUri)
         {
             //Set client handler to support cookies!!
@@ -78,10 +80,9 @@ namespace StoreApp.Services
             this.baseUri = baseUri;
             this.basePhotosUri = basePhotosUri;
         }
+        #endregion
 
-        public string GetBasePhotoUri() { return this.basePhotosUri; }
-
-        //Login!
+        #region Log In
         public async Task<User> LogInAsync(string username, string pass)
         {
             try
@@ -109,8 +110,9 @@ namespace StoreApp.Services
                 return null;
             }
         }
+        #endregion
 
-        //Buyer register
+        #region Buyer Register
         public async Task<Buyer> RegisterBuyerAsync(Buyer buyer)
         {
             try
@@ -143,6 +145,7 @@ namespace StoreApp.Services
                 return null;
             }
         }
+        #endregion
 
         //Upload file to server (only images!)
         //public async Task<bool> UploadImage(Models.FileInfo fileInfo, string targetFileName)
