@@ -109,8 +109,6 @@ namespace StoreApp.ViewModels
                     this.EmailError = ERROR_MESSAGES.BAD_EMAIL;
                 }
             }
-            else
-                this.EmailError = ERROR_MESSAGES.REQUIRED_FIELD;
         }
         #endregion
         #region password
@@ -154,6 +152,14 @@ namespace StoreApp.ViewModels
         private void ValidatePassword()
         {
             this.ShowPasswordError = string.IsNullOrEmpty(Password);
+            if (!this.ShowPasswordError)
+            {
+                if (this.Password.Length < 6)
+                {
+                    this.ShowPasswordError = true;
+                    this.PasswordError = ERROR_MESSAGES.SHORT_PASS;
+                }
+            }
         }
         #endregion
         #region isAdmin
@@ -197,23 +203,25 @@ namespace StoreApp.ViewModels
         #endregion
 
         User u;
+        Buyer b;
 
         public ICommand RegisterBuyerCommand { get; }
 
         #region constructor
         public RegisterBuyerViewModel()
         {
-            isAdmin = false;
-            isBuyer = true;
-            isSeller = false;
-
             App theApp = (App)App.Current;
             u = new User()
             {
                 Username = "",
                 Email = "",
-                Password = ""
+                Password = "",
+                IsAdmin = false,
+                IsBuyer = true,
+                IsSeller = false,
             };
+            b = new Buyer()
+            { Username = u.Username };
 
             this.UsernameError = ERROR_MESSAGES.REQUIRED_FIELD;
             this.PasswordError = ERROR_MESSAGES.SHORT_PASS;
@@ -265,6 +273,8 @@ namespace StoreApp.ViewModels
         {
             if (ValidateForm())
             {
+                this.b.Username = this.Username;
+
                 this.u.Username = this.Username;
                 this.u.Email = this.Email;
                 this.u.Password = this.Password;
@@ -272,21 +282,58 @@ namespace StoreApp.ViewModels
                 ServerStatus = "מתחבר לשרת...";
                 await App.Current.MainPage.Navigation.PushModalAsync(new Views.ServerStatusPage(this));
                 StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
-                Object o = null;
+                Buyer currentB = null;
 
-                if (o == null)
+                Buyer newB = await proxy.RegisterBuyerAsync(this.b);
+                currentB = newB;
+                
+                if (currentB == null)
                 {
                     await App.Current.MainPage.DisplayAlert("שגיאה", "שמירת המשתמש נכשלה", "בסדר");
                     await App.Current.MainPage.Navigation.PopModalAsync();
                 }
                 else
                 {
-                    //close the message and add contact windows!
-                    await App.Current.MainPage.Navigation.PopAsync();
-                    await App.Current.MainPage.Navigation.PopModalAsync();
+                    //if (this.imageFileResult != null)
+                    //{
+                        //ServerStatus = "מעלה תמונה...";
 
-                    App a = (App)App.Current;
+                        //if (isPlayer)
+                        //{
+                        //    bool success = await proxy.UploadImage(new FileInfo()
+                        //    {
+                        //        Name = this.imageFileResult.FullPath
+                        //    }, $"{((Player)o).Id}.jpg");
+                        //}
+                        //else
 
+                        //{
+                        //    bool success = await proxy.UploadImage(new FileInfo()
+                        //    {
+                        //        Name = this.imageFileResult.FullPath
+                        //    }, $"{((Coach)o).Id}.jpg");
+                        //}
+
+                        //ServerStatus = "שומר נתונים...";
+                        ////if someone registered to get the contact added event, fire the event
+                        //if (this.ContactUpdatedEvent != null)
+                        //{
+                        //    this.ContactUpdatedEvent(((Player)o), this.p);
+                        //}
+
+                        //close the message and add contact windows!
+                        //await App.Current.MainPage.Navigation.PopAsync();
+                        //await App.Current.MainPage.Navigation.PopModalAsync();
+
+                        //App a = (App)App.Current;
+                        //PlayerPage ap = new PlayerPage();
+                        //ap.Title = "Player Page";
+                        //a.MainPage = ap;
+                        //await App.Current.MainPage.Navigation.PushAsync(ap);
+                    //}
+
+                    else
+                        await App.Current.MainPage.DisplayAlert("שמירת נתונים", " יש בעיה עם הנתונים בדוק ונסה שוב", "אישור", FlowDirection.RightToLeft);
                 }
             }
         }

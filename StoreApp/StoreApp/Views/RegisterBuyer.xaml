@@ -34,16 +34,16 @@
     </ContentPage.Resources>
     
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource LogInStack}">
+        <StackLayout Style="{StaticResource RegisterBuyerStack}">
             <Label Text="הרשמת לקוח" Style="{StaticResource FormTitle}"></Label>
             <Frame BackgroundColor="#BF043055" HasShadow="False">
                 <StackLayout>
                     <Entry x:Name="Username" Text="{Binding Username}" Placeholder="שם משתמש"     
-                           Style="{StaticResource LogInEntry}"/>
+                           Style="{StaticResource RegisterBuyerEntry}"/>
                     <Entry x:Name="Password" Text="{Binding Password}" Placeholder="סיסמה"  
-                           Style="{StaticResource LogInEntry}"/>
+                           Style="{StaticResource RegisterBuyerEntry}"/>
                     <Entry x:Name="Email" Text="{Binding Email}" Placeholder="מייל"  
-                           Style="{StaticResource EmailEntry}"/>
+                           Style="{StaticResource RegisterBuyerEntry}"/>
                 </StackLayout>
             </Frame>
             <Button Command="{Binding RegisterBuyerCommand}" Text="הירשם" Style="{StaticResource RegisterBuyerButton}" />
