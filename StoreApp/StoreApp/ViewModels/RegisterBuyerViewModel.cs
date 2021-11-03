@@ -205,8 +205,6 @@ namespace StoreApp.ViewModels
         User u;
         Buyer b;
 
-        public ICommand RegisterBuyerCommand { get; }
-
         #region constructor
         public RegisterBuyerViewModel()
         {
@@ -221,7 +219,7 @@ namespace StoreApp.ViewModels
                 IsSeller = false,
             };
             b = new Buyer()
-            { Username = u.Username };
+            { User = u };
 
             this.UsernameError = ERROR_MESSAGES.REQUIRED_FIELD;
             this.PasswordError = ERROR_MESSAGES.SHORT_PASS;
@@ -268,12 +266,12 @@ namespace StoreApp.ViewModels
         #region SaveData
 
         //The command for saving the contact
-        public Command SaveDataCommand { protected set; get; }
+        public ICommand SaveDataCommand { protected set; get; }
         private async void SaveData()
         {
             if (ValidateForm())
             {
-                this.b.Username = this.Username;
+                this.b.Userid = this.Username;
 
                 this.u.Username = this.Username;
                 this.u.Email = this.Email;
@@ -294,47 +292,15 @@ namespace StoreApp.ViewModels
                 }
                 else
                 {
-                    //if (this.imageFileResult != null)
-                    //{
-                        //ServerStatus = "מעלה תמונה...";
+                    await App.Current.MainPage.DisplayAlert("הצלחה", "שמירת המשתמש הצליחה", "בסדר");
+                    await App.Current.MainPage.Navigation.PopModalAsync();
 
-                        //if (isPlayer)
-                        //{
-                        //    bool success = await proxy.UploadImage(new FileInfo()
-                        //    {
-                        //        Name = this.imageFileResult.FullPath
-                        //    }, $"{((Player)o).Id}.jpg");
-                        //}
-                        //else
-
-                        //{
-                        //    bool success = await proxy.UploadImage(new FileInfo()
-                        //    {
-                        //        Name = this.imageFileResult.FullPath
-                        //    }, $"{((Coach)o).Id}.jpg");
-                        //}
-
-                        //ServerStatus = "שומר נתונים...";
-                        ////if someone registered to get the contact added event, fire the event
-                        //if (this.ContactUpdatedEvent != null)
-                        //{
-                        //    this.ContactUpdatedEvent(((Player)o), this.p);
-                        //}
-
-                        //close the message and add contact windows!
-                        //await App.Current.MainPage.Navigation.PopAsync();
-                        //await App.Current.MainPage.Navigation.PopModalAsync();
-
-                        //App a = (App)App.Current;
-                        //PlayerPage ap = new PlayerPage();
-                        //ap.Title = "Player Page";
-                        //a.MainPage = ap;
-                        //await App.Current.MainPage.Navigation.PushAsync(ap);
-                    //}
-
-                    else
-                        await App.Current.MainPage.DisplayAlert("שמירת נתונים", " יש בעיה עם הנתונים בדוק ונסה שוב", "אישור", FlowDirection.RightToLeft);
                 }
+            
+                //else
+                //{
+                //    await App.Current.MainPage.DisplayAlert("שמירת נתונים", " יש בעיה עם הנתונים בדוק ונסה שוב", "אישור", FlowDirection.RightToLeft);
+                //}
             }
         }
     }

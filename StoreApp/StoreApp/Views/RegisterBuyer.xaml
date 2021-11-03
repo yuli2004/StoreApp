@@ -46,7 +46,7 @@
                            Style="{StaticResource RegisterBuyerEntry}"/>
                 </StackLayout>
             </Frame>
-            <Button Command="{Binding RegisterBuyerCommand}" Text="הירשם" Style="{StaticResource RegisterBuyerButton}" />
+            <Button Command="{Binding SaveDataCommand}" Text="הירשם" Style="{StaticResource RegisterBuyerButton}" />
 
         </StackLayout>
     </ContentPage.Content>

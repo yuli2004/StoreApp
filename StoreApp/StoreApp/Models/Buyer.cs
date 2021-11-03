@@ -11,7 +11,10 @@ namespace StoreApp.Models
             Reviews = new List<Review>();
         }
 
-        public string Username { get; set; }
+        public int Username { get; set; }
+        public string Userid { get; set; }
+
+        public virtual User User { get; set; }
 
         public virtual List<Order> Orders { get; set; }
         public virtual List<Review> Reviews { get; set; }

@@ -126,7 +126,7 @@ namespace StoreApp.Services
                 string jsonObject = JsonSerializer.Serialize<Buyer>(buyer, options);
                 StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
 
-                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/UpdateContact", content);
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/RegisterBuyer", content);
                 if (response.IsSuccessStatusCode)
                 {
                     string jsonContent = await response.Content.ReadAsStringAsync();
