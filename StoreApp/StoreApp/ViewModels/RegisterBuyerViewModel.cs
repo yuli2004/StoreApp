@@ -282,6 +282,10 @@ namespace StoreApp.ViewModels
                 StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
                 Buyer currentB = null;
 
+                //the email and username should be unique
+                bool isEmailExists = await proxy.UserExistsByEmailAsync(this.u.Email);
+                bool isUsernameExists = await proxy.UserExistsByUsernameAsync(this.u.Username);
+
                 Buyer newB = await proxy.RegisterBuyerAsync(this.b);
                 currentB = newB;
                 
@@ -296,11 +300,7 @@ namespace StoreApp.ViewModels
                     await App.Current.MainPage.Navigation.PopModalAsync();
 
                 }
-            
-                //else
-                //{
-                //    await App.Current.MainPage.DisplayAlert("שמירת נתונים", " יש בעיה עם הנתונים בדוק ונסה שוב", "אישור", FlowDirection.RightToLeft);
-                //}
+
             }
         }
     }

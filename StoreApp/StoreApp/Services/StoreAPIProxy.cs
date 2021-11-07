@@ -147,6 +147,48 @@ namespace StoreApp.Services
         }
         #endregion
 
+        #region UserExistsByEmailAsync
+        public async Task<bool> UserExistsByEmailAsync(string email)
+        {
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync($"{this.baseUri}/UserExistsByEmail?email={email}");
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+        #endregion
+
+        #region UserExistsByPasswordAsync
+        public async Task<bool> UserExistsByUsernameAsync(string username)
+        {
+            try
+            {
+                HttpResponseMessage response = await client.GetAsync($"{this.baseUri}/UserExistsByUsername?username={username}");
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+        #endregion
+
         //Upload file to server (only images!)
         //public async Task<bool> UploadImage(Models.FileInfo fileInfo, string targetFileName)
         //{
