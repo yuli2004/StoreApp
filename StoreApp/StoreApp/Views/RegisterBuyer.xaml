@@ -38,18 +38,9 @@
             
             <Label Text="הרשמת לקוח" Style="{StaticResource FormTitle}"></Label>
               <!-- <Frame BackgroundColor="#BF043055" HasShadow="False"> -->
-                <StackLayout>
-                    
-                    <!--
-                    <Entry x:Name="Username" Text="{Binding Username}" Placeholder="שם משתמש"     
-                           Style="{StaticResource RegisterBuyerEntry}"/>
-                    <Entry x:Name="Password" Text="{Binding Password}" Placeholder="סיסמה"  
-                           Style="{StaticResource RegisterBuyerEntry}"/>
-                    <Entry x:Name="Email" Text="{Binding Email}" Placeholder="מייל"  
-                           Style="{StaticResource RegisterBuyerEntry}"/>
-                    -->
-                    
-                    <!-- שם פרטי -->
+            <StackLayout>
+                
+                <!-- שם פרטי -->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
