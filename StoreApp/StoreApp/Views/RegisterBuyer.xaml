@@ -35,7 +35,7 @@
     
     <ContentPage.Content>
         <StackLayout Style="{StaticResource RegisterBuyerStack}">
-            <ScrollView>
+            
             <Label Text="הרשמת לקוח" Style="{StaticResource FormTitle}"></Label>
               <!-- <Frame BackgroundColor="#BF043055" HasShadow="False"> -->
                 <StackLayout>
@@ -59,9 +59,9 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
                         <Label Text="שם פרטי" Grid.Column="0" Style="{StaticResource labelNameStyle}"/>
-                        <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
+                        <Label Text="{Binding NameError}" IsVisible="{Binding ShowUsernameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
                     </Grid>
-                    <Entry Placeholder="הכנס שם פרטי" Text="{Binding Name}" Style="{StaticResource entryStyle}"/>
+                    <Entry Placeholder="הכנס שם פרטי" Text="{Binding Username}" Style="{StaticResource entryStyle}"/>
 
                     <!-- סיסמה -->
                     <Grid>
@@ -95,7 +95,7 @@
                 </StackLayout>
         <!--</Frame>-->
         <Button Command="{Binding SaveDataCommand}" Text="הירשם" Style="{StaticResource RegisterBuyerButton}" />
-            </ScrollView>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
