@@ -1,20 +1,36 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:navigation="clr-namespace:StoreApp.Views"
              x:Class="StoreApp.App">
     <Application.Resources>
         <ResourceDictionary>
-            <Style x:Key="labelNameStyle" TargetType="Label">
-                <Setter Property="FontSize" Value="Small" />
+            <navigation:NavigationBarView x:Key="TitleViewNav"/>
+            
+            <Style TargetType="ContentPage" x:Key="TitleNav">
+                <Setter Property="NavigationPage.TitleView"  Value="{StaticResource TitleViewNav}"/>
+                <Setter Property="BackgroundColor" Value="#1b4332"/>
             </Style>
+
+            <Style x:Key="labelNameStyle" TargetType="Label">
+                <Setter Property="FontSize" Value="Medium" />
+            </Style>
+            
             <Style x:Key="labelErrorStyle" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="End" />
                 <Setter Property="TextColor" Value="Red" />
-                <Setter Property="FontSize" Value="Small" />
+                <Setter Property="FontSize" Value="Medium" />
             </Style>
+            
             <Style x:Key="entryStyle" TargetType="Entry">
                 <Setter Property="HorizontalOptions" Value="Fill" />
+                <Setter Property="BackgroundColor" Value="#6da37d"/>
+                <Setter Property="Margin" Value="0"/>
+                <Setter Property="TextColor" Value="Black"/>
+                <Setter Property="PlaceholderColor" Value="Black"/>
+                <Setter Property="Margin" Value="10, 10"/>
             </Style>
+            
             <Style x:Key="labelTableStyle" TargetType="Label">
                 <Setter Property="VerticalTextAlignment" Value="Center" />
                 <Setter Property="HorizontalTextAlignment" Value="Center" />
@@ -24,6 +40,20 @@
                 <Setter Property="FontSize" Value="Caption" />
             </Style>
 
+            <Style x:Key="ButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#081c15"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="TextColor" Value="#6da37d"/>
+                <Setter Property="Margin" Value="50, 20"/>
+            </Style>
+
+            <Style TargetType="Frame">
+                <Setter Property="CornerRadius" Value="10"/>
+                <Setter Property="BackgroundColor"  Value="#6da37d"/>
+                <Setter Property="Margin" Value="30"/>
+            </Style>
+            
         </ResourceDictionary>
     </Application.Resources>
 </Application>

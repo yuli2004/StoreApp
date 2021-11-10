@@ -2,7 +2,11 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:StoreApp.ViewModels"
-             x:Class="StoreApp.Views.RegisterBuyer">
+             xmlns:views="clr-namespace:StoreApp.Views"
+             x:Class="StoreApp.Views.RegisterBuyer"
+             Style="{StaticResource TitleNav}">
+
+    
     <ContentPage.BindingContext>
         <local:RegisterBuyerViewModel></local:RegisterBuyerViewModel>
     </ContentPage.BindingContext>
@@ -10,8 +14,6 @@
     <ContentPage.Resources>
         <Style TargetType="StackLayout" x:Key="RegisterBuyerStack">
             <Setter Property="Orientation" Value="Vertical"/>
-            <Setter Property="Padding" Value="30"/>
-            <Setter Property="Spacing" Value="40"/>
             <Setter Property="FlowDirection" Value="RightToLeft"/>
         </Style>
         <Style TargetType="Label" x:Key="FormTitle">
@@ -35,8 +37,16 @@
     
     <ContentPage.Content>
         <StackLayout Style="{StaticResource RegisterBuyerStack}">
+
+            <Grid Margin="0,0,0,0" BackgroundColor="AliceBlue">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Image Grid.Column="0"   Aspect="AspectFill"  Source="mandalabackground"></Image>
+                 <Label Text="הרשמת לקוח" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Style="{StaticResource FormTitle}"></Label>
+
+            </Grid>
             
-            <Label Text="הרשמת לקוח" Style="{StaticResource FormTitle}"></Label>
               <!-- <Frame BackgroundColor="#BF043055" HasShadow="False"> -->
             <StackLayout>
                 
@@ -49,43 +59,45 @@
                         <Grid.RowDefinitions>
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
-                        <Label Text="שם פרטי" Grid.Column="0" Style="{StaticResource labelNameStyle}"/>
-                        <Label Text="{Binding NameError}" IsVisible="{Binding ShowUsernameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
+
+                    <Label Text="{Binding NameError}" IsVisible="{Binding ShowUsernameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
                     </Grid>
+                <Frame>
                     <Entry Placeholder="הכנס שם פרטי" Text="{Binding Username}" Style="{StaticResource entryStyle}"/>
-
-                    <!-- סיסמה -->
+                </Frame>
+                <!-- סיסמה -->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Label Text="סיסמה" Grid.Column="0" Style="{StaticResource labelNameStyle}"/>
-                        <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
                     </Grid>
-                    <Entry Placeholder="הכנס סיסמה" Text="{Binding Password}" Style="{StaticResource entryStyle}"/>
-
-                    <!-- דואר אלקטרוני-->
+                <Frame>
+                    <Entry Placeholder="הכנס סיסמה" IsPassword="True" Text="{Binding Password}" Style="{StaticResource entryStyle}"/>
+                </Frame>
+                
+                <!-- דואר אלקטרוני-->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="*" />
-                        </Grid.RowDefinitions>
-                        <Label Text="דואר אלקטרוני" Grid.Column="0" Style="{StaticResource labelNameStyle}"/>
-                        <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
                     </Grid>
+                <Frame>
                     <Entry Placeholder="הכנס דואר אלקטרוני" Text="{Binding Email}" Style="{StaticResource entryStyle}"/>
+                </Frame>
 
-                    
-                </StackLayout>
+            </StackLayout>
         <!--</Frame>-->
-        <Button Command="{Binding SaveDataCommand}" Text="הירשם" Style="{StaticResource RegisterBuyerButton}" />
+        <Button Command="{Binding SaveDataCommand}" Text="הירשם" Style="{StaticResource ButtonStyle}" />
             
         </StackLayout>
     </ContentPage.Content>

@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:StoreApp.ViewModels" x:DataType="viewmodels:LogInViewModel"
              x:Class="StoreApp.Views.LogIn"
-             NavigationPage.HasNavigationBar="True">
+             NavigationPage.HasNavigationBar="True"
+             Style="{StaticResource TitleNav}">
     <ContentPage.BindingContext>
         <viewmodels:LogInViewModel></viewmodels:LogInViewModel>
     </ContentPage.BindingContext>
@@ -38,7 +39,7 @@
                 <StackLayout>
                     <Entry x:Name="Username" Text="{Binding Username}" Placeholder="שם משתמש"     
                            Style="{StaticResource LogInEntry}"/>
-                    <Entry x:Name="Password" Text="{Binding Password}" Placeholder="סיסמה"  
+                    <Entry x:Name="Password" Text="{Binding Password}" IsPassword="True" Placeholder="סיסמה"  
                            Style="{StaticResource LogInEntry}"/>
                 </StackLayout>
             </Frame>
