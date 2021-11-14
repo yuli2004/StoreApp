@@ -90,9 +90,6 @@
     <AndroidResource Include="Resources\mipmap-xxxhdpi\launcher_foreground.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\ballsocer.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\StoreApp\StoreApp.csproj">
       <Project>{4F4697E5-A828-4088-AE19-59C1FB156C64}</Project>
       <Name>StoreApp</Name>

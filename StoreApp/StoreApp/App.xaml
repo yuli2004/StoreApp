@@ -28,7 +28,6 @@
                 <Setter Property="Margin" Value="0"/>
                 <Setter Property="TextColor" Value="Black"/>
                 <Setter Property="PlaceholderColor" Value="Black"/>
-                <Setter Property="Margin" Value="10, 10"/>
             </Style>
             
             <Style x:Key="labelTableStyle" TargetType="Label">
@@ -48,10 +47,10 @@
                 <Setter Property="Margin" Value="50, 20"/>
             </Style>
 
-            <Style TargetType="Frame">
+            <Style TargetType="Frame" x:Key="Frame">
                 <Setter Property="CornerRadius" Value="10"/>
                 <Setter Property="BackgroundColor"  Value="#6da37d"/>
-                <Setter Property="Margin" Value="30"/>
+                <Setter Property="Margin" Value="25, 25, 25, 1"/>
             </Style>
             
         </ResourceDictionary>
