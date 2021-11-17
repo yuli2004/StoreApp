@@ -22,18 +22,7 @@
             <Setter Property="FontAttributes" Value="Bold"/>
             <Setter Property="TextColor" Value="#d8f3dc"/>
         </Style>
-        <Style TargetType="Entry" x:Key="RegisterBuyerEntry">
-            <Setter Property="PlaceholderColor" Value="White"/>
-            <Setter Property="HeightRequest" Value="40"/>
-            <Setter Property="TextColor" Value="White"/>
-        </Style>
-        <Style TargetType="Button" x:Key="RegisterBuyerButton">
-            <Setter Property="FontAttributes" Value="Bold"/>
-            <Setter Property="FontSize" Value="Large"/>
-            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-            <Setter Property="TextColor" Value="White"/>
-            <Setter Property="BackgroundColor" Value="#088da5"/>
-        </Style>
+       
     </ContentPage.Resources>
     
     <ContentPage.Content>
@@ -50,7 +39,6 @@
                 <Label Text="הרשמת לקוח" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Style="{StaticResource FormTitle}"></Label>
             </Grid>
             
-              <!-- <Frame BackgroundColor="#BF043055" HasShadow="False"> -->
             <StackLayout>
                 
                 <!-- שם פרטי -->
@@ -99,9 +87,10 @@
                 </Frame>
 
             </StackLayout>
-        <!--</Frame>-->
+
         <Button Command="{Binding SaveDataCommand}" Text="הירשם" Style="{StaticResource ButtonStyle}" />
             
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
