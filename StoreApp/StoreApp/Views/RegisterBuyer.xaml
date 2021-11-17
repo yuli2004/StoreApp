@@ -16,12 +16,7 @@
             <Setter Property="Orientation" Value="Vertical"/>
             <Setter Property="FlowDirection" Value="RightToLeft"/>
         </Style>
-        <Style TargetType="Label" x:Key="FormTitle">
-            <Setter Property="HorizontalOptions" Value="Center"/>
-            <Setter Property="FontSize" Value="44"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
-            <Setter Property="TextColor" Value="#d8f3dc"/>
-        </Style>
+
        
     </ContentPage.Resources>
     
@@ -36,12 +31,12 @@
                     <RowDefinition Height="150"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Column="0"   Aspect="AspectFill"  Source="mandalabackground" Opacity="0.6"></Image>
-                <Label Text="הרשמת לקוח" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Style="{StaticResource FormTitle}"></Label>
+                <Label Text="הרשמה" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Style="{StaticResource FormTitle}"></Label>
             </Grid>
             
             <StackLayout>
                 
-                <!-- שם פרטי -->
+                <!-- שם משתמש -->
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
@@ -51,10 +46,10 @@
                             <RowDefinition Height="*" />
                         </Grid.RowDefinitions>
 
-                    <Label Text="{Binding NameError}" IsVisible="{Binding ShowUsernameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
+                    <Label Text="{Binding UsernameError}" IsVisible="{Binding ShowUsernameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
                     </Grid>
                 <Frame Style="{StaticResource Frame}">
-                    <Entry Placeholder="הכנס שם פרטי" Text="{Binding Username}" Style="{StaticResource entryStyle}"/>
+                    <Entry Placeholder="הכנס שם משתמש" Text="{Binding Username}" Style="{StaticResource entryStyle}"/>
                 </Frame>
                 <!-- סיסמה -->
                     <Grid>

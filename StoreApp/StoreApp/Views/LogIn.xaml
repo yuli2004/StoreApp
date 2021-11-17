@@ -14,36 +14,35 @@
             <Setter Property="Spacing" Value="40"/>
             <Setter Property="FlowDirection" Value="RightToLeft"/>
         </Style>
-        <Style TargetType="Label" x:Key="FormTitle">
-            <Setter Property="HorizontalOptions" Value="Center"/>
-            <Setter Property="FontSize" Value="Large"/>
-            <Setter Property="FontAttributes" Value="Bold"/>
-        </Style>
-        <Style TargetType="Entry" x:Key="LogInEntry">
-            <Setter Property="PlaceholderColor" Value="White"/>
-            <Setter Property="HeightRequest" Value="40"/>
-            <Setter Property="TextColor" Value="White"/>
-        </Style>
-        <Style TargetType="Button" x:Key="LogInButton">
-            <Setter Property="FontAttributes" Value="Bold"/>
-            <Setter Property="FontSize" Value="Large"/>
-            <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
-            <Setter Property="TextColor" Value="White"/>
-            <Setter Property="BackgroundColor" Value="#088da5"/>
-        </Style>
+       
     </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout Style="{StaticResource LogInStack}">
-            <Label Text="התחברות" Style="{StaticResource FormTitle}"></Label>
-            <Frame BackgroundColor="#BF043055" HasShadow="False">
+        <StackLayout Style="{StaticResource LogInStack}" Padding="0">
+
+            <Grid Margin="0,0,0,0" Padding="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="150"/>
+                </Grid.RowDefinitions>
+                <Image Grid.Column="0"   Aspect="AspectFill"  Source="mandalabackground" Opacity="0.6"></Image>
+                <Label Text="התחברות" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Style="{StaticResource FormTitle}"></Label>
+            </Grid>
+            
+
                 <StackLayout>
-                    <Entry x:Name="Username" Text="{Binding Username}" Placeholder="שם משתמש"     
-                           Style="{StaticResource LogInEntry}"/>
-                    <Entry x:Name="Password" Text="{Binding Password}" IsPassword="True" Placeholder="סיסמה"  
-                           Style="{StaticResource LogInEntry}"/>
-                </StackLayout>
-            </Frame>
-            <Button Command="{Binding LogInCommand}" Text="התחבר" Style="{StaticResource LogInButton}" />
+                <Frame Margin="25, 0, 25, 1" Style="{StaticResource Frame}">
+                <Entry x:Name="Username" Text="{Binding Username}" Placeholder="שם משתמש"     
+                           Style="{StaticResource entryStyle}"/>
+                    </Frame>
+                <Frame Style="{StaticResource Frame}">
+                        <Entry x:Name="Password" Text="{Binding Password}" IsPassword="True" Placeholder="סיסמה"  
+                           Style="{StaticResource entryStyle}"/>
+                        </Frame>
+            </StackLayout>
+
+            <Button Command="{Binding LogInCommand}" Text="התחבר" Style="{StaticResource ButtonStyle}" Margin="50, 0, 50, 1" />
 
         </StackLayout>
     </ContentPage.Content>

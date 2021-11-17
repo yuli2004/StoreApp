@@ -15,6 +15,13 @@
             <Style x:Key="labelNameStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="Medium" />
             </Style>
+
+            <Style TargetType="Label" x:Key="FormTitle">
+                <Setter Property="HorizontalOptions" Value="Center"/>
+                <Setter Property="FontSize" Value="44"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+                <Setter Property="TextColor" Value="#d8f3dc"/>
+            </Style>
             
             <Style x:Key="labelErrorStyle" TargetType="Label">
                 <Setter Property="HorizontalOptions" Value="End" />
