@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:StoreApp.ViewModels"
              xmlns:views="clr-namespace:StoreApp.Views"
              x:Class="StoreApp.Views.RegisterBuyer"
+             FlowDirection="RightToLeft"
              Style="{StaticResource TitleNav}">
 
     
@@ -60,7 +61,7 @@
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
+                    <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" HorizontalTextAlignment="End" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
                     </Grid>
                 <Frame Style="{StaticResource Frame}">
                     <Entry Placeholder="הכנס סיסמה" IsPassword="True" Text="{Binding Password}" Style="{StaticResource entryStyle}"/>

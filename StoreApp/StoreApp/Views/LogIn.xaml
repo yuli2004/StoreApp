@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:StoreApp.ViewModels" x:DataType="viewmodels:LogInViewModel"
              x:Class="StoreApp.Views.LogIn"
              NavigationPage.HasNavigationBar="True"
-             Style="{StaticResource TitleNav}">
+             Style="{StaticResource TitleNav}" 
+             FlowDirection="RightToLeft">
     <ContentPage.BindingContext>
         <viewmodels:LogInViewModel></viewmodels:LogInViewModel>
     </ContentPage.BindingContext>
@@ -37,7 +38,7 @@
                            Style="{StaticResource entryStyle}"/>
                     </Frame>
                 <Frame Style="{StaticResource Frame}">
-                        <Entry x:Name="Password" Text="{Binding Password}" IsPassword="True" Placeholder="סיסמה"  
+                        <Entry x:Name="Password" Text="{Binding Password}" HorizontalTextAlignment="End" IsPassword="True" Placeholder="סיסמה"  
                            Style="{StaticResource entryStyle}"/>
                         </Frame>
             </StackLayout>
