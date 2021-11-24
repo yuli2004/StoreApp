@@ -15,7 +15,7 @@ namespace StoreApp.ViewModels
         public const string SHORT_PASS = "סיסמה חייבת להכיל לפחות 6 תווים";
         public const string BAD_EMAIL = "מייל לא תקין";
     }
-    class RegisterBuyerViewModel: BaseViewModel
+    class RegisterBuyerViewModel : BaseViewModel
     {
         #region username
         private bool showUsernameError;
@@ -280,7 +280,7 @@ namespace StoreApp.ViewModels
                 ServerStatus = "מתחבר לשרת...";
                 await App.Current.MainPage.Navigation.PushModalAsync(new Views.ServerStatusPage(this));
                 StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
-                
+
 
                 //the email and username should be unique
                 bool isEmailExists = await proxy.UserExistsByEmailAsync(this.u.Email);
@@ -290,7 +290,7 @@ namespace StoreApp.ViewModels
                     await App.Current.MainPage.DisplayAlert("שגיאה", "שם המשתמש תפוס - נסה שם אחר", "בסדר");
                     await App.Current.MainPage.Navigation.PopModalAsync();
                 }
-                if(isEmailExists)
+                if (isEmailExists)
                 {
                     await App.Current.MainPage.DisplayAlert("שגיאה", "האימייל כבר נמצא בשימוש", "בסדר");
                     await App.Current.MainPage.Navigation.PopModalAsync();
@@ -315,9 +315,8 @@ namespace StoreApp.ViewModels
 
             }
         }
+        #endregion
     }
-    #endregion
-
-
 }
+
 

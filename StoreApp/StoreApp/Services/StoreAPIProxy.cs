@@ -147,6 +147,41 @@ namespace StoreApp.Services
         }
         #endregion
 
+        #region Seller register
+        public async Task<Seller> RegisterSellerAsync(Seller seller)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.Hebrew, UnicodeRanges.BasicLatin),
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<Seller>(seller, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/RegisterSeller", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    Seller ret = JsonSerializer.Deserialize<Seller>(jsonContent, options);
+
+                    return ret;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine(ee.Message);
+                return null;
+            }
+        }
+        #endregion
+
         #region UserExistsByEmailAsync
         public async Task<bool> UserExistsByEmailAsync(string email)
         {
@@ -168,12 +203,36 @@ namespace StoreApp.Services
         }
         #endregion
 
-        #region UserExistsByPasswordAsync
+        #region UserExistsByUsernameAsync
         public async Task<bool> UserExistsByUsernameAsync(string username)
         {
             try
             {
                 HttpResponseMessage response = await client.GetAsync($"{this.baseUri}/UserExistsByUsername?username={username}");
+                if (response.IsSuccessStatusCode)
+                {
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return false;
+            }
+        }
+        #endregion
+
+        #region upload image
+        public async Task<bool> UploadImage(Models.FileInfo fileInfo, string targetFileName)
+        {
+            try
+            {
+                var multipartFormDataContent = new MultipartFormDataContent();
+                var fileContent = new ByteArrayContent(File.ReadAllBytes(fileInfo.Name));
+                multipartFormDataContent.Add(fileContent, "file", targetFileName);
+                HttpResponseMessage response = await client.PostAsync($"{this.baseUri}/UploadImage", multipartFormDataContent);
                 if (response.IsSuccessStatusCode)
                 {
                     return true;

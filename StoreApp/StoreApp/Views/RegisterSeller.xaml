@@ -51,10 +51,10 @@
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Label Text="{Binding StoreNameError}" IsVisible="{Binding ShowStoreNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
+                        <Label Text="{Binding UsernameError}" IsVisible="{Binding ShowUsernameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
                 </Grid>
                 <Frame Style="{StaticResource Frame}">
-                    <Entry Placeholder="הכנס את שם החנות" Text="{Binding StoreName}" Style="{StaticResource entryStyle}"/>
+                        <Entry Placeholder="הכנס את שם החנות" Text="{Binding Username}" Style="{StaticResource entryStyle}"/>
                 </Frame>
                 <!-- שם המוכר -->
                 <Grid>
@@ -102,21 +102,25 @@
                 </Frame>
 
                 <!-- Photo -->
-                <Grid>
+                    <Frame Style="{StaticResource Frame}" Margin="25, 25, 25, 0">
+                        <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="170" />
-                        <RowDefinition Height="150" />
+                        <RowDefinition Height="0" />
                     </Grid.RowDefinitions>
                     <Image x:Name="theImage" Source="{Binding UserImgSrc}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1"/>
+                        
                     <ImageButton Source="photogallery.png" HorizontalOptions="End" BackgroundColor="Transparent" Grid.Column="0" Grid.Row="0" Command="{Binding PickImageCommand}"/>
                     <ImageButton Source="camera.png" HorizontalOptions="Start" Grid.Column="1" Grid.Row="0" BackgroundColor="Transparent" Command="{Binding CameraImageCommand}"/>
-                </Grid>
+                        
+                    </Grid>
+                    </Frame>
 
-                 <!-- תיאור-->
+                    <!-- תיאור-->
                 <Grid>
                     <Grid.ColumnDefinitions>
                        <ColumnDefinition Width="*"/>
@@ -133,7 +137,7 @@
 
                 </StackLayout>
 
-            <Button Command="{Binding SaveDataCommand}" Text="הירשם" Style="{StaticResource ButtonStyle}" />
+                <Button Command="{Binding SaveDataCommand}" Text="הירשם" Style="{StaticResource ButtonStyle}" Margin="25"/>
 
         </StackLayout>
         </ScrollView>
