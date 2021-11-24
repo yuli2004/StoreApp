@@ -292,8 +292,7 @@ namespace StoreApp.ViewModels
             App theApp = (App)App.Current;
             u = new User()
             {
-                Username = "",
-                name = "",
+                Username = "",                
                 Email = "",
                 Password = "",
                 IsAdmin = false,
