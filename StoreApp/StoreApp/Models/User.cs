@@ -11,5 +11,8 @@ namespace StoreApp.Models
         public bool IsAdmin { get; set; }
         public bool IsSeller { get; set; }
         public bool IsBuyer { get; set; }
+
+        public virtual Buyer Buyer { get; set; }
+        public virtual Seller Seller { get; set; }
     }
 }
