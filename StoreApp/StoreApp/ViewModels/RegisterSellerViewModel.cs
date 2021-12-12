@@ -300,7 +300,7 @@ namespace StoreApp.ViewModels
                 IsSeller = true,
             };
             s = new Seller()
-            { User = u };
+            { UsernameNavigation = u };
 
             this.UsernameError = ERROR_MESSAGES.REQUIRED_FIELD;
             this.PasswordError = ERROR_MESSAGES.SHORT_PASS;
@@ -352,7 +352,7 @@ namespace StoreApp.ViewModels
         {
             if (ValidateForm())
             {
-                this.s.Userid = this.Username;
+                this.s.Username = this.Username;
 
                 this.u.Username = this.Username;
                 this.u.Email = this.Email;
@@ -396,7 +396,7 @@ namespace StoreApp.ViewModels
                             bool success = await proxy.UploadImage(new FileInfo()
                             {
                                 Name = this.imageFileResult.FullPath
-                            }, $"{currentS.Id}.jpg");
+                            }, $"{currentS.Picture}.jpg");
                         }
                         ServerStatus = "שומר נתונים..."; 
 

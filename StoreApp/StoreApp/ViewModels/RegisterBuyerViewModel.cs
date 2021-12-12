@@ -219,7 +219,7 @@ namespace StoreApp.ViewModels
                 IsSeller = false,
             };
             b = new Buyer()
-            { User = u };
+            { UsernameNavigation = u };
 
             this.UsernameError = ERROR_MESSAGES.REQUIRED_FIELD;
             this.PasswordError = ERROR_MESSAGES.SHORT_PASS;
@@ -271,7 +271,7 @@ namespace StoreApp.ViewModels
         {
             if (ValidateForm())
             {
-                this.b.Userid = this.Username;
+                this.b.Username = this.Username;
 
                 this.u.Username = this.Username;
                 this.u.Email = this.Email;
