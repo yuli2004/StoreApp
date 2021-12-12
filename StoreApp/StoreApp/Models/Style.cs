@@ -8,12 +8,12 @@ namespace StoreApp.Models
     {
         public Style()
         {
-            Products = new HashSet<Product>();
+            Products = new List<Product>();
         }
 
         public int StyleId { get; set; }
         public string Style1 { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual List<Product> Products { get; set; }
     }
 }

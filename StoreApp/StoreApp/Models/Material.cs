@@ -8,12 +8,12 @@ namespace StoreApp.Models
     {
         public Material()
         {
-            Products = new HashSet<Product>();
+            Products = new List<Product>();
         }
 
         public int MaterialId { get; set; }
         public string Material1 { get; set; }
 
-        public virtual ICollection<Product> Products { get; set; }
+        public virtual List<Product> Products { get; set; }
     }
 }

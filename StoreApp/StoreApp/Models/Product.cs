@@ -7,8 +7,8 @@ namespace StoreApp.Models
     {
         public Product()
         {
-            ProductInOrders = new HashSet<ProductInOrder>();
-            Reviews = new HashSet<Review>();
+            ProductInOrders = new List<ProductInOrder>();
+            Reviews = new List<Review>();
         }
 
         public int ProductId { get; set; }
@@ -28,7 +28,7 @@ namespace StoreApp.Models
         public virtual Material Material { get; set; }
         public virtual Seller Seller { get; set; }
         public virtual Style Style { get; set; }
-        public virtual ICollection<ProductInOrder> ProductInOrders { get; set; }
-        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual List<ProductInOrder> ProductInOrders { get; set; }
+        public virtual List<Review> Reviews { get; set; }
     }
 }

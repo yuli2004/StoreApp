@@ -7,8 +7,8 @@ namespace StoreApp.Models
     {
         public Seller()
         {
-            Products = new HashSet<Product>();
-            Reviews = new HashSet<Review>();
+            Products = new List<Product>();
+            Reviews = new List<Review>();
         }
 
         public int SellerId { get; set; }
@@ -19,7 +19,7 @@ namespace StoreApp.Models
         public bool IsActive { get; set; }
 
         public virtual User UsernameNavigation { get; set; }
-        public virtual ICollection<Product> Products { get; set; }
-        public virtual ICollection<Review> Reviews { get; set; }
+        public virtual List<Product> Products { get; set; }
+        public virtual List<Review> Reviews { get; set; }
     }
 }

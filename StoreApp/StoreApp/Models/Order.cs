@@ -7,7 +7,7 @@ namespace StoreApp.Models
     {
         public Order()
         {
-            ProductInOrders = new HashSet<ProductInOrder>();
+            ProductInOrders = new List<ProductInOrder>();
         }
 
         public int OrderId { get; set; }
@@ -18,6 +18,6 @@ namespace StoreApp.Models
 
         public virtual Buyer Buyer { get; set; }
         public virtual OrderStatus Status { get; set; }
-        public virtual ICollection<ProductInOrder> ProductInOrders { get; set; }
+        public virtual List<ProductInOrder> ProductInOrders { get; set; }
     }
 }
