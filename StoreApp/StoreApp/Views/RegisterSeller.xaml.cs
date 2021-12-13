@@ -6,15 +6,27 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using StoreApp.Models;
+using StoreApp.ViewModels;
 
 namespace StoreApp.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class RegisterSeller : ContentPage
     {
-        public RegisterSeller()
+        public RegisterSeller(RegisterSellerViewModel context)
         {
+            this.BindingContext = context;
+            context.SetImageSourceEvent += OnSetImageSource;
             InitializeComponent();
+        }
+        public void OnSetImageSource(ImageSource imgSource)
+        {
+            theImage.Source = imgSource;
+        }
+        private void buttonPhones_Clicked(object sender, EventArgs e)
+        {
+
         }
     }
 }

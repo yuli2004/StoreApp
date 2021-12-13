@@ -5,7 +5,7 @@ using System.Text;
 
 namespace StoreApp.ViewModels
 {
-    class BaseViewModel : INotifyPropertyChanged
+    public class BaseViewModel : INotifyPropertyChanged
     {
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

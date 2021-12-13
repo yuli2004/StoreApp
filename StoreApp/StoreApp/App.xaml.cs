@@ -27,7 +27,7 @@ namespace StoreApp
             InitializeComponent();
             CurrentUser = null;
             //PhoneTypes = new List<PhoneType>();
-            MainPage = new NavigationPage(new RegisterSeller());
+            MainPage = new NavigationPage(new RegisterSeller(new ViewModels.RegisterSellerViewModel()));
         }
 
         protected override void OnStart()

@@ -10,7 +10,7 @@ using Xamarin.Forms;
 
 namespace StoreApp.ViewModels
 {
-    class RegisterSellerViewModel: BaseViewModel
+    public class RegisterSellerViewModel: BaseViewModel
     {
         #region storeName
         private bool showUsernameError;
@@ -283,6 +283,21 @@ namespace StoreApp.ViewModels
         }
         #endregion
 
+        #region מקור התמונה
+        private string sellerImgSrc;
+
+        public string SellerImgSrc
+        {
+            get => sellerImgSrc;
+            set
+            {
+                sellerImgSrc = value;
+                OnPropertyChanged("SellerImgSrc");
+            }
+        }
+        private const string DEFAULT_PHOTO_SRC = "defaultphoto.jpg";
+        #endregion
+
         User u;
         Seller s;
 
@@ -302,6 +317,10 @@ namespace StoreApp.ViewModels
             s = new Seller()
             { UsernameNavigation = u };
 
+            //Setup default image photo
+            this.SellerImgSrc = DEFAULT_PHOTO_SRC;
+            this.imageFileResult = null; //mark that no picture was chosen
+
             this.UsernameError = ERROR_MESSAGES.REQUIRED_FIELD;
             this.PasswordError = ERROR_MESSAGES.SHORT_PASS;
             this.EmailError = ERROR_MESSAGES.BAD_EMAIL;
@@ -309,6 +328,8 @@ namespace StoreApp.ViewModels
             this.ShowUsernameError = false;
             this.ShowEmailError = false;
             this.ShowPasswordError = false;
+
+            
 
             this.SaveDataCommand = new Command(() => SaveData());
 
