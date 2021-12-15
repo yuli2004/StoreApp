@@ -295,7 +295,7 @@ namespace StoreApp.ViewModels
                 OnPropertyChanged("SellerImgSrc");
             }
         }
-        private const string DEFAULT_PHOTO_SRC = "defaultphoto.jpg";
+        private const string DEFAULT_PHOTO_SRC = "defaultphoto.png";
         #endregion
 
         User u;

@@ -113,7 +113,7 @@
                         <RowDefinition Height="100" />
                         <RowDefinition Height="0" />
                     </Grid.RowDefinitions>
-                    <Image x:Name="theImage" Source="{Binding UserImgSrc}" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"/>
+                    <Image x:Name="theImage" Source="{Binding SellerImgSrc}" Aspect="AspectFit" HeightRequest="20" WidthRequest="20" Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="0"/>
                         
                     <ImageButton Source="photogallery.png" HorizontalOptions="End" BackgroundColor="Transparent" Grid.Column="1" Grid.Row="0" Command="{Binding PickImageCommand}"/>
                     <ImageButton Source="camera.png" HorizontalOptions="Start" Grid.Column="2" Grid.Row="0" BackgroundColor="Transparent" Command="{Binding CameraImageCommand}"/>
