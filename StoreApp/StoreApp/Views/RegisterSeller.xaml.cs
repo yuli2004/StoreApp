@@ -16,17 +16,8 @@ namespace StoreApp.Views
     {
         public RegisterSeller(RegisterSellerViewModel context)
         {
-            this.BindingContext = context;
-            context.SetImageSourceEvent += OnSetImageSource;
             InitializeComponent();
         }
-        public void OnSetImageSource(ImageSource imgSource)
-        {
-            theImage.Source = imgSource;
-        }
-        private void buttonPhones_Clicked(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }

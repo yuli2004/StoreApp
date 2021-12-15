@@ -318,7 +318,7 @@ namespace StoreApp.ViewModels
             { UsernameNavigation = u };
 
             //Setup default image photo
-            this.SellerImgSrc = DEFAULT_PHOTO_SRC;
+            this.SellerImgSrc = StoreAPIProxy.GetImageURL() + DEFAULT_PHOTO_SRC;
             this.imageFileResult = null; //mark that no picture was chosen
 
             this.UsernameError = ERROR_MESSAGES.REQUIRED_FIELD;

@@ -248,6 +248,11 @@ namespace StoreApp.Services
         }
         #endregion
 
-        
+        #region Get image
+        public static string GetImageURL()
+        {
+            return DEV_ANDROID_EMULATOR_PHOTOS_URL;
+        }
+        #endregion
     }
 }
