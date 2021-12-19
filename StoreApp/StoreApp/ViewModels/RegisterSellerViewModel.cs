@@ -448,6 +448,7 @@ namespace StoreApp.ViewModels
 
                 var stream = await result.OpenReadAsync();
                 ImageSource imgSource = ImageSource.FromStream(() => stream);
+                this.SellerImgSrc = result.FullPath;
                 if (SetImageSourceEvent != null)
                     SetImageSourceEvent(imgSource);
             }
@@ -470,6 +471,7 @@ namespace StoreApp.ViewModels
                 this.imageFileResult = result;
                 var stream = await result.OpenReadAsync();
                 ImageSource imgSource = ImageSource.FromStream(() => stream);
+                this.SellerImgSrc = result.FullPath;
                 if (SetImageSourceEvent != null)
                     SetImageSourceEvent(imgSource);
             }
