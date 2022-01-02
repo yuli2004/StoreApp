@@ -12,7 +12,7 @@ namespace StoreApp.ViewModels
 {
     public class RegisterSellerViewModel: BaseViewModel
     {
-        #region storeName
+        #region userName/storeName
         private bool showUsernameError;
 
         public bool ShowUsernameError
@@ -200,49 +200,6 @@ namespace StoreApp.ViewModels
             }
         }
         #endregion
-        #region Details
-        private bool showDetailsError;
-
-        public bool ShowDetailsError
-        {
-            get => showDetailsError;
-            set
-            {
-                showDetailsError = value;
-                OnPropertyChanged("ShowDetailsError");
-            }
-        }
-
-        private string details;
-
-        public string Details
-        {
-            get => details;
-            set
-            {
-                details = value;
-                ValidateDetails();
-                OnPropertyChanged("Details");
-            }
-        }
-
-        private string detailsError;
-
-        public string DetailsError
-        {
-            get => detailsError;
-            set
-            {
-                detailsError = value;
-                OnPropertyChanged("DetailsError");
-            }
-        }
-
-        private void ValidateDetails()
-        {
-            this.ShowDetailsError = string.IsNullOrEmpty(details);
-        }
-        #endregion
         #region isAdmin
         private bool isAdmin;
         public bool IsAdmin
@@ -282,8 +239,50 @@ namespace StoreApp.ViewModels
             }
         }
         #endregion
+        #region info
+        private bool showInfoError;
 
-        #region מקור התמונה
+        public bool ShowInfoError
+        {
+            get => showInfoError;
+            set
+            {
+                showInfoError = value;
+                OnPropertyChanged("ShowInfoError");
+            }
+        }
+
+        private string info;
+
+        public string Info
+        {
+            get => info;
+            set
+            {
+                info = value;
+                ValidateInfo();
+                OnPropertyChanged("Info");
+            }
+        }
+
+        private string infoError;
+
+        public string InfoError
+        {
+            get => infoError;
+            set
+            {
+                infoError = value;
+                OnPropertyChanged("InfoError");
+            }
+        }
+
+        private void ValidateInfo()
+        {
+            this.ShowInfoError = string.IsNullOrEmpty(info);
+        }
+        #endregion
+        #region picture
         private string sellerImgSrc;
 
         public string SellerImgSrc
@@ -324,15 +323,16 @@ namespace StoreApp.ViewModels
             this.UsernameError = ERROR_MESSAGES.REQUIRED_FIELD;
             this.PasswordError = ERROR_MESSAGES.SHORT_PASS;
             this.EmailError = ERROR_MESSAGES.BAD_EMAIL;
+            this.InfoError = ERROR_MESSAGES.REQUIRED_FIELD;
+            this.nameError = ERROR_MESSAGES.REQUIRED_FIELD;
 
             this.ShowUsernameError = false;
             this.ShowEmailError = false;
             this.ShowPasswordError = false;
-
-            
+            this.showInfoError = false;
+            this.showNameError = false;            
 
             this.SaveDataCommand = new Command(() => SaveData());
-
         }
         #endregion
 
@@ -344,9 +344,11 @@ namespace StoreApp.ViewModels
             ValidateUsername();
             ValidateEmail();
             ValidatePassword();
+            ValidateInfo();
+            ValidateName();
 
             //check if any validation failed
-            if (ShowUsernameError || ShowEmailError || ShowPasswordError)
+            if (ShowUsernameError || ShowEmailError || ShowPasswordError || ShowInfoError || ShowNameError)
                 return false;
             return true;
         }
@@ -373,8 +375,10 @@ namespace StoreApp.ViewModels
         {
             if (ValidateForm())
             {
-                this.s.Username = this.Username;
 
+                this.s.Username = this.Username;
+                this.s.Name = this.Name;
+                this.s.Info = this.Info;
                 this.u.Username = this.Username;
                 this.u.Email = this.Email;
                 this.u.Password = this.Password;

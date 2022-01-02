@@ -16,8 +16,13 @@ namespace StoreApp.Views
     {
         public RegisterSeller(RegisterSellerViewModel context)
         {
+            
+          //  vm.SetImageSourceEvent += OnSetImageSource;
             InitializeComponent();
         }
-        
+        //private void OnSetImageSource(ImageSource imgSource)
+        //{
+        //    theImage.Source = imgSource;
+        //}
     }
 }

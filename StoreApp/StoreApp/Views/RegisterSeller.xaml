@@ -111,11 +111,11 @@
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="100" />
-                        <RowDefinition Height="0" />
+                       
                     </Grid.RowDefinitions>
-                            <Image x:Name="theImage" Source="{Binding SellerImgSrc}"  Grid.Column="2" Grid.Row="0" BackgroundColor="Transparent"/>
-                        
-                    <ImageButton Source="photogallery.png" BackgroundColor="Transparent" Grid.Column="1" Grid.Row="0" Command="{Binding PickImageCommand}"/>
+                     <Image  x:Name="theImage" Source="{Binding SellerImgSrc}"    Grid.Column="2"  Grid.Row="0" BackgroundColor="Transparent"  Aspect="AspectFit" />
+
+                     <ImageButton Source="photogallery.png" BackgroundColor="Transparent" Grid.Column="1" Grid.Row="0" Command="{Binding PickImageCommand}"/>
                     <ImageButton Source="camera.png" Grid.Column="0" Grid.Row="0" BackgroundColor="Transparent" Command="{Binding CameraImageCommand}"/>
                         
                     </Grid>
@@ -130,10 +130,10 @@
                     <Grid.RowDefinitions>
                        <RowDefinition Height="*" />
                        </Grid.RowDefinitions>
-                    <Label Text="{Binding DetailsError}" IsVisible="{Binding ShowDetailsError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
+                        <Label Text="{Binding InfoError}" IsVisible="{Binding ShowInfoError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
                 </Grid>
                     <Frame Style="{StaticResource Frame}">
-                        <Entry Placeholder="הכנס פרטים" Text="{Binding Details}" Style="{StaticResource entryStyle}"/>
+                        <Entry Placeholder="הכנס פרטים" Text="{Binding Info}" Style="{StaticResource entryStyle}"/>
                     </Frame>
 
                 </StackLayout>
