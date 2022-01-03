@@ -382,6 +382,7 @@ namespace StoreApp.ViewModels
                 this.u.Username = this.Username;
                 this.u.Email = this.Email;
                 this.u.Password = this.Password;
+                this.SellerImgSrc = this.SellerImgSrc;
 
                 ServerStatus = "מתחבר לשרת...";
                 await App.Current.MainPage.Navigation.PushModalAsync(new Views.ServerStatusPage(this));
@@ -414,6 +415,7 @@ namespace StoreApp.ViewModels
                     }
                     else
                     {
+
                         if (this.imageFileResult != null)
                         {
                             ServerStatus = "מעלה תמונה...";
@@ -421,7 +423,7 @@ namespace StoreApp.ViewModels
                             bool success = await proxy.UploadImage(new FileInfo()
                             {
                                 Name = this.imageFileResult.FullPath
-                            }, $"{currentS.Picture}.jpg");
+                            }, $"{newS.SellerId}.jpg");
                         }
                         ServerStatus = "שומר נתונים..."; 
 

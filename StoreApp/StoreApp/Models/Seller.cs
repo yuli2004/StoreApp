@@ -21,5 +21,12 @@ namespace StoreApp.Models
         public virtual User UsernameNavigation { get; set; }
         public virtual List<Product> Products { get; set; }
         public virtual List<Review> Reviews { get; set; }
+
+        //this method returns the profile picture url
+        public string GetProfilePicture()
+        {
+            string pic = StoreApp.Services.StoreAPIProxy.GetImageURL() + "/" + SellerId + ".jpg";
+            return pic;
+        }
     }
 }
