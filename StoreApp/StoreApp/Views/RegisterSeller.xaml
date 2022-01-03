@@ -83,7 +83,7 @@
                     <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" HorizontalTextAlignment="End" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
                 </Grid>
                 <Frame Style="{StaticResource Frame}">
-                    <Entry Placeholder="הכנס סיסמה" IsPassword="True" Text="{Binding Password}" Style="{StaticResource entryStyle}"/>
+                    <Entry Placeholder="הכנס סיסמה" HorizontalTextAlignment="End" IsPassword="True" Text="{Binding Password}" Style="{StaticResource entryStyle}"/>
                 </Frame>
 
                 <!-- דואר אלקטרוני-->
@@ -102,7 +102,7 @@
                 </Frame>
 
                 <!-- Photo -->
-                    <Frame Style="{StaticResource Frame}" Margin="25, 25, 25, 0">
+                    <Frame Style="{StaticResource Frame}" Margin="25, 10, 25, 5">
                         <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -133,7 +133,7 @@
                         <Label Text="{Binding InfoError}" IsVisible="{Binding ShowInfoError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
                 </Grid>
                     <Frame Style="{StaticResource Frame}">
-                        <Entry Placeholder="הכנס פרטים" Text="{Binding Info}" Style="{StaticResource entryStyle}"/>
+                        <Entry Placeholder="ספר על עצמך..." Text="{Binding Info}" Style="{StaticResource entryStyle}"/>
                     </Frame>
 
                 </StackLayout>
