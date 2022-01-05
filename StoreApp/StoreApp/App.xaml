@@ -6,12 +6,18 @@
     <Application.Resources>
         <ResourceDictionary>
             <navigation:NavigationBarView x:Key="TitleViewNav"/>
-            
-            <Style TargetType="ContentPage" x:Key="TitleNav">
+
+            <Style TargetType="ContentPage" x:Key="ContentPageStyle">
                 <Setter Property="NavigationPage.TitleView"  Value="{StaticResource TitleViewNav}"/>
                 <Setter Property="BackgroundColor" Value="#1b4332"/>
-            </Style>
 
+            </Style>
+            
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="#1b4332" />
+                    <Setter Property="BarTextColor" Value="White" />
+            </Style>
+            
             <Style x:Key="labelNameStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="Medium" />
             </Style>

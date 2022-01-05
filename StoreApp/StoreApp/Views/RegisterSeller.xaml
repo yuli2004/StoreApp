@@ -5,12 +5,15 @@
              xmlns:views="clr-namespace:StoreApp.Views"
              x:Class="StoreApp.Views.RegisterSeller"
              FlowDirection="RightToLeft"
-             Style="{StaticResource TitleNav}">
+             Style="{StaticResource ContentPageStyle}">
 
+    
     <ContentPage.BindingContext>
         <local:RegisterSellerViewModel></local:RegisterSellerViewModel>
     </ContentPage.BindingContext>
-
+    <NavigationPage.TitleView>
+        <views:NavigationBarView></views:NavigationBarView>
+    </NavigationPage.TitleView>
     <ContentPage.Resources>
         <Style TargetType="StackLayout" x:Key="RegisterSellerStack">
             <Setter Property="Orientation" Value="Vertical"/>

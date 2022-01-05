@@ -4,7 +4,8 @@
              x:Class="StoreApp.Views.LogIn"
              NavigationPage.HasNavigationBar="True"
              Style="{StaticResource TitleNav}" 
-             FlowDirection="RightToLeft">
+             FlowDirection="RightToLeft"
+             >
     <ContentPage.BindingContext>
         <viewmodels:LogInViewModel></viewmodels:LogInViewModel>
     </ContentPage.BindingContext>
