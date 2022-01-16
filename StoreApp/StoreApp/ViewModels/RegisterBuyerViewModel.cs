@@ -231,6 +231,7 @@ namespace StoreApp.ViewModels
 
             this.SaveDataCommand = new Command(() => SaveData());
 
+            NavigateToPageCommand = new Command<string>(NavigateToPage);
         }
         #endregion
 

@@ -13,6 +13,9 @@
     </ContentPage.BindingContext>
     <NavigationPage.TitleView>
         <views:NavigationBarView></views:NavigationBarView>
+        <!-- <StackLayout Orientation="Horizontal">
+            <ImageButton Command="{Binding NavigateToPageCommand}" CommandParameter=""
+        </StackLayout> -->
     </NavigationPage.TitleView>
     <ContentPage.Resources>
         <Style TargetType="StackLayout" x:Key="RegisterSellerStack">

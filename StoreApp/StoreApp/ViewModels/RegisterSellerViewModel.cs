@@ -333,6 +333,8 @@ namespace StoreApp.ViewModels
             this.showNameError = false;            
 
             this.SaveDataCommand = new Command(() => SaveData());
+
+            NavigateToPageCommand = new Command<string>(NavigateToPage);
         }
         #endregion
 

@@ -9,6 +9,9 @@ using StoreApp.Services;
 using StoreApp.Models;
 using Xamarin.Essentials;
 using System.Linq;
+using Xamarin.Forms.Xaml;
+using StoreApp.Views;
+
 
 namespace StoreApp.ViewModels
 {
@@ -45,6 +48,7 @@ namespace StoreApp.ViewModels
         public LogInViewModel()
         {
             LogInCommand = new Command(LogInSubmit);
+            NavigateToPageCommand = new Command<string>(NavigateToPage);
         }
 
         private string serverStatus;
@@ -75,8 +79,7 @@ namespace StoreApp.ViewModels
                 App theApp = (App)App.Current;
                 theApp.CurrentUser = user;
                 await App.Current.MainPage.DisplayAlert("הצלחה", "התחברות הצליחה", "בסדר");
-               // theApp.MainPage.Navigation.PushAsync() מסך הבא
-
+                await theApp.MainPage.Navigation.PushAsync(new Home());
             }
         }
     }
