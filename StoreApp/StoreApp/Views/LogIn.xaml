@@ -3,8 +3,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" xmlns:viewmodels="clr-namespace:StoreApp.ViewModels" x:DataType="viewmodels:LogInViewModel"
              x:Class="StoreApp.Views.LogIn"
              NavigationPage.HasNavigationBar="True"
-             Style="{StaticResource TitleNav}" 
+             Style="{StaticResource ContentPageStyle}" 
              FlowDirection="RightToLeft"
+             xmlns:fontAwesome="clr-namespace:Fonts"
              >
     <ContentPage.BindingContext>
         <viewmodels:LogInViewModel></viewmodels:LogInViewModel>
@@ -18,6 +19,18 @@
         </Style>
        
     </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding NavigateToPageCommand}"           
+                 Order="Primary"
+                 Priority="0">
+            <ToolbarItem.IconImageSource>
+                 <FontImageSource 
+                    FontFamily="MySolidFonts"
+                    Glyph="{x:Static fontAwesome:IconSolidFonts.House}"
+                    Size="Medium" />
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout Style="{StaticResource LogInStack}" Padding="0">
 

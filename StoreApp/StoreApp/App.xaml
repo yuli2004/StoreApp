@@ -5,10 +5,10 @@
              x:Class="StoreApp.App">
     <Application.Resources>
         <ResourceDictionary>
-            <navigation:NavigationBarView x:Key="TitleViewNav"/>
+            <!--<navigation:NavigationBarView x:Key="TitleViewNav"/>-->
 
             <Style TargetType="ContentPage" x:Key="ContentPageStyle">
-                <Setter Property="NavigationPage.TitleView"  Value="{StaticResource TitleViewNav}"/>
+                <!--<Setter Property="NavigationPage.TitleView"  Value="{StaticResource TitleViewNav}"/>-->
                 <Setter Property="BackgroundColor" Value="#1b4332"/>
 
             </Style>

@@ -4,7 +4,7 @@
              xmlns:views="clr-namespace:StoreApp.Views"
              x:Class="StoreApp.Views.RegisterBuyer"
              FlowDirection="RightToLeft"
-             Style="{StaticResource TitleNav}">
+             Style="{StaticResource ContentPageStyle}">
 
     
     <ContentPage.BindingContext>
