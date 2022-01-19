@@ -5,7 +5,8 @@
              xmlns:views="clr-namespace:StoreApp.Views"
              x:Class="StoreApp.Views.RegisterSeller"
              FlowDirection="RightToLeft"
-             Style="{StaticResource ContentPageStyle}">
+             Style="{StaticResource ContentPageStyle}"
+             xmlns:fontAwesome="clr-namespace:Fonts">
 
     
     <ContentPage.BindingContext>
@@ -30,6 +31,30 @@
         </Style>
 
     </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding NavigateToPageCommand}" CommandParameter="Home"           
+                 Order="Primary"
+                 Priority="0">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="MySolidFonts"
+                    Glyph="{x:Static fontAwesome:IconSolidFonts.House}"
+                    Size="Medium"
+                     Color="#d8f3dc"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem Command="{Binding NavigateToPageCommand}" CommandParameter="Home"           
+                 Order="Primary"
+                 Priority="0">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="MySolidFonts"
+                    Glyph="{x:Static fontAwesome:IconSolidFonts.BagShopping}"
+                    Size="Medium"
+                     Color="#d8f3dc"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <ScrollView>
         <StackLayout Style="{StaticResource RegisterSellerStack}">

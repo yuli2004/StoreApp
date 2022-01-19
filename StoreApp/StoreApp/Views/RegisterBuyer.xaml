@@ -4,7 +4,8 @@
              xmlns:views="clr-namespace:StoreApp.Views"
              x:Class="StoreApp.Views.RegisterBuyer"
              FlowDirection="RightToLeft"
-             Style="{StaticResource ContentPageStyle}">
+             Style="{StaticResource ContentPageStyle}"
+             xmlns:fontAwesome="clr-namespace:Fonts">
 
     
     <ContentPage.BindingContext>
@@ -16,10 +17,32 @@
             <Setter Property="Orientation" Value="Vertical"/>
             <Setter Property="FlowDirection" Value="RightToLeft"/>
         </Style>
-
-       
     </ContentPage.Resources>
-    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding NavigateToPageCommand}" CommandParameter="Home"           
+                 Order="Primary"
+                 Priority="0">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="MySolidFonts"
+                    Glyph="{x:Static fontAwesome:IconSolidFonts.House}"
+                    Size="Medium"
+                     Color="#d8f3dc"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+        <ToolbarItem Command="{Binding NavigateToPageCommand}" CommandParameter="Home"           
+                 Order="Primary"
+                 Priority="0">
+            <ToolbarItem.IconImageSource>
+                <FontImageSource
+                    FontFamily="MySolidFonts"
+                    Glyph="{x:Static fontAwesome:IconSolidFonts.BagShopping}"
+                    Size="Medium"
+                     Color="#d8f3dc"/>
+            </ToolbarItem.IconImageSource>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
+
     <ContentPage.Content>
         <StackLayout Style="{StaticResource RegisterBuyerStack}">
 
@@ -31,7 +54,10 @@
                     <RowDefinition Height="150"/>
                 </Grid.RowDefinitions>
                 <Image Grid.Column="0"   Aspect="AspectFill"  Source="mandalabackground" Opacity="0.6"></Image>
-                <Label Text="הרשמה" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Style="{StaticResource FormTitle}"></Label>
+                <Label Text="הרשמה" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Style="{StaticResource FormTitle}"/>
+                
+                <Button Text="להירשמות כמוכר לחץ כאן" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterSeller" 
+                        Margin="0,70,0,0" BackgroundColor="Transparent" BorderColor="Transparent" FontSize="20"  TextColor="#d8f3dc" />
             </Grid>
             
             <StackLayout>
@@ -63,7 +89,7 @@
                     <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" HorizontalTextAlignment="End" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
                     </Grid>
                 <Frame Style="{StaticResource Frame}">
-                    <Entry Placeholder="הכנס סיסמה" IsPassword="True" Text="{Binding Password}" Style="{StaticResource entryStyle}"/>
+                    <Entry Placeholder="הכנס סיסמה" IsPassword="True" Text="{Binding Password}" Style="{StaticResource entryStyle}" HorizontalTextAlignment="End"/>
                 </Frame>
                 
                 <!-- דואר אלקטרוני-->
