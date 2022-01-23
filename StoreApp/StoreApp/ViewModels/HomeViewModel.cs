@@ -4,7 +4,8 @@ using System.Text;
 
 namespace StoreApp.ViewModels
 {
-    class HomeViewModel
+    class HomeViewModel: BaseViewModel
     {
+        public HomeViewModel() { }
     }
 }

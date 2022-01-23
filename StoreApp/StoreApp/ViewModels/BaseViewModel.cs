@@ -18,6 +18,10 @@ namespace StoreApp.ViewModels
         }
         #endregion
 
+        public BaseViewModel()
+        {
+            NavigateToPageCommand = new Command<string>(NavigateToPage);
+        }
         #region Navigate to page command
         public ICommand NavigateToPageCommand { protected set; get; }
         

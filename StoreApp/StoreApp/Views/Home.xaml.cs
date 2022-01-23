@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using StoreApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -14,6 +14,8 @@ namespace StoreApp.Views
     {
         public Home()
         {
+            HomeViewModel context = new HomeViewModel();
+            this.BindingContext = context;
             InitializeComponent();
         }
     }

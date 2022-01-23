@@ -48,7 +48,7 @@ namespace StoreApp.ViewModels
         public LogInViewModel()
         {
             LogInCommand = new Command(LogInSubmit);
-            NavigateToPageCommand = new Command<string>(NavigateToPage);
+            
         }
 
         private string serverStatus;
