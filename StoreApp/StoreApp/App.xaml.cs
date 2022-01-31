@@ -4,6 +4,7 @@ using Xamarin.Forms.Xaml;
 using StoreApp.Models;
 using StoreApp.Views;
 using System.Collections.Generic;
+using StoreApp.Services;
 
 namespace StoreApp
 {
@@ -19,6 +20,7 @@ namespace StoreApp
 
         //The current logged in user
         public User CurrentUser { get; set; }
+        public LookupTables Tables { get; set; }
 
         //The list of phone types
         //public List<PhoneType> PhoneTypes { get; set; }
@@ -30,8 +32,12 @@ namespace StoreApp
             MainPage = new NavigationPage(new Home());
         }
 
-        protected override void OnStart()
+        protected async override void OnStart()
         {
+            StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
+            MainPage = new Loading();
+            Tables = await proxy.CreateLookUpTables();
+            MainPage = new NavigationPage(new Home());
         }
 
         protected override void OnSleep()

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace StoreApp.Models
 {
-    class LookupTables
+    public class LookupTables
     {
         public List<Color> Colors { get; set; }
         public List<Material> Materials { get; set; }
