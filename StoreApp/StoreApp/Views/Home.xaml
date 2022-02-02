@@ -8,7 +8,39 @@
              NavigationPage.HasNavigationBar="True"
              Style="{StaticResource ContentPageStyle}"
              xmlns:fontAwesome="clr-namespace:Fonts">
-    <ContentPage.ToolbarItems>
+    <NavigationPage.TitleView>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="300"/>
+            </Grid.ColumnDefinitions>
+            <ImageButton BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="End" Grid.Column="0">
+                <ImageButton.Source>
+                    <FontImageSource
+                    FontFamily="MySolidFonts"
+                    Glyph="{x:Static fontAwesome:IconSolidFonts.UserPlus}"
+                    Size="Medium"
+                     Color="#d8f3dc"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <ImageButton BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="Center" Grid.Column="1">
+                <ImageButton.Source>
+                    <FontImageSource
+                    FontFamily="MySolidFonts"
+                    Glyph="{x:Static fontAwesome:IconSolidFonts.BagShopping}"
+                    Size="Medium"
+                     Color="#d8f3dc"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <SearchBar Placeholder="חפש מוצר" Grid.Column="2" HorizontalOptions="End" PlaceholderColor="#d8f3dc"/>
+        </Grid>
+
+    </NavigationPage.TitleView>
+    <!--<ContentPage.ToolbarItems>
         <ToolbarItem Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer"           
                  Order="Primary"
                  Priority="0">
@@ -42,7 +74,9 @@
                      Color="#d8f3dc"/>
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
-    </ContentPage.ToolbarItems>
+    </ContentPage.ToolbarItems>-->
+   
+    
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Welcome to Xamarin.Forms!"

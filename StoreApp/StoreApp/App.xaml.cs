@@ -34,10 +34,10 @@ namespace StoreApp
 
         protected async override void OnStart()
         {
-            StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
-            MainPage = new Loading();
-            Tables = await proxy.CreateLookUpTables();
-            MainPage = new NavigationPage(new Home());
+            //StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
+            //MainPage = new Loading();
+            //Tables = await proxy.CreateLookUpTables();
+            //MainPage = new NavigationPage(new Home());
         }
 
         protected override void OnSleep()
