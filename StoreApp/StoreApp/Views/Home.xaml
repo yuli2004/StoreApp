@@ -36,7 +36,11 @@
                      Color="#d8f3dc"/>
                 </ImageButton.Source>
             </ImageButton>
-            <SearchBar Placeholder="חפש מוצר" Grid.Column="2" HorizontalOptions="End" PlaceholderColor="#d8f3dc"/>
+            <SearchBar x:Name="searchBar" SearchCommand="{Binding PerformSearch}" 
+                       SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
+                       Placeholder="חפש מוצר" Grid.Column="2" HorizontalOptions="End" PlaceholderColor="#d8f3dc"/>
+            <ListView x:Name="searchResults"                  
+                      ItemsSource="{Binding SearchResults}" />
         </Grid>
 
     </NavigationPage.TitleView>

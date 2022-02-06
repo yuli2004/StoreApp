@@ -284,5 +284,42 @@ namespace StoreApp.Services
             }
         }
         #endregion
+
+        #region Search list
+        //public async List<string> SearchList { get; } = new List<string>
+        //{
+            
+        //}
+        #endregion
+
+        #region GetSearchResults
+        public async Task<List<Product>> GetSearchResults(string queryString)
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetSearchResults?query={queryString}");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    List<Product> result = JsonSerializer.Deserialize<List<Product>>(content, options);
+                    return result;
+                }
+                else
+                {
+                    return new List<Product>();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return new List<Product>();
+            }
+        }
+        #endregion
     }
 }
