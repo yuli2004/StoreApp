@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace StoreApp.ViewModels
 {
@@ -29,6 +31,7 @@ namespace StoreApp.ViewModels
             }
         }
         #endregion
+
         #region search term
         private string searchTerm;
         public string SearchTerm
@@ -49,6 +52,7 @@ namespace StoreApp.ViewModels
             }
         }
         #endregion
+
         #region constructor
         public HomeViewModel()
         {
@@ -56,18 +60,40 @@ namespace StoreApp.ViewModels
             InitProducts();
         }
         #endregion
+
+        #region Refresh
+        private bool isRefreshing;
+        public bool IsRefreshing
+        {
+            get => isRefreshing;
+            set
+            {
+                if (this.isRefreshing != value)
+                {
+                    this.isRefreshing = value;
+                    OnPropertyChanged(nameof(IsRefreshing));
+                }
+            }
+        }
+        public ICommand RefreshCommand => new Command(OnRefresh);
+        public void OnRefresh()
+        {
+            InitProducts();
+        }
+        #endregion
+
         private void InitProducts()
         {
             IsRefreshing = true;
             App theApp = (App)App.Current;
-            this.allProducts = theApp.CurrentUser.allProducts;
-
+            this.allProducts = theApp.CurrentUser.AllProducts;
 
             //Copy list to the filtered list
             this.FilteredProducts = new ObservableCollection<Product>(this.allProducts);
             SearchTerm = String.Empty;
             IsRefreshing = false;
         }
+
         #region Search
         public void OnTextChanged(string search)
         {
@@ -76,32 +102,31 @@ namespace StoreApp.ViewModels
                 return;
             if (String.IsNullOrWhiteSpace(search) || String.IsNullOrEmpty(search))
             {
-                foreach (Product uc in this.allProducts)
+                foreach (Product p in this.allProducts)
                 {
-                    if (!this.FilteredProducts.Contains(uc))
-                        this.FilteredProducts.Add(uc);
-
-
+                    if (!this.FilteredProducts.Contains(p))
+                        this.FilteredProducts.Add(p);
                 }
             }
             else
             {
-                foreach (Product uc in this.allProducts)
+                foreach (Product p in this.allProducts)
                 {
-                    string contactString = $"{uc.ProductName}|{uc.Details}|{uc.Color}|{uc.Style}";
+                    string contactString = $"{p.ProductName}|{p.Details}|{p.Color}|{p.Style}|{p.Material}";
 
-                    if (!this.FilteredProducts.Contains(uc) &&
+                    if (!this.FilteredProducts.Contains(p) &&
                         contactString.Contains(search))
-                        this.FilteredProducts.Add(uc);
-                    else if (this.FilteredProducts.Contains(uc) &&
+                        this.FilteredProducts.Add(p);
+                    else if (this.FilteredProducts.Contains(p) &&
                         !contactString.Contains(search))
-                        this.FilteredProducts.Remove(uc);
+                        this.FilteredProducts.Remove(p);
                 }
             }
 
             this.FilteredProducts = new ObservableCollection<Product>(this.FilteredProducts);
         }
         #endregion
+
 
     }
 }
