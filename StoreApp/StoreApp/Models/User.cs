@@ -15,6 +15,6 @@ namespace StoreApp.Models
         public virtual Buyer Buyer { get; set; }
         public virtual Seller Seller { get; set; }
 
-        public virtual List<Product> AllProducts { get; set; }
+        
     }
 }

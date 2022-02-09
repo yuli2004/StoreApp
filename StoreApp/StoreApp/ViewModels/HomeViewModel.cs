@@ -12,24 +12,10 @@ namespace StoreApp.ViewModels
     {
 
         #region Products lists
-        private List<Product> allProducts;
-        private ObservableCollection<Product> filteredProducts;
-        public ObservableCollection<Product> FilteredProducts
-        {
-            get
-            {
-                return this.filteredProducts;
-            }
-            set
-            {
-                if (this.filteredProducts != value)
-                {
-
-                    this.filteredProducts = value;
-                    OnPropertyChanged("FilteredProducts");
-                }
-            }
-        }
+        public List<Product> allProducts { get; set; }
+       // private ObservableCollection<Product> filteredProducts;
+        public ObservableCollection<Product> FilteredProducts { get; set; }
+       
         #endregion
 
         #region search term
@@ -57,6 +43,7 @@ namespace StoreApp.ViewModels
         public HomeViewModel()
         {
             this.SearchTerm = String.Empty;
+            FilteredProducts = new ObservableCollection<Product>(((App)App.Current).Tables.AllProducts);
             InitProducts();
         }
         #endregion
@@ -86,7 +73,7 @@ namespace StoreApp.ViewModels
         {
             IsRefreshing = true;
             App theApp = (App)App.Current;
-            this.allProducts = theApp.CurrentUser.AllProducts;
+            this.allProducts = theApp.Tables.AllProducts;
 
             //Copy list to the filtered list
             this.FilteredProducts = new ObservableCollection<Product>(this.allProducts);

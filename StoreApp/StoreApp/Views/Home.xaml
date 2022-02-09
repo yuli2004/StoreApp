@@ -2,12 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewmodels="clr-namespace:StoreApp.ViewModels" 
-             x:DataType="viewmodels:HomeViewModel"
+            
              x:Class="StoreApp.Views.Home"
              FlowDirection="RightToLeft"
              NavigationPage.HasNavigationBar="True"
              Style="{StaticResource ContentPageStyle}"
              xmlns:fontAwesome="clr-namespace:Fonts">
+    <ContentPage.BindingContext>
+        <viewmodels:HomeViewModel></viewmodels:HomeViewModel>
+    </ContentPage.BindingContext>
     <NavigationPage.TitleView>
         <Grid>
             <Grid.RowDefinitions>
@@ -81,14 +84,29 @@
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>-->
-   
-    
+
+
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+                <CollectionView SelectionMode="Single" ItemsSource="{Binding FilteredProducts}" EmptyView="No Products availble">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Text="{Binding Price}"></Label>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+            </StackLayout>
             
-        </StackLayout>
+      
     </ContentPage.Content>
 </ContentPage>

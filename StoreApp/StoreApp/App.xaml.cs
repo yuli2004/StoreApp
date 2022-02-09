@@ -22,6 +22,7 @@ namespace StoreApp
         public User CurrentUser { get; set; }
         public LookupTables Tables { get; set; }
 
+
         //The list of phone types
         //public List<PhoneType> PhoneTypes { get; set; }
         public App()
@@ -29,15 +30,16 @@ namespace StoreApp
             InitializeComponent();
             CurrentUser = null;
             //PhoneTypes = new List<PhoneType>();
-            MainPage = new NavigationPage(new Home());
+            MainPage = new  Loading();
         }
 
         protected async override void OnStart()
         {
-            //StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
-            //MainPage = new Loading();
-            //Tables = await proxy.CreateLookUpTables();
-            //MainPage = new NavigationPage(new Home());
+            StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
+           
+            Tables = await proxy.CreateLookUpTables();
+            
+            MainPage = new NavigationPage(new Home());
         }
 
         protected override void OnSleep()
