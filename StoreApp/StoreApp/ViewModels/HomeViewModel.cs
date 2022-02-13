@@ -99,7 +99,7 @@ namespace StoreApp.ViewModels
             {
                 foreach (Product p in this.allProducts)
                 {
-                    string contactString = $"{p.ProductName}|{p.Details}|{p.Color}|{p.Style}|{p.Material}";
+                    string contactString = $"{p.ProductName}|{p.Details}|{p.Color}|{p.Style}|{p.SMaterial}|{p.PMaterialId}";
 
                     if (!this.FilteredProducts.Contains(p) &&
                         contactString.Contains(search))

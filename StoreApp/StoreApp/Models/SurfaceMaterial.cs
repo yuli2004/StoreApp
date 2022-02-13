@@ -1,18 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
 
 namespace StoreApp.Models
 {
-    public partial class Material
+    public partial class SurfaceMaterial
     {
-        public Material()
+        public SurfaceMaterial()
         {
             Products = new List<Product>();
         }
 
-        public int MaterialId { get; set; }
-        public string Material1 { get; set; }
+        public int SMaterialId { get; set; }
+        public string SMaterial { get; set; }
 
         public virtual List<Product> Products { get; set; }
     }
