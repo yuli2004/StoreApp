@@ -1,17 +1,18 @@
-﻿using StoreApp.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using StoreApp.Models;
+
 
 namespace StoreApp.ViewModels
 {
     class HomeViewModel: BaseViewModel
     {
 
-        #region Products lists
+        #region product lists
         public List<Product> allProducts { get; set; }
        // private ObservableCollection<Product> filteredProducts;
         public ObservableCollection<Product> FilteredProducts { get; set; }
@@ -114,6 +115,154 @@ namespace StoreApp.ViewModels
         }
         #endregion
 
+        #region lookup tables
 
+        public List<Models.Color> Colors
+        {
+            get
+            {
+                if (((App)App.Current).Tables != null)
+                    return ((App)App.Current).Tables.Colors;
+                return new List<Models.Color>();
+            }
+        }
+        private Models.Color color;
+        public Models.Color Color
+        {
+            get { return color; }
+            set
+            {
+                color = value;
+                OnPropertyChanged("Color");
+            }
+        }
+
+        public List<Models.Style> Styles
+        {
+            get
+            {
+                if (((App)App.Current).Tables != null)
+                    return ((App)App.Current).Tables.Styles;
+                return new List<Models.Style>();
+            }
+        }
+        private Models.Style style;
+        public Models.Style Style
+        {
+            get { return style; }
+            set
+            {
+                style = value;
+                OnPropertyChanged("Style");
+            }
+        }
+
+        public List<Models.SurfaceMaterial> SMaterials
+        {
+            get
+            {
+                if (((App)App.Current).Tables != null)
+                    return ((App)App.Current).Tables.SurfaceMaterials;
+                return new List<Models.SurfaceMaterial>();
+            }
+        }
+        private Models.SurfaceMaterial sMaterial;
+        public Models.SurfaceMaterial SMaterial
+        {
+            get { return sMaterial; }
+            set
+            {
+                sMaterial = value;
+                OnPropertyChanged("SMaterial");
+            }
+        }
+
+        public List<Models.PaintMaterial> PMaterials
+        {
+            get
+            {
+                if (((App)App.Current).Tables != null)
+                    return ((App)App.Current).Tables.PaintMaterials;
+                return new List<Models.PaintMaterial>();
+            }
+        }
+        private Models.PaintMaterial pMaterial;
+        public Models.PaintMaterial PMaterial
+        {
+            get { return pMaterial; }
+            set
+            {
+                pMaterial = value;
+                OnPropertyChanged("Style");
+            }
+        }
+
+        #endregion
+
+        #region picker commend
+        public HomeViewModel()
+        {
+            SliderValue = 0;
+        }
+
+        public ICommand SearchCommand => new Command(SearchInstructor);
+
+        public async void SearchInstructor()
+        {
+            LicenseAPIProxy proxy = LicenseAPIProxy.CreateProxy();
+            instructors = await proxy.GetAllInstructorsAsync();
+            HomePageViewModel page = new HomePageViewModel();
+            bool added = false;
+
+            foreach (Instructor i in instructors)
+            {
+                if (sliderValue == 0 || sliderValue == i.Price)
+                {
+                    page.InstructorList.Add(i);
+                    added = true;
+                }
+
+                if (Area != null && Area.AreaId != i.AreaId)
+                {
+                    if (added)
+                    {
+                        page.InstructorList.Remove(i);
+                        added = false;
+                    }
+                }
+
+                if (Gender != null && Gender.GenderId != i.GenderId)
+                {
+                    if (added)
+                    {
+                        page.InstructorList.Remove(i);
+                        added = false;
+                    }
+                }
+
+                if (Gearbox != null && Gearbox.GearboxId != i.GearboxId)
+                {
+                    if (added)
+                    {
+                        page.InstructorList.Remove(i);
+                        added = false;
+                    }
+                }
+
+                if (LicenseType != null && LicenseType.LicenseTypeId != i.LicenseTypeId)
+                {
+                    if (added)
+                    {
+                        page.InstructorList.Remove(i);
+                        added = false;
+                    }
+                }
+            }
+
+            Page p = new HomePageView();
+            p.BindingContext = page;
+            await App.Current.MainPage.Navigation.PushModalAsync(p);
+        }
+        #endregion
     }
 }

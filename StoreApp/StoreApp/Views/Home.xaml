@@ -21,16 +21,16 @@
                 <ColumnDefinition Width="50"/>
                 <ColumnDefinition Width="300"/>
             </Grid.ColumnDefinitions>
-            <ImageButton BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="End" Grid.Column="0">
+            <ImageButton BackgroundColor="Red" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="End" Grid.Column="0">
                 <ImageButton.Source>
-                    <FontImageSource
+                    <FontImageSource 
                     FontFamily="MySolidFonts"
                     Glyph="{x:Static fontAwesome:IconSolidFonts.UserPlus}"
                     Size="Medium"
-                     Color="#d8f3dc"/>
+                     Color="Yellow"/>
                 </ImageButton.Source>
             </ImageButton>
-            <ImageButton BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="Center" Grid.Column="1">
+            <ImageButton BackgroundColor="Purple" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="Center" Grid.Column="1">
                 <ImageButton.Source>
                     <FontImageSource
                     FontFamily="MySolidFonts"
@@ -88,7 +88,34 @@
 
     <ContentPage.Content>
         <StackLayout>
-                <CollectionView SelectionMode="Single" ItemsSource="{Binding FilteredProducts}" EmptyView="No Products availble">
+            <Grid Padding="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+            
+            <Picker Title="צבע" 
+                    FontAttributes="Bold" 
+                    ItemsSource="{Binding Colors}" 
+                    ItemDisplayBinding="{Binding Color}" 
+                    SelectedItem="{Binding Color}"
+                    Grid.Column="0">
+            </Picker>
+                <Picker Title="סגנון" 
+                    FontAttributes="Bold" 
+                    ItemsSource="{Binding Styles}" 
+                    ItemDisplayBinding="{Binding Style}" 
+                    SelectedItem="{Binding Style}"
+                    Grid.Column="1">
+                </Picker>
+            </Grid>
+
+            <CollectionView SelectionMode="Single" ItemsSource="{Binding FilteredProducts}" EmptyView="No Products availble">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
                             <Grid Padding="10">
@@ -104,8 +131,8 @@
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
-                </CollectionView>
-            </StackLayout>
+            </CollectionView>
+        </StackLayout>
             
       
     </ContentPage.Content>
