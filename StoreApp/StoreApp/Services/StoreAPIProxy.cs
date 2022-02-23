@@ -283,14 +283,7 @@ namespace StoreApp.Services
                 return null;
             }
         }
-        #endregion
-
-        #region Search list
-        //public async List<string> SearchList { get; } = new List<string>
-        //{
-            
-        //}
-        #endregion
+        #endregion 
 
         #region GetSearchResults
         public async Task<List<Product>> GetSearchResults(string queryString)

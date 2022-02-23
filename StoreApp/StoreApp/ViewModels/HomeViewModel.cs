@@ -5,7 +5,8 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 using StoreApp.Models;
-
+using StoreApp.Services;
+using StoreApp.Views;
 
 namespace StoreApp.ViewModels
 {
@@ -13,9 +14,9 @@ namespace StoreApp.ViewModels
     {
 
         #region product lists
-        public List<Product> allProducts { get; set; }
+        public List<Models.Product> allProducts { get; set; }
        // private ObservableCollection<Product> filteredProducts;
-        public ObservableCollection<Product> FilteredProducts { get; set; }
+        public ObservableCollection<Models.Product> FilteredProducts { get; set; }
        
         #endregion
 
@@ -43,8 +44,10 @@ namespace StoreApp.ViewModels
         #region constructor
         public HomeViewModel()
         {
+            SliderValue = 0;
+
             this.SearchTerm = String.Empty;
-            FilteredProducts = new ObservableCollection<Product>(((App)App.Current).Tables.AllProducts);
+            FilteredProducts = new ObservableCollection<Models.Product>(((App)App.Current).Tables.AllProducts);
             InitProducts();
         }
         #endregion
@@ -70,6 +73,17 @@ namespace StoreApp.ViewModels
         }
         #endregion
 
+        private int sliderValue;
+        public int SliderValue
+        {
+            get { return sliderValue; }
+            set
+            {
+                sliderValue = value;
+                OnPropertyChanged("SliderValue");
+            }
+        }
+
         private void InitProducts()
         {
             IsRefreshing = true;
@@ -77,7 +91,7 @@ namespace StoreApp.ViewModels
             this.allProducts = theApp.Tables.AllProducts;
 
             //Copy list to the filtered list
-            this.FilteredProducts = new ObservableCollection<Product>(this.allProducts);
+            this.FilteredProducts = new ObservableCollection<Models.Product>(this.allProducts);
             SearchTerm = String.Empty;
             IsRefreshing = false;
         }
@@ -90,28 +104,28 @@ namespace StoreApp.ViewModels
                 return;
             if (String.IsNullOrWhiteSpace(search) || String.IsNullOrEmpty(search))
             {
-                foreach (Product p in this.allProducts)
+                foreach (Models.Product pr in this.allProducts)
                 {
-                    if (!this.FilteredProducts.Contains(p))
-                        this.FilteredProducts.Add(p);
+                    if (!this.FilteredProducts.Contains(pr))
+                        this.FilteredProducts.Add(pr);
                 }
             }
             else
             {
-                foreach (Product p in this.allProducts)
+                foreach (Models.Product pr in this.allProducts)
                 {
-                    string contactString = $"{p.ProductName}|{p.Details}|{p.Color}|{p.Style}|{p.SMaterial}|{p.PMaterialId}";
+                    string contactString = $"{pr.ProductName}|{pr.Details}|{pr.Color}|{pr.Style}|{pr.SMaterial}|{pr.PMaterialId}";
 
-                    if (!this.FilteredProducts.Contains(p) &&
+                    if (!this.FilteredProducts.Contains(pr) &&
                         contactString.Contains(search))
-                        this.FilteredProducts.Add(p);
-                    else if (this.FilteredProducts.Contains(p) &&
+                        this.FilteredProducts.Add(pr);
+                    else if (this.FilteredProducts.Contains(pr) &&
                         !contactString.Contains(search))
-                        this.FilteredProducts.Remove(p);
+                        this.FilteredProducts.Remove(pr);
                 }
             }
 
-            this.FilteredProducts = new ObservableCollection<Product>(this.FilteredProducts);
+            this.FilteredProducts = new ObservableCollection<Models.Product>(this.FilteredProducts);
         }
         #endregion
 
@@ -200,66 +214,62 @@ namespace StoreApp.ViewModels
         #endregion
 
         #region picker commend
-        public HomeViewModel()
-        {
-            SliderValue = 0;
-        }
 
-        public ICommand SearchCommand => new Command(SearchInstructor);
+        public ICommand PickerCommand => new Command(SearchProduct);
 
-        public async void SearchInstructor()
+        public async void SearchProduct()
         {
-            LicenseAPIProxy proxy = LicenseAPIProxy.CreateProxy();
-            instructors = await proxy.GetAllInstructorsAsync();
-            HomePageViewModel page = new HomePageViewModel();
+            StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
+            allProducts = await proxy.GetSearchResults("");
+            HomeViewModel page = new HomeViewModel();
             bool added = false;
 
-            foreach (Instructor i in instructors)
+            foreach (Models.Product pr in allProducts)
             {
-                if (sliderValue == 0 || sliderValue == i.Price)
+                if (sliderValue == 0 || sliderValue > pr.Price)
                 {
-                    page.InstructorList.Add(i);
+                    page.FilteredProducts.Add(pr);
                     added = true;
                 }
 
-                if (Area != null && Area.AreaId != i.AreaId)
+                if (Color != null && Color.ColorId != pr.ColorId)
                 {
                     if (added)
                     {
-                        page.InstructorList.Remove(i);
+                        page.FilteredProducts.Remove(pr);
                         added = false;
                     }
                 }
 
-                if (Gender != null && Gender.GenderId != i.GenderId)
+                if (Style != null && Style.StyleId != pr.StyleId)
                 {
                     if (added)
                     {
-                        page.InstructorList.Remove(i);
+                        page.FilteredProducts.Remove(pr);
                         added = false;
                     }
                 }
 
-                if (Gearbox != null && Gearbox.GearboxId != i.GearboxId)
+                if (SMaterial != null && SMaterial.SMaterialId != pr.SMaterialId)
                 {
                     if (added)
                     {
-                        page.InstructorList.Remove(i);
+                        page.FilteredProducts.Remove(pr);
                         added = false;
                     }
                 }
 
-                if (LicenseType != null && LicenseType.LicenseTypeId != i.LicenseTypeId)
+                if (PMaterial != null && PMaterial.PMaterialId != pr.PMaterialId)
                 {
                     if (added)
                     {
-                        page.InstructorList.Remove(i);
+                        page.FilteredProducts.Remove(pr);
                         added = false;
                     }
                 }
             }
 
-            Page p = new HomePageView();
+            Page p = new Home();
             p.BindingContext = page;
             await App.Current.MainPage.Navigation.PushModalAsync(p);
         }
