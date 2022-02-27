@@ -30,7 +30,7 @@
                      Color="Yellow"/>
                 </ImageButton.Source>
             </ImageButton>
-            <ImageButton BackgroundColor="Purple" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="Center" Grid.Column="1">
+            <ImageButton BackgroundColor="Purple" Command="{Binding NavigateToPageCommand}" CommandParameter="LogIn" HorizontalOptions="Center" Grid.Column="1">
                 <ImageButton.Source>
                     <FontImageSource
                     FontFamily="MySolidFonts"
@@ -102,16 +102,26 @@
             <Picker Title="צבע" 
                     FontAttributes="Bold" 
                     ItemsSource="{Binding Colors}" 
-                    ItemDisplayBinding="{Binding Color}" 
+                    ItemDisplayBinding="{Binding Color1}" 
                     SelectedItem="{Binding Color}"
-                    Grid.Column="0">
+                    Grid.Column="0"
+                    Style="Picker">
             </Picker>
+                <Picker Title="סוג הדף" 
+                    FontAttributes="Bold" 
+                    ItemsSource="{Binding SMaterials}" 
+                    ItemDisplayBinding="{Binding SMaterial1}" 
+                    SelectedItem="{Binding SMaterial}"
+                    Grid.Column="1"
+                    Style="Picker">
+                </Picker>
                 <Picker Title="סגנון" 
                     FontAttributes="Bold" 
-                    ItemsSource="{Binding Styles}" 
-                    ItemDisplayBinding="{Binding Style}" 
-                    SelectedItem="{Binding Style}"
-                    Grid.Column="1">
+                    ItemsSource="{Binding PMaterials}" 
+                    ItemDisplayBinding="{Binding PMaterial1}" 
+                    SelectedItem="{Binding PMaterial}"
+                    Grid.Column="1"
+                    Style="Picker">
                 </Picker>
             </Grid>
 
