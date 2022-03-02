@@ -171,7 +171,7 @@ namespace StoreApp.ViewModels
             }
         }
 
-        public List<Models.SurfaceMaterial> SMaterials
+        public List<Models.SurfaceMaterial> SurfaceMaterials
         {
             get
             {
@@ -180,18 +180,18 @@ namespace StoreApp.ViewModels
                 return new List<Models.SurfaceMaterial>();
             }
         }
-        private Models.SurfaceMaterial sMaterial;
-        public Models.SurfaceMaterial SMaterial
+        private Models.SurfaceMaterial surfaceMaterial;
+        public Models.SurfaceMaterial SurfaceMaterial
         {
-            get { return sMaterial; }
+            get { return surfaceMaterial; }
             set
             {
-                sMaterial = value;
-                OnPropertyChanged("SMaterial");
+                surfaceMaterial = value;
+                OnPropertyChanged("SurfaceMaterial");
             }
         }
 
-        public List<Models.PaintMaterial> PMaterials
+        public List<Models.PaintMaterial> PaintMaterials
         {
             get
             {
@@ -200,13 +200,13 @@ namespace StoreApp.ViewModels
                 return new List<Models.PaintMaterial>();
             }
         }
-        private Models.PaintMaterial pMaterial;
-        public Models.PaintMaterial PMaterial
+        private Models.PaintMaterial paintMaterial;
+        public Models.PaintMaterial PaintMaterial
         {
-            get { return pMaterial; }
+            get { return paintMaterial; }
             set
             {
-                pMaterial = value;
+                paintMaterial = value;
                 OnPropertyChanged("Style");
             }
         }
@@ -250,7 +250,7 @@ namespace StoreApp.ViewModels
                     }
                 }
 
-                if (SMaterial != null && SMaterial.SMaterialId != pr.SMaterialId)
+                if (SurfaceMaterial != null && SurfaceMaterial.SMaterialId != pr.SMaterialId)
                 {
                     if (added)
                     {
@@ -259,7 +259,7 @@ namespace StoreApp.ViewModels
                     }
                 }
 
-                if (PMaterial != null && PMaterial.PMaterialId != pr.PMaterialId)
+                if (PaintMaterial != null && PaintMaterial.PMaterialId != pr.PMaterialId)
                 {
                     if (added)
                     {

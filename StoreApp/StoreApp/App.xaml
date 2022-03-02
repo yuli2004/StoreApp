@@ -67,8 +67,8 @@
                 <Setter Property="Margin" Value="25, 25, 25, 1"/>
             </Style>
 
-            <Style TargetType="Picker" x:Key="Picker">
-                <Setter Property="BackgroundColor" Value="Aqua"/>
+            <Style TargetType="Picker">
+                <Setter Property="BackgroundColor" Value="#6da37d"/>
             </Style>
 
         </ResourceDictionary>

@@ -98,30 +98,38 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-            
-            <Picker Title="צבע" 
+                <Picker Title="צבע" 
                     FontAttributes="Bold" 
                     ItemsSource="{Binding Colors}" 
                     ItemDisplayBinding="{Binding Color1}" 
                     SelectedItem="{Binding Color}"
                     Grid.Column="0"
-                    Style="Picker">
+                    >
             </Picker>
+               
                 <Picker Title="סוג הדף" 
                     FontAttributes="Bold" 
-                    ItemsSource="{Binding SMaterials}" 
-                    ItemDisplayBinding="{Binding SMaterial1}" 
-                    SelectedItem="{Binding SMaterial}"
+                    ItemsSource="{Binding SurfaceMaterials}" 
+                    ItemDisplayBinding="{Binding SMaterial}" 
+                    SelectedItem="{Binding SurfaceMaterial}"
                     Grid.Column="1"
-                    Style="Picker">
+                    >
+                </Picker>
+                <Picker Title="סוג הציור" 
+                    FontAttributes="Bold" 
+                    ItemsSource="{Binding PaintMaterials}" 
+                    ItemDisplayBinding="{Binding PMaterial}" 
+                    SelectedItem="{Binding PaintMaterial}"
+                    Grid.Column="2"
+                   >
                 </Picker>
                 <Picker Title="סגנון" 
                     FontAttributes="Bold" 
-                    ItemsSource="{Binding PMaterials}" 
-                    ItemDisplayBinding="{Binding PMaterial1}" 
-                    SelectedItem="{Binding PMaterial}"
-                    Grid.Column="1"
-                    Style="Picker">
+                    ItemsSource="{Binding Styles}" 
+                    ItemDisplayBinding="{Binding Style1}" 
+                    SelectedItem="{Binding Style}"
+                    Grid.Column="3"
+                   >
                 </Picker>
             </Grid>
 
