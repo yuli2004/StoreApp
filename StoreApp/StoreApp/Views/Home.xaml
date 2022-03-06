@@ -1,6 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:fonts="clr-namespace:Fonts"
              xmlns:viewmodels="clr-namespace:StoreApp.ViewModels" 
             
              x:Class="StoreApp.Views.Home"
@@ -12,16 +13,16 @@
         <viewmodels:HomeViewModel></viewmodels:HomeViewModel>
     </ContentPage.BindingContext>
     <NavigationPage.TitleView>
-        <Grid>
+        <Grid FlowDirection="RightToLeft">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition Width="300"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <ImageButton BackgroundColor="Red" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="End" Grid.Column="0">
+            <ImageButton BackgroundColor="Red" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="Center" Grid.Column="0">
                 <ImageButton.Source>
                     <FontImageSource 
                     FontFamily="MySolidFonts"
@@ -39,13 +40,11 @@
                      Color="#d8f3dc"/>
                 </ImageButton.Source>
             </ImageButton>
-            <SearchBar x:Name="searchBar" SearchCommand="{Binding PerformSearch}" 
+            <SearchBar  x:Name="searchBar" SearchCommand="{Binding SearchProductCommand}" 
                        SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
                        Placeholder="חפש מוצר" Grid.Column="2" HorizontalOptions="End" PlaceholderColor="#d8f3dc"/>
             
-            <ListView x:Name="searchResults"                  
-                      ItemsSource="{Binding SearchResults}" />
-            
+          
         </Grid>
 
     </NavigationPage.TitleView>
@@ -133,20 +132,33 @@
                 </Picker>
             </Grid>
 
-            <CollectionView SelectionMode="Single" ItemsSource="{Binding FilteredProducts}" EmptyView="No Products availble">
-                    <CollectionView.ItemTemplate>
+            <CollectionView FlowDirection="RightToLeft" SelectionMode="Single" ItemsSource="{Binding FilteredProducts}" EmptyView="No Products availble">
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                        Span="2" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid Padding="10">
+                            <Grid FlowDirection="RightToLeft">
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto" />
-                                    <RowDefinition Height="Auto" />
-                                </Grid.RowDefinitions>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto" />
-                                    <ColumnDefinition Width="Auto" />
-                                </Grid.ColumnDefinitions>
-                                <Label Grid.Row="0" Text="{Binding Price}"></Label>
-                            </Grid>
+                                    <RowDefinition Height="4*" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            
+                            <Image
+                                    Source="{Binding Picture}"
+                                    Aspect="AspectFit"
+                                    HeightRequest="100"
+                                    WidthRequest="100"/>
+                            <Label Grid.Row="1" Text="{Binding ProductName}" HorizontalOptions="Center"></Label>
+                            <Label Grid.Row="2" HorizontalOptions="Start"  Text="מחיר:"/>
+                            <Label Grid.Row="2" Text="{Binding Price}" HorizontalOptions="Center"></Label>
+                            
+                        </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
             </CollectionView>

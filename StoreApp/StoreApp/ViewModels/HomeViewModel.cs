@@ -49,6 +49,7 @@ namespace StoreApp.ViewModels
             this.SearchTerm = String.Empty;
             FilteredProducts = new ObservableCollection<Models.Product>(((App)App.Current).Tables.AllProducts);
             InitProducts();
+            SearchProductCommand = new Command<string>(OnTextChanged);
         }
         #endregion
 
@@ -94,9 +95,11 @@ namespace StoreApp.ViewModels
             this.FilteredProducts = new ObservableCollection<Models.Product>(this.allProducts);
             SearchTerm = String.Empty;
             IsRefreshing = false;
+          
         }
 
         #region Search
+        public ICommand SearchProductCommand { get; protected set; }
         public void OnTextChanged(string search)
         {
             //Filter the list of contacts based on the search term
