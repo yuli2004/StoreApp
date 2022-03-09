@@ -132,15 +132,25 @@
                 </Picker>
             </Grid>
 
-            <CollectionView FlowDirection="RightToLeft" SelectionMode="Single" ItemsSource="{Binding FilteredProducts}" EmptyView="No Products availble">
+            <CollectionView FlowDirection="RightToLeft" SelectionMode="Single" ItemsSource="{Binding FilteredProducts}" SelectionChangedCommand="{Binding OnSelectedProduct}"  SelectedItem="{Binding SelectedProduct}" SelectionChangedCommandParameter="{Binding SelectedProduct}" EmptyView="No Products availble">
+                
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
                         Span="2" />
                 </CollectionView.ItemsLayout>
+                <!--<VisualStateManager.VisualStateGroups>
+                    <VisualStateGroup>
+                        <VisualState x:Name="Selected">
+                            <VisualState.Setters>
+                                <Setter Property="BackgroundColor" Value="LightBlue" />
+                            </VisualState.Setters>
+                        </VisualState>
+                    </VisualStateGroup>
+                </VisualStateManager.VisualStateGroups>-->
                 <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid FlowDirection="RightToLeft">
-                                <Grid.RowDefinitions>
+                        <Grid FlowDirection="RightToLeft" Padding="10" >
+                            <Grid.RowDefinitions>
                                     <RowDefinition Height="4*" />
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="*" />
@@ -149,7 +159,7 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             
-                            <Image
+                            <Image 
                                     Source="{Binding Picture}"
                                     Aspect="AspectFit"
                                     HeightRequest="100"

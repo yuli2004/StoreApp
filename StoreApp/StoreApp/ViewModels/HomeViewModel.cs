@@ -17,9 +17,23 @@ namespace StoreApp.ViewModels
         public List<Models.Product> allProducts { get; set; }
        // private ObservableCollection<Product> filteredProducts;
         public ObservableCollection<Models.Product> FilteredProducts { get; set; }
-       
-        #endregion
 
+        #endregion
+        #region Selected Product
+        private Models.Product selectedProduct;
+        public Models.Product SelectedProduct
+        {
+            get => selectedProduct;
+            set
+            {
+                if (value != selectedProduct)
+                {
+                    selectedProduct = value;
+                    OnPropertyChanged("SelectedProduct");
+                }
+            }
+        }
+        #endregion
         #region search term
         private string searchTerm;
         public string SearchTerm
@@ -50,6 +64,22 @@ namespace StoreApp.ViewModels
             FilteredProducts = new ObservableCollection<Models.Product>(((App)App.Current).Tables.AllProducts);
             InitProducts();
             SearchProductCommand = new Command<string>(OnTextChanged);
+            OnSelectedProduct = new Command<Models.Product>(MoveToProductPage);
+        }
+
+        private async void MoveToProductPage(Models.Product obj)
+        {
+            if (SelectedProduct != null)
+            {
+                var page = new Views.Product() { Title = "Product Page" };
+                var binding = new ProductViewModel() { P = obj };
+                page.BindingContext = binding;
+                await this.currentApp.MainPage.Navigation.PushAsync(page);
+                SelectedProduct = null;
+            }
+
+
+            
         }
         #endregion
 
@@ -276,6 +306,12 @@ namespace StoreApp.ViewModels
             p.BindingContext = page;
             await App.Current.MainPage.Navigation.PushModalAsync(p);
         }
+        #endregion
+
+        #region open product page
+
+       public ICommand OnSelectedProduct { get;  protected set; }
+
         #endregion
     }
 }

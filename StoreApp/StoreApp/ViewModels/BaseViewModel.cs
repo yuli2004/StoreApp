@@ -10,6 +10,8 @@ namespace StoreApp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
+
+        public  App currentApp { get => ((App)Application.Current); }
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
@@ -55,6 +57,7 @@ namespace StoreApp.ViewModels
                         p.BindingContext = new HomeViewModel();
                     }
                     break;
+               
                 default: break;
             }
             App.Current.MainPage.Navigation.PushAsync(p);

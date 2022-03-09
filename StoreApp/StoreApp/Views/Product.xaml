@@ -2,13 +2,12 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewM="clr-namespace:StoreApp.ViewModels"
-             x:Class="StoreApp.Views.Product">
-    <ContentPage.BindingContext>
-        <viewM:ProductViewModel></viewM:ProductViewModel>
-    </ContentPage.BindingContext>
+             xmlns:models="clr-namespace:StoreApp.Models"
+             x:Class="StoreApp.Views.Product" x:DataType="viewM:ProductViewModel">
+   
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding p.Details}" />
+            <Label Text="{Binding P.Price}" TextColor="Black" FontSize="45" />
             
         </StackLayout>
     </ContentPage.Content>
