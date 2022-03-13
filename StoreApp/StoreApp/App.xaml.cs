@@ -24,13 +24,11 @@ namespace StoreApp
         public LookupTables Tables { get; set; }
 
 
-        //The list of phone types
-        //public List<PhoneType> PhoneTypes { get; set; }
         public App()
         {
             InitializeComponent();
             CurrentUser = null;
-            //PhoneTypes = new List<PhoneType>();
+
             MainPage = new  Loading();
             cart = new List<ProductInOrder>();
         }

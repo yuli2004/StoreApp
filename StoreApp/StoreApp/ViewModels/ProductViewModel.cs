@@ -18,14 +18,17 @@ namespace StoreApp.ViewModels
 
         public ProductViewModel()
         {
-            
-                }
-       
-        public ICommand AddToCart => new Command(AddProduct);
+            AddToCart = new Command<Models.Product>(AddProduct);
 
-        public async void AddProduct()
-        {
-            ProductInOrder 
         }
+       
+        public ICommand AddToCart { get; protected set; }
+
+        public async void AddProduct(Models.Product p)
+        {
+            ProductInOrder product = new ProductInOrder() { Product = p };
+            currentApp.cart.Add(product);
+        }
+
    }
 }
