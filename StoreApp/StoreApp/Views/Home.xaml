@@ -22,16 +22,16 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <ImageButton BackgroundColor="Red" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="Center" Grid.Column="0">
+            <ImageButton BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="Center" Grid.Column="0">
                 <ImageButton.Source>
                     <FontImageSource 
                     FontFamily="MySolidFonts"
                     Glyph="{x:Static fontAwesome:IconSolidFonts.UserPlus}"
                     Size="Medium"
-                     Color="Yellow"/>
+                     Color="#d8f3dc"/>
                 </ImageButton.Source>
             </ImageButton>
-            <ImageButton BackgroundColor="Purple" Command="{Binding NavigateToPageCommand}" CommandParameter="LogIn" HorizontalOptions="Center" Grid.Column="1">
+            <ImageButton BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="LogIn" HorizontalOptions="Center" Grid.Column="1">
                 <ImageButton.Source>
                     <FontImageSource
                     FontFamily="MySolidFonts"
@@ -96,6 +96,7 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Picker Title="צבע" 
                     FontAttributes="Bold" 
@@ -130,6 +131,15 @@
                     Grid.Column="3"
                    >
                 </Picker>
+                <Button
+                    Text="חיפוש"  
+                    Command="{Binding PickerCommand}"
+                    Grid.Column="4"
+                    BackgroundColor="#6da37d"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                >
+                </Button>
             </Grid>
 
             <CollectionView FlowDirection="RightToLeft" SelectionMode="Single" ItemsSource="{Binding FilteredProducts}" SelectionChangedCommand="{Binding OnSelectedProduct}"  SelectedItem="{Binding SelectedProduct}" SelectionChangedCommandParameter="{Binding SelectedProduct}" EmptyView="No Products availble">
@@ -164,9 +174,9 @@
                                     Aspect="AspectFit"
                                     HeightRequest="100"
                                     WidthRequest="100"/>
-                            <Label Grid.Row="1" Text="{Binding ProductName}" HorizontalOptions="Center"></Label>
-                            <Label Grid.Row="2" HorizontalOptions="Start"  Text="מחיר:"/>
-                            <Label Grid.Row="2" Text="{Binding Price}" HorizontalOptions="Center"></Label>
+                            <Label Grid.Row="1" Text="{Binding ProductName}" HorizontalOptions="Start" FontSize="20" TextColor="#d8f3dc"></Label>
+                            <Label Grid.Row="2" HorizontalOptions="Start"  Text="מחיר:" FontSize="20" TextColor="#d8f3dc"/>
+                            <Label Grid.Row="2" Text="{Binding Price}" HorizontalOptions="End" FontSize="20" TextColor="#d8f3dc"></Label>
                             
                         </Grid>
                         </DataTemplate>

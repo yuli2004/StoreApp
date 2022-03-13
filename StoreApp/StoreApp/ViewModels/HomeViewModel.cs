@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Linq;
 using System.Windows.Input;
 using Xamarin.Forms;
 using StoreApp.Models;
@@ -15,8 +16,24 @@ namespace StoreApp.ViewModels
 
         #region product lists
         public List<Models.Product> allProducts { get; set; }
-       // private ObservableCollection<Product> filteredProducts;
-        public ObservableCollection<Models.Product> FilteredProducts { get; set; }
+        
+        private ObservableCollection<Models.Product> filteredProducts;
+        public ObservableCollection<Models.Product> FilteredProducts 
+        {
+            get
+            {
+                return this.filteredProducts;
+            }
+            set
+            {
+                if (this.filteredProducts != value)
+                {
+
+                    this.filteredProducts = value;
+                    OnPropertyChanged("FilteredProducts");
+                }
+            }
+        }
 
         #endregion
         #region Selected Product
@@ -250,61 +267,37 @@ namespace StoreApp.ViewModels
 
         public ICommand PickerCommand => new Command(SearchProduct);
 
-        public async void SearchProduct()
+        public async void SearchProduct()       
         {
-            StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
-            allProducts = await proxy.GetSearchResults("");
-            HomeViewModel page = new HomeViewModel();
-            bool added = false;
+            
+           
+            FilteredProducts.Clear();
 
+           
             foreach (Models.Product pr in allProducts)
             {
-                if (sliderValue == 0 || sliderValue > pr.Price)
+                //if (sliderValue == 0 || sliderValue > pr.Price)
+                //{
+                //    page.FilteredProducts.Add(pr);
+                //    added = true;
+                //}
+
+                if ((Color == null || Color.ColorId == pr.ColorId) 
+                    &&(Style == null || Style.StyleId == pr.StyleId)
+                    &&(SurfaceMaterial == null || SurfaceMaterial.SMaterialId == pr.SMaterialId) 
+                    && (PaintMaterial == null || PaintMaterial.PMaterialId == pr.PMaterialId)
+                    )
                 {
-                    page.FilteredProducts.Add(pr);
-                    added = true;
+                   FilteredProducts.Add(pr);
+                  
+
                 }
 
-                if (Color != null && Color.ColorId != pr.ColorId)
-                {
-                    if (added)
-                    {
-                        page.FilteredProducts.Remove(pr);
-                        added = false;
-                    }
-                }
-
-                if (Style != null && Style.StyleId != pr.StyleId)
-                {
-                    if (added)
-                    {
-                        page.FilteredProducts.Remove(pr);
-                        added = false;
-                    }
-                }
-
-                if (SurfaceMaterial != null && SurfaceMaterial.SMaterialId != pr.SMaterialId)
-                {
-                    if (added)
-                    {
-                        page.FilteredProducts.Remove(pr);
-                        added = false;
-                    }
-                }
-
-                if (PaintMaterial != null && PaintMaterial.PMaterialId != pr.PMaterialId)
-                {
-                    if (added)
-                    {
-                        page.FilteredProducts.Remove(pr);
-                        added = false;
-                    }
-                }
             }
 
-            Page p = new Home();
-            p.BindingContext = page;
-            await App.Current.MainPage.Navigation.PushModalAsync(p);
+            //Page p = new Home();
+            //p.BindingContext = page;
+            //await App.Current.MainPage.Navigation.PushModalAsync(p);
         }
         #endregion
 

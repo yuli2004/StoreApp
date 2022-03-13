@@ -3,12 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewM="clr-namespace:StoreApp.ViewModels"
              xmlns:models="clr-namespace:StoreApp.Models"
-             x:Class="StoreApp.Views.Product" x:DataType="viewM:ProductViewModel">
+             x:Class="StoreApp.Views.Product" x:DataType="viewM:ProductViewModel"
+             NavigationPage.HasNavigationBar="True"
+             Style="{StaticResource ContentPageStyle}" 
+             FlowDirection="RightToLeft"
+             xmlns:fontAwesome="clr-namespace:Fonts"
+             >
    
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="{Binding P.Price}" TextColor="Black" FontSize="45" />
             
+            <Grid FlowDirection="RightToLeft" Padding="10" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="8*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Image 
+                       Source="{Binding P.Picture}"
+                       Aspect="AspectFill"
+                       
+                />
+
+                <Label Grid.Row="1" Text="{Binding P.ProductName}" HorizontalOptions="Center" FontSize="32" TextColor="#d8f3dc"></Label>
+                <Label Grid.Row="2" Text="{Binding P.Price}" HorizontalOptions="Center" FontSize="24" TextColor="#d8f3dc"></Label>
+                <Label Grid.Row="3" Text="{Binding P.Details}" HorizontalOptions="Center" FontSize="18" TextColor="#d8f3dc"></Label>
+                <Button Grid.Row="4" Text="הוסף לעגלת הקניות"></Button>
+            </Grid>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

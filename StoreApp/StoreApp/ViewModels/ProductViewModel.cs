@@ -1,21 +1,31 @@
-﻿using StoreApp.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using StoreApp.Models;
+using System.Collections.ObjectModel;
 using System.Text;
+using System.Linq;
+using System.Windows.Input;
+using Xamarin.Forms;
+using StoreApp.Models;
+using StoreApp.Services;
+using StoreApp.Views;
 
 namespace StoreApp.ViewModels
 {
    public class ProductViewModel:BaseViewModel
     {
-        public Product P { get; set; }
+        public Models.Product P { get; set; }
+        
 
-        //private double price;
-        //public double Price { get => P.Price; }
+        public ProductViewModel()
+        {
+            
+                }
+       
+        public ICommand AddToCart => new Command(AddProduct);
 
-      
-
-        public ProductViewModel() { }
-
-    }
+        public async void AddProduct()
+        {
+            ProductInOrder 
+        }
+   }
 }

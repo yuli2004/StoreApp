@@ -10,6 +10,7 @@ namespace StoreApp
 {
     public partial class App : Application
     {
+        public List<ProductInOrder> cart { get; set; }
         public static bool IsDevEnv
         {
             get
@@ -31,6 +32,7 @@ namespace StoreApp
             CurrentUser = null;
             //PhoneTypes = new List<PhoneType>();
             MainPage = new  Loading();
+            cart = new List<ProductInOrder>();
         }
 
         protected async override void OnStart()
