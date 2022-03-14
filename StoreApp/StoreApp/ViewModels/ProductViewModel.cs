@@ -8,6 +8,7 @@ using Xamarin.Forms;
 using StoreApp.Models;
 using StoreApp.Services;
 using StoreApp.Views;
+using System.Threading.Tasks;
 
 namespace StoreApp.ViewModels
 {
@@ -15,7 +16,28 @@ namespace StoreApp.ViewModels
     {
         public Models.Product P { get; set; }
 
-       
+        private bool isOnSale;
+        public bool IsOnSale
+        {
+            get => isOnSale;
+            set
+            {
+                if(value != isOnSale)
+                {
+                    isOnSale = value;
+                    UpdateProduct();
+                    OnPropertyChanged("IsOnSale");
+                }
+            }
+        }
+
+        private async Task UpdateProduct()
+        {
+            P.IsActive = IsOnSale;
+            StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
+           await proxy.UpdateProduct(P);
+        }
+
         public bool IsOwner
         {
             get
