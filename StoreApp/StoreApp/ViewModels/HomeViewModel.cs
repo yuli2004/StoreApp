@@ -156,7 +156,7 @@ namespace StoreApp.ViewModels
             {
                 foreach (Models.Product pr in this.allProducts)
                 {
-                    if (!this.FilteredProducts.Contains(pr))
+                    if (!this.FilteredProducts.Contains(pr))                
                         this.FilteredProducts.Add(pr);
                 }
             }

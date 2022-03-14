@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewmodels="clr-namespace:StoreApp.ViewModels"
+             xmlns:models="clr-namespace:StoreApp.Models"
+             x:Class="StoreApp.Views.ShoppingCartPage">
+    <ContentPage.BindingContext>
+        <viewmodels:ShoppingCartPageViewModel></viewmodels:ShoppingCartPageViewModel>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout>
+            <CollectionView ItemsSource="{Binding Order}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:ProductInOrder">
+                        <StackLayout>
+                            <Label Text="{Binding Product.Price}"></Label>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            <Label Text="Total Price">
+              
+            </Label>
+            <Label Text="{Binding Price}"></Label>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

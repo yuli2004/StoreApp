@@ -11,11 +11,16 @@
              >
    
     <ContentPage.Content>
+        <ScrollView>
         <StackLayout>
 
+            <Image 
+                 Source="{Binding P.Picture}"
+                 Aspect="AspectFit"
+                 Grid.Row="0"
+             />
             <Grid Padding="10" RowSpacing="10"  FlowDirection="RightToLeft" >
                 <Grid.RowDefinitions >
-                    <RowDefinition Height="5*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="*" />
@@ -24,22 +29,20 @@
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                    <Image 
-                       Source="{Binding P.Picture}"
-                       Aspect="AspectFit"
-                       Grid.Row="0"
-                    />
 
-               
-                    <Label Grid.Row="1" Text="{Binding P.ProductName}" HorizontalOptions="Center" FontSize="32" TextColor="#d8f3dc"></Label>
-                
-                <Label Grid.Row="2" Text="{Binding P.Price}" HorizontalOptions="Center" FontSize="24" TextColor="#d8f3dc"></Label>
-                <Label Grid.Row="3" Padding="10" Text="{Binding P.Details}"  LineBreakMode="WordWrap" HorizontalOptions="Center" FontSize="24" TextColor="#d8f3dc"></Label>
-                <Button Grid.Row="4" Text="הוסף לעגלת הקניות"></Button>
+                <Label Grid.Row="0"  Grid.ColumnSpan="2" Text="{Binding P.ProductName}" HorizontalOptions="Center" FontSize="32" TextColor="#d8f3dc"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Text="מחיר:" HorizontalOptions="End" FontSize="24" TextColor="#d8f3dc"></Label>
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding P.Price}" HorizontalOptions="Start" FontSize="24" TextColor="#d8f3dc"></Label>
+                <Label Grid.Row="2" Grid.ColumnSpan="2" Text="{Binding P.Seller.Username}" HorizontalOptions="Center" FontSize="24" TextColor="#d8f3dc"></Label>
+                <Label Grid.Row="3" Grid.ColumnSpan="2" Padding="10" Text="{Binding P.Details}"  LineBreakMode="WordWrap" HorizontalOptions="Center" FontSize="24" TextColor="#d8f3dc"></Label>
+                <Button Grid.Row="4" Grid.ColumnSpan="2" Command="{Binding AddToCart}" Style="{StaticResource ButtonStyle}" Text="הוסף לעגלת הקניות"></Button>
+                    <Switch IsVisible="{Binding IsOwner}" IsToggled="{Binding IsOnSale}"></Switch>
             </Grid>
 
         </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

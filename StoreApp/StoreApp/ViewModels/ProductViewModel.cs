@@ -14,7 +14,19 @@ namespace StoreApp.ViewModels
    public class ProductViewModel:BaseViewModel
     {
         public Models.Product P { get; set; }
-        
+
+       
+        public bool IsOwner
+        {
+            get
+            {
+                if (currentApp.CurrentUser != null) 
+                    return P.Seller.Username == currentApp.CurrentUser.Username;
+
+                return false;
+            }
+            
+        }
 
         public ProductViewModel()
         {
