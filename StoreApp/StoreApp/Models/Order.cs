@@ -11,13 +11,13 @@ namespace StoreApp.Models
         }
 
         public int OrderId { get; set; }
-        public int StatusId { get; set; }
+       
         public double TotalPrice { get; set; }
         public int BuyerId { get; set; }
         public DateTime Date { get; set; }
 
         public virtual Buyer Buyer { get; set; }
-        public virtual OrderStatus Status { get; set; }
+        
         public virtual List<ProductInOrder> ProductInOrders { get; set; }
     }
 }
