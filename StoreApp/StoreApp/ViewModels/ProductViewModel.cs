@@ -52,16 +52,24 @@ namespace StoreApp.ViewModels
 
         public ProductViewModel()
         {
-            AddToCart = new Command<Models.Product>(AddProduct);
+            AddToCart = new Command(AddProduct);
 
         }
        
         public ICommand AddToCart { get; protected set; }
 
-        public async void AddProduct(Models.Product p)
+        public async void AddProduct()
         {
-            ProductInOrder product = new ProductInOrder() { Product = p };
-            currentApp.cart.Add(product);
+            
+            ProductInOrder product = new ProductInOrder() { Product = P };
+            if (currentApp.cart.Count > 0)
+                product.Order = currentApp.cart[0].Order;
+            
+                currentApp.cart.Add(product);
+            await this.currentApp.MainPage.DisplayAlert("הוספה לסל הקניות", $"{P.ProductName} נוסף לעגלה","אישור");
+            await this.currentApp.MainPage.Navigation.PopAsync();
+
+
         }
 
    }

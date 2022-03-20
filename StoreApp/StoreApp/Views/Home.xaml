@@ -20,6 +20,7 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <ImageButton BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="Center" Grid.Column="0">
@@ -35,6 +36,15 @@
                 <ImageButton.Source>
                     <FontImageSource
                     FontFamily="MySolidFonts"
+                    Glyph="{x:Static fontAwesome:IconSolidFonts.User}"
+                    Size="Medium"
+                     Color="#d8f3dc"/>
+                </ImageButton.Source>
+            </ImageButton>
+            <ImageButton BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="ShoppingCart" HorizontalOptions="Center" Grid.Column="2">
+                <ImageButton.Source>
+                    <FontImageSource
+                    FontFamily="MySolidFonts"
                     Glyph="{x:Static fontAwesome:IconSolidFonts.BagShopping}"
                     Size="Medium"
                      Color="#d8f3dc"/>
@@ -42,47 +52,12 @@
             </ImageButton>
             <SearchBar  x:Name="searchBar" SearchCommand="{Binding SearchProductCommand}" 
                        SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
-                       Placeholder="חפש מוצר" Grid.Column="2" HorizontalOptions="End" PlaceholderColor="#d8f3dc"/>
+                       Placeholder="חפש מוצר" Grid.Column="3" HorizontalOptions="End" PlaceholderColor="#d8f3dc"/>
             
           
         </Grid>
 
     </NavigationPage.TitleView>
-    <!--<ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer"           
-                 Order="Primary"
-                 Priority="0">
-            <ToolbarItem.IconImageSource>
-                <FontImageSource
-                    FontFamily="MySolidFonts"
-                    Glyph="{x:Static fontAwesome:IconSolidFonts.UserPlus}"
-                    Size="Medium"
-                     Color="#d8f3dc"/>
-            </ToolbarItem.IconImageSource>
-        </ToolbarItem>
-        <ToolbarItem Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer"           
-                 Order="Primary"
-                 Priority="0">
-            <ToolbarItem.IconImageSource>
-                <FontImageSource
-                    FontFamily="MySolidFonts"
-                    Glyph="{x:Static fontAwesome:IconSolidFonts.BagShopping}"
-                    Size="Medium"
-                     Color="#d8f3dc"/>
-            </ToolbarItem.IconImageSource>
-        </ToolbarItem>
-        <ToolbarItem Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer"           
-                 Order="Secondary" Text="Kuku"
-                 Priority="0">
-            <ToolbarItem.IconImageSource>
-                <FontImageSource
-                    FontFamily="MySolidFonts"
-                    Glyph="{x:Static fontAwesome:IconSolidFonts.UserPlus}"
-                    Size="Medium"
-                     Color="#d8f3dc"/>
-            </ToolbarItem.IconImageSource>
-        </ToolbarItem>
-    </ContentPage.ToolbarItems>-->
 
 
     <ContentPage.Content>
@@ -148,15 +123,8 @@
                     <GridItemsLayout Orientation="Vertical"
                         Span="2" />
                 </CollectionView.ItemsLayout>
-                <!--<VisualStateManager.VisualStateGroups>
-                    <VisualStateGroup>
-                        <VisualState x:Name="Selected">
-                            <VisualState.Setters>
-                                <Setter Property="BackgroundColor" Value="LightBlue" />
-                            </VisualState.Setters>
-                        </VisualState>
-                    </VisualStateGroup>
-                </VisualStateManager.VisualStateGroups>-->
+                
+                
                 <CollectionView.ItemTemplate>
                         <DataTemplate>
                         <Grid FlowDirection="RightToLeft" Padding="10" >
@@ -167,16 +135,19 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             
                             <Image 
                                     Source="{Binding Picture}"
                                     Aspect="AspectFit"
                                     HeightRequest="100"
-                                    WidthRequest="100"/>
-                            <Label Grid.Row="1" Text="{Binding ProductName}" HorizontalOptions="Start" FontSize="20" TextColor="#d8f3dc"></Label>
-                            <Label Grid.Row="2" HorizontalOptions="Start"  Text="מחיר:" FontSize="20" TextColor="#d8f3dc"/>
-                            <Label Grid.Row="2" Text="{Binding Price}" HorizontalOptions="End" FontSize="20" TextColor="#d8f3dc"></Label>
+                                    WidthRequest="100"
+                                HorizontalOptions="Center"
+                                Grid.ColumnSpan="2"/>
+                            <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding ProductName}" HorizontalOptions="Center" FontSize="20" TextColor="#d8f3dc"></Label>
+                            <Label Grid.Row="2" Grid.Column="0" HorizontalOptions="End"  Text="מחיר:" FontSize="20" TextColor="#d8f3dc"/>
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Price}" HorizontalOptions="Start" FontSize="20" TextColor="#d8f3dc"></Label>
                             
                         </Grid>
                         </DataTemplate>

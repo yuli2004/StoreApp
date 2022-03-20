@@ -3,6 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace StoreApp.ViewModels
 {
@@ -37,7 +39,24 @@ namespace StoreApp.ViewModels
             Price = 0;
             Order = new ObservableCollection<ProductInOrder>(currentApp.cart);
             UpdatePrice();
+            DeleteCommand = new Command<ProductInOrder>(DeleteFromCart);
+            BuyAllCommand = new Command(BuyCart);
+        }
 
+        private void BuyCart()
+        {
+            Order o = new Order();
+            foreach (ProductInOrder p in Order)
+            {
+                p.Product.IsActive = false;  
+            }
+        }
+
+        private void DeleteFromCart(ProductInOrder obj)
+        {
+            currentApp.cart.Remove(obj);
+            Order.Remove(obj);
+            Price -= obj.Product.Price;
         }
 
         private void UpdatePrice()
@@ -50,5 +69,9 @@ namespace StoreApp.ViewModels
                 }
             }
         }
+
+      public  ICommand DeleteCommand { get; protected set; }
+
+        public ICommand BuyAllCommand { get; protected set; }
     }
 }

@@ -24,6 +24,7 @@ namespace StoreApp.ViewModels
         {
             NavigateToPageCommand = new Command<string>(NavigateToPage);
         }
+
         #region Navigate to page command
         public ICommand NavigateToPageCommand { protected set; get; }
         
@@ -55,6 +56,12 @@ namespace StoreApp.ViewModels
                     {
                         p = new Home();
                         p.BindingContext = new HomeViewModel();
+                    }
+                    break;
+                case "ShoppingCart":
+                    { 
+                        p = new ShoppingCartPage();
+                        p.BindingContext = new ShoppingCartPageViewModel();
                     }
                     break;
                
