@@ -5,12 +5,13 @@ using System.ComponentModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using StoreApp.Services;
 
 namespace StoreApp.ViewModels
 {
     public class BaseViewModel : INotifyPropertyChanged
     {
-
+        protected StoreAPIProxy proxy;
         public  App currentApp { get => ((App)Application.Current); }
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
@@ -23,6 +24,7 @@ namespace StoreApp.ViewModels
         public BaseViewModel()
         {
             NavigateToPageCommand = new Command<string>(NavigateToPage);
+            proxy = StoreAPIProxy.CreateProxy();
         }
 
         #region Navigate to page command

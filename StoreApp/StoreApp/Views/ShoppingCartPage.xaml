@@ -61,6 +61,7 @@
             <Label Text="Total Price">
               
             </Label>
+            <Button Command="{Binding OrderCommand}" Text="בצע הזמנה"/>
             <Label Text="{Binding Price}"></Label>
         </StackLayout>
     </ContentPage.Content>

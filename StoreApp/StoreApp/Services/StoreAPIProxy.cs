@@ -14,7 +14,7 @@ using System.IO;
 
 namespace StoreApp.Services
 {
-    class StoreAPIProxy
+   public class StoreAPIProxy
     {
         private const string CLOUD_URL = "TBD"; //API url when going on the cloud
         private const string CLOUD_PHOTOS_URL = "TBD";
@@ -68,6 +68,39 @@ namespace StoreApp.Services
             if (proxy == null)
                 proxy = new StoreAPIProxy(baseUri, basePhotosUri);
             return proxy;
+        }
+
+        public async Task<bool> CreateOrder(Order o)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.Hebrew, UnicodeRanges.BasicLatin),
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<Order>(o, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/AddOrder", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    bool ret = JsonSerializer.Deserialize<bool>(jsonContent, options);
+
+                    return ret;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine(ee.Message);
+                return false;
+            }
         }
         #endregion
 

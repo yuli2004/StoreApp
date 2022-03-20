@@ -1,4 +1,5 @@
 ﻿using StoreApp.Models;
+using StoreApp.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -40,15 +41,28 @@ namespace StoreApp.ViewModels
             Order = new ObservableCollection<ProductInOrder>(currentApp.cart);
             UpdatePrice();
             DeleteCommand = new Command<ProductInOrder>(DeleteFromCart);
-            BuyAllCommand = new Command(BuyCart);
+            OrderCommand = new Command(BuyCart);
         }
 
-        private void BuyCart()
+        private async void BuyCart()
         {
-            Order o = new Order();
-            foreach (ProductInOrder p in Order)
+            if (currentApp.CurrentUser == null)
             {
-                p.Product.IsActive = false;  
+                await currentApp.MainPage.DisplayAlert("משתמש לא מזוהה", "על מנת לבצע הזמנה, יש להתחבר למערכת", "אישור");
+                await currentApp.MainPage.Navigation.PushAsync(new LogIn());
+            }
+            else
+            {
+                Order o = new Order() { Buyer = currentApp.CurrentUser.Buyer, Date=DateTime.Now, ProductInOrders= currentApp.cart, TotalPrice=Price };
+                bool success = await proxy.CreateOrder(o);
+                if(success)
+                {
+                    currentApp.cart.Clear();
+                    order.Clear();
+                    currentApp.Tables= await proxy.CreateLookUpTables();
+                }
+                else
+                    await currentApp.MainPage.DisplayAlert("הזמנה נכשלה", "ביצוע הזמנה נכשל", "אישור");
             }
         }
 
@@ -72,6 +86,6 @@ namespace StoreApp.ViewModels
 
       public  ICommand DeleteCommand { get; protected set; }
 
-        public ICommand BuyAllCommand { get; protected set; }
+        public ICommand OrderCommand { get; protected set; }
     }
 }
