@@ -76,9 +76,15 @@ namespace StoreApp.ViewModels
         public HomeViewModel()
         {
             SliderValue = 0;
+            //App app = (App)App.Current;
+            //User user = app.CurrentUser;
+            //if(user == null)
+            //{
+            //    IsVisible = true;
+            //}
 
             this.SearchTerm = String.Empty;
-            FilteredProducts = new ObservableCollection<Models.Product>(((App)App.Current).Tables.AllProducts);
+            FilteredProducts = new ObservableCollection<Models.Product>(((App)App.Current).Tables.AllProducts.Where(p=>p.IsActive==true));
             InitProducts();
             SearchProductCommand = new Command<string>(OnTextChanged);
             OnSelectedProduct = new Command<Models.Product>(MoveToProductPage);
@@ -121,6 +127,15 @@ namespace StoreApp.ViewModels
         }
         #endregion
 
+        private bool isVisible;
+        public bool IsVisible
+        {
+            get { return currentApp.CurrentUser==null; }
+
+            set { if (isVisible != value) { isVisible = value; OnPropertyChanged("IsVisible"); } }
+            
+        }
+
         private int sliderValue;
         public int SliderValue
         {
@@ -132,14 +147,14 @@ namespace StoreApp.ViewModels
             }
         }
 
-        private void InitProducts()
+        public void InitProducts()
         {
             IsRefreshing = true;
             App theApp = (App)App.Current;
             this.allProducts = theApp.Tables.AllProducts;
 
             //Copy list to the filtered list
-            this.FilteredProducts = new ObservableCollection<Models.Product>(this.allProducts);
+            this.FilteredProducts = new ObservableCollection<Models.Product>(this.allProducts.Where(p=>p.IsActive==true));
             SearchTerm = String.Empty;
             IsRefreshing = false;
           

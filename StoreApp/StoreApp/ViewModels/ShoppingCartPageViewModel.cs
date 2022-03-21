@@ -60,6 +60,9 @@ namespace StoreApp.ViewModels
                     currentApp.cart.Clear();
                     order.Clear();
                     currentApp.Tables= await proxy.CreateLookUpTables();
+                    await currentApp.MainPage.DisplayAlert("ההזמנה בוצעה", "תודה על ההזמנה שלך!", "אישור");
+
+                    await currentApp.MainPage.Navigation.PopAsync();
                 }
                 else
                     await currentApp.MainPage.DisplayAlert("הזמנה נכשלה", "ביצוע הזמנה נכשל", "אישור");

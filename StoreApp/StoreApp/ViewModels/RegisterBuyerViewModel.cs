@@ -286,31 +286,36 @@ namespace StoreApp.ViewModels
                 //the email and username should be unique
                 bool isEmailExists = await proxy.UserExistsByEmailAsync(this.u.Email);
                 bool isUsernameExists = await proxy.UserExistsByUsernameAsync(this.u.Username);
+               
                 if (isUsernameExists)
                 {
+                    await App.Current.MainPage.Navigation.PopModalAsync();
                     await App.Current.MainPage.DisplayAlert("שגיאה", "שם המשתמש תפוס - נסה שם אחר", "בסדר");
-                    await App.Current.MainPage.Navigation.PopModalAsync();
+                    
                 }
-                if (isEmailExists)
+              else  if (isEmailExists)
                 {
-                    await App.Current.MainPage.DisplayAlert("שגיאה", "האימייל כבר נמצא בשימוש", "בסדר");
                     await App.Current.MainPage.Navigation.PopModalAsync();
+                    await App.Current.MainPage.DisplayAlert("שגיאה", "האימייל כבר נמצא בשימוש", "בסדר");
+                  
                 }
-                if (!isUsernameExists && !isEmailExists)
+                else
                 {
                     Buyer currentB = null;
                     Buyer newB = await proxy.RegisterBuyerAsync(this.b);
-                    currentB = newB;
+                    await App.Current.MainPage.Navigation.PopModalAsync();
+                    currentApp.CurrentUser = newB.UsernameNavigation;
 
-                    if (currentB == null)
+                    if (newB == null)
                     {
                         await App.Current.MainPage.DisplayAlert("שגיאה", "שמירת המשתמש נכשלה", "בסדר");
-                        await App.Current.MainPage.Navigation.PopModalAsync();
+                    //   await currentApp.MainPage.Navigation.PopModalAsync();
                     }
                     else
                     {
                         await App.Current.MainPage.DisplayAlert("הצלחה", "שמירת המשתמש הצליחה", "בסדר");
-                        await App.Current.MainPage.Navigation.PopModalAsync();
+                       
+                        await currentApp.MainPage.Navigation.PopAsync();
                     }
                 }
 

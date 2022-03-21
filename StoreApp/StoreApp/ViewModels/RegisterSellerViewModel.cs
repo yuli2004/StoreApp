@@ -397,14 +397,14 @@ namespace StoreApp.ViewModels
                 if (isUsernameExists)
                 {
                     await App.Current.MainPage.DisplayAlert("שגיאה", "שם המשתמש תפוס - נסה שם אחר", "בסדר");
-                    await App.Current.MainPage.Navigation.PopModalAsync();
+                    await App.Current.MainPage.Navigation.PopAsync();
                 }
-                if (isEmailExists)
+                else if (isEmailExists)
                 {
                     await App.Current.MainPage.DisplayAlert("שגיאה", "האימייל כבר נמצא בשימוש", "בסדר");
-                    await App.Current.MainPage.Navigation.PopModalAsync();
+                    await App.Current.MainPage.Navigation.PopAsync();
                 }
-                if (!isUsernameExists && !isEmailExists)
+               else
                 {
                     Seller currentS = null;
                     Seller newS = await proxy.RegisterSellerAsync(this.s);
@@ -413,10 +413,11 @@ namespace StoreApp.ViewModels
                     if (currentS == null)
                     {
                         await App.Current.MainPage.DisplayAlert("שגיאה", "שמירת המשתמש נכשלה", "בסדר");
-                        await App.Current.MainPage.Navigation.PopModalAsync();
+                        await currentApp.MainPage.Navigation.PopAsync();
                     }
                     else
                     {
+                        currentApp.CurrentUser = newS.UsernameNavigation;
 
                         if (this.imageFileResult != null)
                         {
@@ -430,7 +431,7 @@ namespace StoreApp.ViewModels
                         ServerStatus = "שומר נתונים..."; 
 
                         await App.Current.MainPage.DisplayAlert("הצלחה", "שמירת המשתמש הצליחה", "בסדר");
-                        await App.Current.MainPage.Navigation.PopModalAsync();
+                        await currentApp.MainPage.Navigation.PopAsync();
                     }
                 }
 

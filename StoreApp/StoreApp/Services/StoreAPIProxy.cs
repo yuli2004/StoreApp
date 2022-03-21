@@ -350,6 +350,7 @@ namespace StoreApp.Services
             }
         }
         #endregion
+
         #region Update Product
         public  Task UpdateProduct(Product p)
         {

@@ -129,7 +129,7 @@
                     <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
                 </Grid>
                 <Frame Style="{StaticResource Frame}">
-                    <Entry Placeholder="הכנס דואר אלקטרוני" Text="{Binding Email}" Style="{StaticResource entryStyle}"/>
+                    <Entry Keyboard="Email" Placeholder="הכנס דואר אלקטרוני" Text="{Binding Email}" Style="{StaticResource entryStyle}"/>
                 </Frame>
 
                 <!-- Photo -->

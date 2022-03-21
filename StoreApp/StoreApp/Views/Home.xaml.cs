@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using StoreApp.ViewModels;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using StoreApp.Models;
 
 namespace StoreApp.Views
 {
@@ -15,8 +16,21 @@ namespace StoreApp.Views
         public Home()
         {
             HomeViewModel context = new HomeViewModel();
+
             this.BindingContext = context;
             InitializeComponent();
         }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (BindingContext != null)
+            {
+                ((HomeViewModel)BindingContext).IsVisible = (((App)Application.Current).CurrentUser == null);
+                ((HomeViewModel)BindingContext).InitProducts();
+            }
+                
+        }
+
     }
 }

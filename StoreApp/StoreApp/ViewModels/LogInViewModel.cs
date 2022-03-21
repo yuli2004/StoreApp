@@ -79,7 +79,7 @@ namespace StoreApp.ViewModels
                 App theApp = (App)App.Current;
                 theApp.CurrentUser = user;
                 await App.Current.MainPage.DisplayAlert("הצלחה", "התחברות הצליחה", "בסדר");
-                await theApp.MainPage.Navigation.PushAsync(new Home());
+                await theApp.MainPage.Navigation.PopToRootAsync();
             }
         }
     }

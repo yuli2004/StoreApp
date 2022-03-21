@@ -23,13 +23,14 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <ImageButton BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="Center" Grid.Column="0">
+            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsVisible}" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="Center" Grid.Column="0">
                 <ImageButton.Source>
                     <FontImageSource 
                     FontFamily="MySolidFonts"
                     Glyph="{x:Static fontAwesome:IconSolidFonts.UserPlus}"
                     Size="Medium"
-                     Color="#d8f3dc"/>
+                     Color="#d8f3dc"
+                     />
                 </ImageButton.Source>
             </ImageButton>
             <ImageButton BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="LogIn" HorizontalOptions="Center" Grid.Column="1">

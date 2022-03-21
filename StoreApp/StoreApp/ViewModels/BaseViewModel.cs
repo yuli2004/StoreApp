@@ -69,7 +69,7 @@ namespace StoreApp.ViewModels
                
                 default: break;
             }
-            App.Current.MainPage.Navigation.PushAsync(p);
+            currentApp.MainPage.Navigation.PushAsync(p);
         }
         #endregion
     

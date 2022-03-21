@@ -29,7 +29,7 @@ namespace StoreApp
             InitializeComponent();
             CurrentUser = null;
 
-            MainPage = new  Loading();
+            MainPage = new Loading();
             cart = new List<ProductInOrder>();
         }
 
@@ -38,8 +38,8 @@ namespace StoreApp
             StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
            
             Tables = await proxy.CreateLookUpTables();
-            
-            MainPage = new NavigationPage(new Home());
+           
+             MainPage=new NavigationPage(new Home());
         }
 
         protected override void OnSleep()
