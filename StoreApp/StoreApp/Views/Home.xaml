@@ -33,7 +33,17 @@
                      />
                 </ImageButton.Source>
             </ImageButton>
-            <ImageButton BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="LogIn" HorizontalOptions="Center" Grid.Column="1">
+            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsNotVisible}" Command="{Binding LogOutCommand}" HorizontalOptions="Center" Grid.Column="0">
+                <ImageButton.Source>
+                    <FontImageSource 
+                    FontFamily="MySolidFonts"
+                    Glyph="{x:Static fontAwesome:IconSolidFonts.DoorClosed}"
+                    Size="Medium"
+                     Color="#d8f3dc"
+                     />
+                </ImageButton.Source>
+            </ImageButton>
+            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsVisible}" Command="{Binding NavigateToPageCommand}" CommandParameter="LogIn" HorizontalOptions="Center" Grid.Column="1">
                 <ImageButton.Source>
                     <FontImageSource
                     FontFamily="MySolidFonts"

@@ -76,13 +76,7 @@ namespace StoreApp.ViewModels
         public HomeViewModel()
         {
             SliderValue = 0;
-            //App app = (App)App.Current;
-            //User user = app.CurrentUser;
-            //if(user == null)
-            //{
-            //    IsVisible = true;
-            //}
-
+            
             this.SearchTerm = String.Empty;
             FilteredProducts = new ObservableCollection<Models.Product>(((App)App.Current).Tables.AllProducts.Where(p=>p.IsActive==true));
             InitProducts();
@@ -134,6 +128,15 @@ namespace StoreApp.ViewModels
 
             set { if (isVisible != value) { isVisible = value; OnPropertyChanged("IsVisible"); } }
             
+        }
+
+        private bool isNotVisible;
+        public bool IsNotVisible
+        {
+            get { return currentApp.CurrentUser != null; }
+
+            set { if (isNotVisible != value) { isNotVisible = value; OnPropertyChanged("IsNotVisible"); } }
+
         }
 
         private int sliderValue;
@@ -318,8 +321,24 @@ namespace StoreApp.ViewModels
 
         #region open product page
 
-       public ICommand OnSelectedProduct { get;  protected set; }
+        public ICommand OnSelectedProduct { get;  protected set; }
 
         #endregion
+
+        public ICommand LogOutCommand => new Command(LogOut);
+
+        public async void LogOut()
+        {
+            bool answer = await App.Current.MainPage.DisplayAlert("התנתקות", "האם ברצונך להתנתק?", "התנתק", "ביטול", FlowDirection.RightToLeft);
+            if (answer)
+            {
+                App theApp = (App)App.Current;
+                theApp.CurrentUser = null;
+
+                Page page = new LogIn();
+                page.Title = "התחברות";
+                App.Current.MainPage = new NavigationPage(page);
+            }
+        }
     }
 }
