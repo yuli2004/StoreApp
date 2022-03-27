@@ -49,8 +49,8 @@
                 <Label Grid.Row="7" Text="{Binding P.Style}"/>
 
 
-                <Button Grid.Row="8" Grid.ColumnSpan="2" Command="{Binding AddToCart}" Style="{StaticResource ButtonStyle}" Text="הוסף לעגלת הקניות"></Button>
-                <Switch IsVisible="{Binding IsOwner}" IsToggled="{Binding IsOnSale}"></Switch>
+                <Button Grid.Row="9" Grid.ColumnSpan="2" Command="{Binding AddToCart}" Style="{StaticResource ButtonStyle}" Text="הוסף לעגלת הקניות"></Button>
+                <Switch Grid.Row="8" IsVisible="{Binding IsOwner}" IsToggled="{Binding IsOnSale}"></Switch>
             </Grid>
 
         </StackLayout>
