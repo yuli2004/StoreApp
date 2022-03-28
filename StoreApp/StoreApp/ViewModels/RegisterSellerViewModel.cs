@@ -309,7 +309,7 @@ namespace StoreApp.ViewModels
                 Username = "",                
                 Email = "",
                 Password = "",
-                IsAdmin = false,
+                
                 IsBuyer = false,
                 IsSeller = true,
             };

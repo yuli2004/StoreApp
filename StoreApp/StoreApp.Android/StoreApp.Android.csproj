@@ -119,7 +119,7 @@
     <AndroidResource Include="Resources\drawable\PopPoster.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\sunset.jpg" />
+    <AndroidResource Include="Resources\drawable\sunsets.jpg" />
   </ItemGroup>
   <ItemGroup>
     <AndroidResource Include="Resources\drawable\manProfil.jpg" />

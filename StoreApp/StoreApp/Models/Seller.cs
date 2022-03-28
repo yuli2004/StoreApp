@@ -8,7 +8,7 @@ namespace StoreApp.Models
         public Seller()
         {
             Products = new List<Product>();
-            Reviews = new List<Review>();
+            
         }
 
         public int SellerId { get; set; }
@@ -20,7 +20,7 @@ namespace StoreApp.Models
 
         public virtual User UsernameNavigation { get; set; }
         public virtual List<Product> Products { get; set; }
-        public virtual List<Review> Reviews { get; set; }
+        
 
         //this method returns the profile picture url
         public string GetProfilePicture()

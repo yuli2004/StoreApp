@@ -42,8 +42,10 @@ namespace StoreApp.ViewModels
         {
             get
             {
-                if (currentApp.CurrentUser != null) 
+                if (currentApp.CurrentUser != null)
+                {
                     return P.Seller.Username == currentApp.CurrentUser.Username;
+                }
 
                 return false;
             }

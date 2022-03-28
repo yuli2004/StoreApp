@@ -8,7 +8,6 @@ namespace StoreApp.Models
         public Buyer()
         {
             Orders = new List<Order>();
-            Reviews = new List<Review>();
         }
 
         public int BuyerId { get; set; }
@@ -16,6 +15,5 @@ namespace StoreApp.Models
 
         public virtual User UsernameNavigation { get; set; }
         public virtual List<Order> Orders { get; set; }
-        public virtual List<Review> Reviews { get; set; }
     }
 }
