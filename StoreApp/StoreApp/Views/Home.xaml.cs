@@ -26,7 +26,10 @@ namespace StoreApp.Views
             base.OnAppearing();
             if (BindingContext != null)
             {
-                ((HomeViewModel)BindingContext).IsVisible = (((App)Application.Current).CurrentUser == null);
+                ((HomeViewModel)BindingContext).IsNoUser = (((App)Application.Current).CurrentUser == null);
+                ((HomeViewModel)BindingContext).IsLoggedUser = (((App)Application.Current).CurrentUser != null);
+                ((HomeViewModel)BindingContext).IsBuyer = (((App)Application.Current).CurrentUser == null);
+                ((HomeViewModel)BindingContext).IsSeller = (((App)Application.Current).CurrentUser == null);
                 ((HomeViewModel)BindingContext).InitProducts();
             }
                 

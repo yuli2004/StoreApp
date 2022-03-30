@@ -66,7 +66,37 @@ namespace StoreApp.ViewModels
                         p.BindingContext = new ShoppingCartPageViewModel();
                     }
                     break;
-               
+                case "SellerProfile":
+                    {
+                        p = new SellerProfile();
+                        p.BindingContext = new SellerProfileViewModel();
+                    }
+                    break;
+                case "BuyerHistory":
+                    {
+                        p = new BuyerHistory();
+                        p.BindingContext = new BuyerHistoryViewModel();
+                    }
+                    break;
+                case "EditProfile":
+                    {
+                        p = new EditProfile();
+                        p.BindingContext = new EditProfileViewModel();
+                    }
+                    break;
+                case "SellerHistory":
+                    {
+                        p = new SellerHistory();
+                        p.BindingContext = new SellerHistoryViewModel();
+                    }
+                    break;
+                case "UploadProduct":
+                    {
+                        p = new UploadProduct();
+                        p.BindingContext = new UploadProductViewModel();
+                    }
+                    break;
+
                 default: break;
             }
             currentApp.MainPage.Navigation.PushAsync(p);

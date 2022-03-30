@@ -23,7 +23,7 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsVisible}" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="Center" Grid.Column="0">
+            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsNoUser}" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="Center" Grid.Column="0">
                 <ImageButton.Source>
                     <FontImageSource 
                     FontFamily="MySolidFonts"
@@ -33,7 +33,7 @@
                      />
                 </ImageButton.Source>
             </ImageButton>
-            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsNotVisible}" Command="{Binding LogOutCommand}" HorizontalOptions="Center" Grid.Column="0">
+            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsLoggedUser}" Command="{Binding LogOutCommand}" HorizontalOptions="Center" Grid.Column="0">
                 <ImageButton.Source>
                     <FontImageSource 
                     FontFamily="MySolidFonts"
@@ -43,7 +43,7 @@
                      />
                 </ImageButton.Source>
             </ImageButton>
-            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsVisible}" Command="{Binding NavigateToPageCommand}" CommandParameter="LogIn" HorizontalOptions="Center" Grid.Column="1">
+            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsNoUser}" Command="{Binding NavigateToPageCommand}" CommandParameter="LogIn" HorizontalOptions="Center" Grid.Column="1">
                 <ImageButton.Source>
                     <FontImageSource
                     FontFamily="MySolidFonts"
@@ -52,6 +52,26 @@
                      Color="#d8f3dc"/>
                 </ImageButton.Source>
             </ImageButton>
+            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsSeller}" Command="{Binding NavigateToPageCommand}" CommandParameter="SellerProfile" HorizontalOptions="Center" Grid.Column="1">
+                <ImageButton.Source>
+                    <FontImageSource 
+                    FontFamily="MySolidFonts"
+                    Glyph="{x:Static fontAwesome:IconSolidFonts.IdCardClip}"
+                    Size="Medium"
+                     Color="#d8f3dc"
+                     />
+                </ImageButton.Source>
+            </ImageButton>
+            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsBuyer}" Command="{Binding NavigateToPageCommand}" CommandParameter="BuyerHistory" HorizontalOptions="Center" Grid.Column="1">
+                    <ImageButton.Source>
+                        <FontImageSource 
+                    FontFamily="MySolidFonts"
+                    Glyph="{x:Static fontAwesome:IconSolidFonts.PaperPlane}"
+                    Size="Medium"
+                     Color="#d8f3dc"
+                     />
+                    </ImageButton.Source>
+                </ImageButton>
             <ImageButton BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="ShoppingCart" HorizontalOptions="Center" Grid.Column="2">
                 <ImageButton.Source>
                     <FontImageSource
@@ -76,9 +96,9 @@
             <Grid Padding="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
+                    <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
@@ -90,6 +110,7 @@
                     ItemDisplayBinding="{Binding Color1}" 
                     SelectedItem="{Binding Color}"
                     Grid.Column="0"
+                    Grid.Row="0"
                     >
             </Picker>
                
@@ -99,6 +120,7 @@
                     ItemDisplayBinding="{Binding SMaterial}" 
                     SelectedItem="{Binding SurfaceMaterial}"
                     Grid.Column="1"
+                    Grid.Row="0"
                     >
                 </Picker>
                 <Picker Title="סוג הציור" 
@@ -107,20 +129,35 @@
                     ItemDisplayBinding="{Binding PMaterial}" 
                     SelectedItem="{Binding PaintMaterial}"
                     Grid.Column="2"
-                   >
+                    Grid.Row="0"
+                    >
                 </Picker>
                 <Picker Title="סגנון" 
-                    FontAttributes="Bold" 
+                    FontAttributes="Bold"
                     ItemsSource="{Binding Styles}" 
                     ItemDisplayBinding="{Binding Style1}" 
                     SelectedItem="{Binding Style}"
                     Grid.Column="3"
+                    Grid.Row="0"
                    >
                 </Picker>
                 <Button
                     Text="חיפוש"  
                     Command="{Binding PickerCommand}"
-                    Grid.Column="4"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1"
+                    BackgroundColor="#6da37d"
+                    FontAttributes="Bold"
+                    FontSize="18"
+                >
+                </Button>
+                <Button
+                    Text="נקה"  
+                    Command="{Binding CleanCommand}"
+                    Grid.Column="2"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1"
                     BackgroundColor="#6da37d"
                     FontAttributes="Bold"
                     FontSize="18"

@@ -25,10 +25,10 @@
                     <RowDefinition Height="30" />
                     <RowDefinition Height="*" />
                     <RowDefinition Height="30" />
-                    <RowDefinition Height="25" />
-                    <RowDefinition Height="25" />
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
                     <RowDefinition Height="80" />
-                    <RowDefinition Height="70" />
+                    <RowDefinition Height="50" />
 
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -44,16 +44,18 @@
                 <Label Grid.Row="2" Grid.Column="1" Text="{Binding P.Seller.Username}" HorizontalOptions="Start" FontSize="24" TextColor="#d8f3dc"></Label>
                 <Label Grid.Row="3" Grid.ColumnSpan="2" Padding="5" Text="{Binding P.Details}"  LineBreakMode="WordWrap" HorizontalOptions="Center" FontSize="24" TextColor="#d8f3dc"></Label>
 
-                <Label Grid.Row="4" Grid.Column="0" Text="תגיות:" HorizontalOptions="Start" FontSize="24" TextColor="#d8f3dc"></Label>
+                <Label Grid.Row="4" Grid.Column="0" Text="מאפיינים:" HorizontalOptions="Start" FontSize="24" TextColor="#d8f3dc"></Label>
                 <Label Grid.Row="5" Grid.Column="0" Text="{Binding P.Color.Color1}" Style="{StaticResource ticketStyle}"/>
                 <Label Grid.Row="5" Grid.Column="1" Text="{Binding P.PMaterial.PMaterial}" Style="{StaticResource ticketStyle}"/>
                 <Label Grid.Row="6" Grid.Column="0" Text="{Binding P.SMaterial.SMaterial}" Style="{StaticResource ticketStyle}"/>
                 <Label Grid.Row="6" Grid.Column="1" Text="{Binding P.Style.Style1}" Style="{StaticResource ticketStyle}"/>
 
-
                 <Button Grid.Row="7" Grid.ColumnSpan="2" Command="{Binding AddToCart}" Style="{StaticResource ButtonStyle}" Text="הוסף לעגלת הקניות"></Button>
-                <Switch Grid.Row="8" IsVisible="{Binding IsOwner}" IsToggled="{Binding IsOnSale}"></Switch>
-            </Grid>
+
+                <Label Padding="10" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding IsOwner}" Text="האם המוצר זמין למכירה?" HorizontalOptions="Start" FontSize="20" TextColor="#d8f3dc"></Label>
+                <Switch Grid.Row="8" Grid.Column="1" HorizontalOptions="Center" IsVisible="{Binding IsOwner}" IsToggled="{Binding IsOnSale}"></Switch>
+                    
+                </Grid>
 
         </StackLayout>
         </ScrollView>

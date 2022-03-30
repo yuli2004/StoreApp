@@ -55,6 +55,7 @@ namespace StoreApp.ViewModels
         public ProductViewModel()
         {
             AddToCart = new Command(AddProduct);
+            IsOnSale = true;
 
         }
        

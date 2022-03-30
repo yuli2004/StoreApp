@@ -121,22 +121,82 @@ namespace StoreApp.ViewModels
         }
         #endregion
 
-        private bool isVisible;
-        public bool IsVisible
+        private bool isNoUser;
+        public bool IsNoUser
         {
-            get { return currentApp.CurrentUser==null; }
-
-            set { if (isVisible != value) { isVisible = value; OnPropertyChanged("IsVisible"); } }
+            get 
+            { 
+                return currentApp.CurrentUser==null; 
+            }
+            set 
+            { 
+                if (isNoUser != value) 
+                { 
+                    isNoUser = value; 
+                    OnPropertyChanged("IsNoUser"); 
+                }
+            }
             
         }
 
-        private bool isNotVisible;
-        public bool IsNotVisible
+        private bool isLoggedUser;
+        public bool IsLoggedUser
         {
-            get { return currentApp.CurrentUser != null; }
+            get 
+            {
+                return currentApp.CurrentUser != null;
+            }
 
-            set { if (isNotVisible != value) { isNotVisible = value; OnPropertyChanged("IsNotVisible"); } }
+            set 
+            {
+                if (isLoggedUser != value) 
+                {
+                    isLoggedUser = value; 
+                    OnPropertyChanged("isLoggedUser"); 
+                }
+            }
 
+        }
+
+        private bool isSeller;
+        public bool IsSeller
+        {
+            get
+            {
+                if(currentApp.CurrentUser != null)
+                {
+                    return currentApp.CurrentUser.IsSeller;
+                }
+                return false;
+            }
+            set
+            {
+                if (isSeller != value)
+                {
+                    isSeller = value;
+                    OnPropertyChanged("IsSeller");
+                }
+            }
+        }
+        private bool isBuyer;
+        public bool IsBuyer
+        {
+            get
+            {
+                if (currentApp.CurrentUser != null)
+                {
+                    return currentApp.CurrentUser.IsBuyer;
+                }
+                return false;
+            }
+            set
+            {
+                if (isBuyer != value)
+                {
+                    isBuyer = value;
+                    OnPropertyChanged("IsBuyer");
+                }
+            }
         }
 
         private int sliderValue;
@@ -287,11 +347,8 @@ namespace StoreApp.ViewModels
 
         public async void SearchProduct()       
         {
-            
-           
             FilteredProducts.Clear();
 
-           
             foreach (Models.Product pr in allProducts)
             {
                 //if (sliderValue == 0 || sliderValue > pr.Price)
@@ -306,16 +363,32 @@ namespace StoreApp.ViewModels
                     && (PaintMaterial == null || PaintMaterial.PMaterialId == pr.PMaterialId)
                     )
                 {
-                   FilteredProducts.Add(pr);
-                  
-
+                   FilteredProducts.Add(pr);                  
                 }
-
             }
 
             //Page p = new Home();
             //p.BindingContext = page;
             //await App.Current.MainPage.Navigation.PushModalAsync(p);
+        }
+        #endregion
+
+        #region clean command
+        public ICommand CleanCommand => new Command(CleanFields);
+
+        public async void CleanFields()
+        {
+            Color = null;
+            Style = null;
+            PaintMaterial = null;
+            SurfaceMaterial = null;
+            
+            FilteredProducts.Clear();
+
+            foreach (Models.Product pr in allProducts)
+            {
+                FilteredProducts.Add(pr);
+            }
         }
         #endregion
 
@@ -337,7 +410,8 @@ namespace StoreApp.ViewModels
 
                 Page page = new LogIn();
                 page.Title = "התחברות";
-                App.Current.MainPage = new NavigationPage(page);
+                //App.Current.MainPage = new NavigationPage(page);
+                App.Current.MainPage.Navigation.PushAsync(page);
             }
         }
     }
