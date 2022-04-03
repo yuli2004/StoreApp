@@ -121,6 +121,8 @@ namespace StoreApp.ViewModels
         }
         #endregion
 
+        #region IsVisibles
+
         private bool isNoUser;
         public bool IsNoUser
         {
@@ -144,7 +146,7 @@ namespace StoreApp.ViewModels
         {
             get 
             {
-                return currentApp.CurrentUser != null;
+                return !(currentApp.CurrentUser == null);
             }
 
             set 
@@ -198,6 +200,7 @@ namespace StoreApp.ViewModels
                 }
             }
         }
+        #endregion
 
         private int sliderValue;
         public int SliderValue
@@ -398,6 +401,8 @@ namespace StoreApp.ViewModels
 
         #endregion
 
+        #region log out
+
         public ICommand LogOutCommand => new Command(LogOut);
 
         public async void LogOut()
@@ -414,5 +419,6 @@ namespace StoreApp.ViewModels
                 App.Current.MainPage.Navigation.PushAsync(page);
             }
         }
+        #endregion
     }
 }
