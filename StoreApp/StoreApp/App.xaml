@@ -12,7 +12,7 @@
                 <Setter Property="BackgroundColor" Value="#1b4332"/>
 
             </Style>
-            
+
             <Style TargetType="NavigationPage">
                 <Setter Property="BarBackgroundColor" Value="#081c15" />
                     <Setter Property="BarTextColor" Value="White" />
@@ -20,6 +20,12 @@
             
             <Style x:Key="labelNameStyle" TargetType="Label">
                 <Setter Property="FontSize" Value="Medium" />
+            </Style>
+
+            <Style TargetType="Label" x:Key="shoppingCartTextStyle">
+                <Setter Property="FontSize" Value="26"/>
+                <Setter Property="HorizontalTextAlignment" Value="Center"/>
+                <Setter Property="TextColor" Value="#d8f3dc"/>
             </Style>
 
             <Style x:Key="ticketStyle" TargetType="Label">

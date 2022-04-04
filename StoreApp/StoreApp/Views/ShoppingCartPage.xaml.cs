@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StoreApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,16 @@ namespace StoreApp.Views
         public ShoppingCartPage()
         {
             InitializeComponent();
+        }
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (BindingContext != null)
+            {
+                ((ShoppingCartPageViewModel)BindingContext).IsCart = (((App)Application.Current).cart.Count != 0);
+
+            }
+
         }
     }
 }

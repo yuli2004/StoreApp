@@ -21,6 +21,24 @@ namespace StoreApp.ViewModels
                 OnPropertyChanged("Price");
             }
         }
+
+        private bool isCart;
+        public bool IsCart
+        {
+            get
+            {
+                return Price != 0;
+            }
+            set
+            {
+                if (isCart != value)
+                {
+                    isCart = value;
+                    OnPropertyChanged("IsCart");
+                }
+            }
+
+        }
         private ObservableCollection<ProductInOrder> order;
         public ObservableCollection<ProductInOrder> Order
         {

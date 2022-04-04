@@ -33,7 +33,7 @@
                      />
                 </ImageButton.Source>
             </ImageButton>
-            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsLoggedUser}" Command="{Binding LogOutCommand}" HorizontalOptions="Center" Grid.Column="0">
+            <ImageButton BackgroundColor="Transparent"  IsVisible="{Binding IsLoggedUser}" Command="{Binding LogOutCommand}" HorizontalOptions="Center" Grid.Column="0">
                 <ImageButton.Source>
                     <FontImageSource 
                     FontFamily="MySolidFonts"
@@ -58,8 +58,8 @@
                     FontFamily="MySolidFonts"
                     Glyph="{x:Static fontAwesome:IconSolidFonts.IdCardClip}"
                     Size="Medium"
-                     Color="#d8f3dc"
-                     />
+                    Color="#d8f3dc"
+                    />
                 </ImageButton.Source>
             </ImageButton>
             <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsBuyer}" Command="{Binding NavigateToPageCommand}" CommandParameter="BuyerHistory" HorizontalOptions="Center" Grid.Column="1">
@@ -165,8 +165,16 @@
                 </Button>
             </Grid>
 
-            <CollectionView FlowDirection="RightToLeft" SelectionMode="Single" ItemsSource="{Binding FilteredProducts}" SelectionChangedCommand="{Binding OnSelectedProduct}"  SelectedItem="{Binding SelectedProduct}" SelectionChangedCommandParameter="{Binding SelectedProduct}" EmptyView="No Products availble">
-                
+            <CollectionView FlowDirection="RightToLeft" SelectionMode="Single" ItemsSource="{Binding FilteredProducts}" 
+                            SelectionChangedCommand="{Binding OnSelectedProduct}"  SelectedItem="{Binding SelectedProduct}" 
+                            SelectionChangedCommandParameter="{Binding SelectedProduct}">
+
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label Text="אין מוצרים זמינים" FontSize="32" HorizontalTextAlignment="Center" TextColor="#d8f3dc"></Label>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
                         Span="2" />

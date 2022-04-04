@@ -82,6 +82,7 @@ namespace StoreApp.ViewModels
             InitProducts();
             SearchProductCommand = new Command<string>(OnTextChanged);
             OnSelectedProduct = new Command<Models.Product>(MoveToProductPage);
+            IsLoggedUser = false;
         }
 
         private async void MoveToProductPage(Models.Product obj)
@@ -154,7 +155,7 @@ namespace StoreApp.ViewModels
                 if (isLoggedUser != value) 
                 {
                     isLoggedUser = value; 
-                    OnPropertyChanged("isLoggedUser"); 
+                    OnPropertyChanged("IsLoggedUser"); 
                 }
             }
 
@@ -223,6 +224,7 @@ namespace StoreApp.ViewModels
             this.FilteredProducts = new ObservableCollection<Models.Product>(this.allProducts.Where(p=>p.IsActive==true));
             SearchTerm = String.Empty;
             IsRefreshing = false;
+           
           
         }
 

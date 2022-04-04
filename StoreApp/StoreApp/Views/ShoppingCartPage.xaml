@@ -13,31 +13,37 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <CollectionView x:Name="collectionView" EmptyView="No Items In Cart" ItemsSource="{Binding Order}">
-                
+            <StackLayout>
+            <Label IsVisible="{Binding IsCart}" Text="החלק שמאלה בשביל למחוק פריט" Style="{StaticResource shoppingCartTextStyle}"></Label>
+            <CollectionView x:Name="collectionView" ItemsSource="{Binding Order}">
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label Text="העגלה ריקה" Style="{StaticResource shoppingCartTextStyle}" VerticalTextAlignment="Center"></Label>
+                    </StackLayout>
+                </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
-                    
+
                     <DataTemplate x:DataType="models:ProductInOrder">
                         <SwipeView>
                             <SwipeView.LeftItems>
                                 <SwipeItems>
                                     <SwipeItem Text="Delete"
-                                   IconImageSource="delete.png"
-                                   BackgroundColor="LightPink"
+                                   IconImageSource="{x:Static fontAwesome:IconSolidFonts.TrashCan}"
+                                   BackgroundColor="IndianRed"
                                    Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DeleteCommand}"
-                                   CommandParameter="{Binding}"
-                                   
+                                   CommandParameter="{Binding}"                               
                                     />
-                                    
+
                                 </SwipeItems>
                             </SwipeView.LeftItems>
-                            <Grid FlowDirection="RightToLeft" Padding="10" >
+
+                            <Grid FlowDirection="RightToLeft" Padding="5" >
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="4*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="40" />
+                                    <RowDefinition Height="40" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="3*" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
@@ -48,21 +54,26 @@
                                     HeightRequest="100"
                                     WidthRequest="100"
                                 HorizontalOptions="Center"
-                                Grid.ColumnSpan="2"/>
-                                <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding Product.ProductName}" HorizontalOptions="Center" FontSize="20" TextColor="#d8f3dc"></Label>
-                                <Label Grid.Row="2" Grid.Column="0" HorizontalOptions="End"  Text="מחיר:" FontSize="20" TextColor="#d8f3dc"/>
-                                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Product.Price}" HorizontalOptions="Start" FontSize="20" TextColor="#d8f3dc"></Label>
+                                Grid.Column="0"
+                                    Grid.Row="0"
+                                    Grid.RowSpan="2"/>
+                                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Product.ProductName}" HorizontalOptions="Center" FontSize="20" TextColor="#d8f3dc"></Label>
+                                <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="End"  Text="מחיר:" FontSize="20" TextColor="#d8f3dc"/>
+                                <Label Grid.Row="1" Grid.Column="2" Text="{Binding Product.Price}" HorizontalOptions="Start" FontSize="20" TextColor="#d8f3dc"></Label>
 
                             </Grid>
                         </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-            <Label Text="Total Price">
-              
-            </Label>
-            <Button Command="{Binding OrderCommand}" Text="בצע הזמנה"/>
-            <Label Text="{Binding Price}"></Label>
+        </StackLayout>
+            <StackLayout BackgroundColor="#081c15" Padding="10">
+            <Label IsVisible="{Binding IsCart}" Style="{StaticResource shoppingCartTextStyle}" Text="סך הכל:" ></Label>
+            <Label IsVisible="{Binding IsCart}" Style="{StaticResource shoppingCartTextStyle}" Text="{Binding Price}"></Label>
+
+                <Button Style="{StaticResource ButtonStyle}" BackgroundColor="#6da37d" TextColor="#081c15" IsVisible="{Binding IsCart}" Command="{Binding OrderCommand}" Text="בצע הזמנה"/>
+            
+        </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
