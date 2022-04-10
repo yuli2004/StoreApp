@@ -2,7 +2,9 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StoreApp.Views.ViewOrder"
-             
+             xmlns:viewmodels="clr-namespace:StoreApp.ViewModels" 
+             xmlns:models="clr-namespace:StoreApp.Models"
+             x:DataType="viewmodels:ViewOrderViewModel"
              NavigationPage.HasNavigationBar="True"
              Style="{StaticResource ContentPageStyle}" 
              FlowDirection="RightToLeft"
@@ -10,9 +12,67 @@
              >
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="View order"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+
+            <Grid FlowDirection="RightToLeft" Padding="10,5,10,0" RowSpacing="5" BackgroundColor="#6da37d">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35"/>
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="5" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+
+                <Label Grid.Row="0" Grid.Column="1"  Text="{Binding O.Date}" HorizontalOptions="Start" Style="{StaticResource shoppingCartTextStyle}" TextColor="#1b4332"/>
+                <Label Grid.Row="0" Grid.Column="0"  Text="תאריך הזמנה:" HorizontalOptions="Start" Style="{StaticResource shoppingCartTextStyle}" TextColor="#1b4332"/>
+                <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Start"  Text="{Binding O.ProductInOrders.Count}" Style="{StaticResource shoppingCartTextStyle}" TextColor="#1b4332"/>
+                <Label Grid.Row="1" Grid.Column="0"  Text="כמות פריטים:" HorizontalOptions="Start" Style="{StaticResource shoppingCartTextStyle}" TextColor="#1b4332"/>
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding O.TotalPrice}" HorizontalOptions="Start" Style="{StaticResource shoppingCartTextStyle}" TextColor="#1b4332"/>
+                <Label Grid.Row="2" Grid.Column="0"  Text="סך הכל:" HorizontalOptions="Start" Style="{StaticResource shoppingCartTextStyle}" TextColor="#1b4332"/>
+                
+            </Grid>
+
+            <CollectionView FlowDirection="RightToLeft" SelectionMode="Single" ItemsSource="{Binding ProductsList}" 
+                            SelectionChangedCommand="{Binding OnSelectedProduct}"  SelectedItem="{Binding SelectedProduct}" SelectionChangedCommandParameter="{Binding SelectedProduct}">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:Product">
+                        <Grid FlowDirection="RightToLeft" Padding="10,5,10,0" RowSpacing="5" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="35" />
+                                <RowDefinition Height="5" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image 
+                                Source="{Binding Picture}"
+                                Aspect="AspectFit"
+                                HeightRequest="100"
+                                WidthRequest="100"
+                                HorizontalOptions="Center"
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Grid.RowSpan="2"/>
+
+                            <Label Grid.Row="0" Grid.Column="1"  Text="{Binding ProductName}" HorizontalOptions="Start" TextColor="#d8f3dc" FontSize="18"/>
+                            <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Start"  Text="{Binding Price}" Style="{StaticResource shoppingCartTextStyle}"/>
+                            
+                            <BoxView BackgroundColor="#6da37d" Grid.Row="2" Grid.ColumnSpan="2"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

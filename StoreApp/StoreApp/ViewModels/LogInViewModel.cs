@@ -80,6 +80,7 @@ namespace StoreApp.ViewModels
                 theApp.CurrentUser = user;
                 await App.Current.MainPage.DisplayAlert("הצלחה", "התחברות הצליחה", "בסדר");
                 await theApp.MainPage.Navigation.PopToRootAsync();
+                
             }
         }
     }

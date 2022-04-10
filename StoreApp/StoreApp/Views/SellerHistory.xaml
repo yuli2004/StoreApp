@@ -3,6 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StoreApp.Views.SellerHistory"
              xmlns:viewmodels="clr-namespace:StoreApp.ViewModels"
+             xmlns:models="clr-namespace:StoreApp.Models"
+             x:DataType="viewmodels:SellerHistoryViewModel"
              NavigationPage.HasNavigationBar="True"
              Style="{StaticResource ContentPageStyle}" 
              FlowDirection="RightToLeft"
@@ -13,9 +15,49 @@
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to seller history!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <CollectionView FlowDirection="RightToLeft" SelectionMode="Single" EmptyView="אין הזמנות"
+                            ItemsSource="{Binding SellerSoldProducts}" SelectionChangedCommand="{Binding OnSelectedProduct}"  
+                            SelectedItem="{Binding SelectedProduct}" SelectionChangedCommandParameter="{Binding SelectedProduct}">
+
+                <CollectionView.ItemsLayout>
+                    <LinearItemsLayout Orientation="Vertical" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate x:DataType="models:ProductInOrder">
+                        <Grid FlowDirection="RightToLeft" Padding="10,5,10,0" RowSpacing="5" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="35" />
+                                <RowDefinition Height="35" />
+                                <RowDefinition Height="5" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image 
+                                Source="{Binding Product.Picture}"
+                                Aspect="AspectFit"
+                                HeightRequest="100"
+                                WidthRequest="100"
+                                HorizontalOptions="Center"
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Grid.RowSpan="2"/>
+
+                            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Product.ProductName}" HorizontalOptions="Start" TextColor="#d8f3dc" FontSize="18"/>
+                            <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Start"  Text="תאריך:" Style="{StaticResource shoppingCartTextStyle}"/>
+                            <Label Grid.Row="1" Grid.Column="2" HorizontalOptions="Start"  Text="{Binding Order.Date}" Style="{StaticResource shoppingCartTextStyle}"/>
+                            <Label Grid.Row="2" Grid.Column="1" HorizontalOptions="Start"  Text="קונה:" Style="{StaticResource shoppingCartTextStyle}"/>
+                            <Label Grid.Row="2" Grid.Column="2" HorizontalOptions="Start"  Text="{Binding Order.Buyer.Username}" Style="{StaticResource shoppingCartTextStyle}"/>
+
+                            <BoxView BackgroundColor="#6da37d" Grid.Row="2" Grid.ColumnSpan="2"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

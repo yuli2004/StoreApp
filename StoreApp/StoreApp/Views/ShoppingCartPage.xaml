@@ -14,7 +14,7 @@
     <ContentPage.Content>
         <StackLayout>
             <StackLayout>
-            <Label IsVisible="{Binding IsCart}" Text="החלק שמאלה בשביל למחוק פריט" Style="{StaticResource shoppingCartTextStyle}"></Label>
+                <Label IsVisible="{Binding IsCart}" Text="החלק ימינה בשביל להסיר פריט מסל הקניות" Style="{StaticResource shoppingCartTextStyle}" BackgroundColor="#6da37d"></Label>
             <CollectionView x:Name="collectionView" ItemsSource="{Binding Order}">
                 <CollectionView.EmptyView>
                     <StackLayout>
@@ -27,14 +27,14 @@
                         <SwipeView>
                             <SwipeView.LeftItems>
                                 <SwipeItems>
-                                    <SwipeItem Text="Delete"
-                                   IconImageSource="{x:Static fontAwesome:IconSolidFonts.TrashCan}"
-                                   BackgroundColor="IndianRed"
-                                   Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DeleteCommand}"
-                                   CommandParameter="{Binding}"                               
+                                    <SwipeItem 
+                                    IconImageSource="{x:Static fontAwesome:IconSolidFonts.TrashCan}"
+                                    Text="מחק"
+                                    BackgroundColor="IndianRed"
+                                    Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DeleteCommand}"
+                                    CommandParameter="{Binding}"                               
                                     />
-
-                                </SwipeItems>
+                                    </SwipeItems>
                             </SwipeView.LeftItems>
 
                             <Grid FlowDirection="RightToLeft" Padding="5" >
@@ -43,7 +43,7 @@
                                     <RowDefinition Height="40" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="1.5*" />
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="*" />
                                 </Grid.ColumnDefinitions>
@@ -57,9 +57,9 @@
                                 Grid.Column="0"
                                     Grid.Row="0"
                                     Grid.RowSpan="2"/>
-                                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Product.ProductName}" HorizontalOptions="Center" FontSize="20" TextColor="#d8f3dc"></Label>
-                                <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="End"  Text="מחיר:" FontSize="20" TextColor="#d8f3dc"/>
-                                <Label Grid.Row="1" Grid.Column="2" Text="{Binding Product.Price}" HorizontalOptions="Start" FontSize="20" TextColor="#d8f3dc"></Label>
+                                <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Product.ProductName}" HorizontalOptions="Start" FontSize="16" TextColor="#d8f3dc"></Label>
+                                <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Start"  Text="מחיר:" FontSize="16" TextColor="#d8f3dc"/>
+                                <Label Grid.Row="1" Grid.Column="2" Text="{Binding Product.Price}" HorizontalOptions="Start" FontSize="16" TextColor="#d8f3dc"></Label>
 
                             </Grid>
                         </SwipeView>
@@ -68,8 +68,8 @@
             </CollectionView>
         </StackLayout>
             <StackLayout BackgroundColor="#081c15" Padding="10">
-            <Label IsVisible="{Binding IsCart}" Style="{StaticResource shoppingCartTextStyle}" Text="סך הכל:" ></Label>
-            <Label IsVisible="{Binding IsCart}" Style="{StaticResource shoppingCartTextStyle}" Text="{Binding Price}"></Label>
+            <Label IsVisible="{Binding IsCart}" Style="{StaticResource shoppingCartTextStyle}" Text="סך הכל:" FontSize="22" ></Label>
+                <Label IsVisible="{Binding IsCart}" Style="{StaticResource shoppingCartTextStyle}" Text="{Binding Price}" FontSize="22"></Label>
 
                 <Button Style="{StaticResource ButtonStyle}" BackgroundColor="#6da37d" TextColor="#081c15" IsVisible="{Binding IsCart}" Command="{Binding OrderCommand}" Text="בצע הזמנה"/>
             

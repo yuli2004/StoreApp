@@ -15,6 +15,7 @@ namespace StoreApp.Views
         public ViewOrder()
         {
             InitializeComponent();
+            
         }
     }
 }

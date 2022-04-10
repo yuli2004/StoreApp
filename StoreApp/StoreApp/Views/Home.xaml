@@ -2,8 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:fonts="clr-namespace:Fonts"
-             xmlns:viewmodels="clr-namespace:StoreApp.ViewModels" 
-            
+             xmlns:viewmodels="clr-namespace:StoreApp.ViewModels"            
              x:Class="StoreApp.Views.Home"
              FlowDirection="RightToLeft"
              NavigationPage.HasNavigationBar="True"
@@ -13,14 +12,14 @@
         <viewmodels:HomeViewModel></viewmodels:HomeViewModel>
     </ContentPage.BindingContext>
     <NavigationPage.TitleView>
-        <Grid FlowDirection="RightToLeft">
+        <Grid FlowDirection="RightToLeft" Margin="10,0,20,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
+                <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
             <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsNoUser}" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="Center" Grid.Column="0">
@@ -52,11 +51,11 @@
                      Color="#d8f3dc"/>
                 </ImageButton.Source>
             </ImageButton>
-            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsSeller}" Command="{Binding NavigateToPageCommand}" CommandParameter="SellerProfile" HorizontalOptions="Center" Grid.Column="1">
+            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsSeller}" Command="{Binding NavigateToPageCommand}" CommandParameter="SellerHistory" HorizontalOptions="Center" Grid.Column="1">
                 <ImageButton.Source>
                     <FontImageSource 
                     FontFamily="MySolidFonts"
-                    Glyph="{x:Static fontAwesome:IconSolidFonts.IdCardClip}"
+                    Glyph="{x:Static fontAwesome:IconSolidFonts.ArrowDown}"
                     Size="Medium"
                     Color="#d8f3dc"
                     />
@@ -72,7 +71,7 @@
                      />
                     </ImageButton.Source>
                 </ImageButton>
-            <ImageButton BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="ShoppingCart" HorizontalOptions="Center" Grid.Column="2">
+            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsNoSeller}" Command="{Binding NavigateToPageCommand}" CommandParameter="ShoppingCart" HorizontalOptions="Center" Grid.Column="2">
                 <ImageButton.Source>
                     <FontImageSource
                     FontFamily="MySolidFonts"
@@ -81,9 +80,19 @@
                      Color="#d8f3dc"/>
                 </ImageButton.Source>
             </ImageButton>
+            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsSeller}" Command="{Binding OnSelectedSeller}" HorizontalOptions="Center" Grid.Column="2">
+                <ImageButton.Source>
+                    <FontImageSource 
+                    FontFamily="MySolidFonts"
+                    Glyph="{x:Static fontAwesome:IconSolidFonts.AddressCard}"
+                    Size="Medium"
+                    Color="#d8f3dc"
+                    />
+                </ImageButton.Source>
+            </ImageButton>
             <SearchBar  x:Name="searchBar" SearchCommand="{Binding SearchProductCommand}" 
                        SearchCommandParameter="{Binding Text, Source={x:Reference searchBar}}"
-                       Placeholder="חפש מוצר" Grid.Column="3" HorizontalOptions="End" PlaceholderColor="#d8f3dc"/>
+                       Placeholder="חפש מוצר" Grid.Column="3" HorizontalOptions="EndAndExpand" PlaceholderColor="Gray" Margin="10" TextColor="Gray" HeightRequest="30" FontSize="16" BackgroundColor="#d8f3dc"/>
             
           
         </Grid>
@@ -96,7 +105,7 @@
             <Grid Padding="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50" />
-                    <RowDefinition Height="40" />
+                    <RowDefinition Height="50" />
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
@@ -105,6 +114,7 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
                 <Picker Title="צבע" 
+                        FontSize="14"
                     FontAttributes="Bold" 
                     ItemsSource="{Binding Colors}" 
                     ItemDisplayBinding="{Binding Color1}" 
@@ -115,6 +125,7 @@
             </Picker>
                
                 <Picker Title="סוג הדף" 
+                        FontSize="14"
                     FontAttributes="Bold" 
                     ItemsSource="{Binding SurfaceMaterials}" 
                     ItemDisplayBinding="{Binding SMaterial}" 
@@ -124,6 +135,7 @@
                     >
                 </Picker>
                 <Picker Title="סוג הציור" 
+                        FontSize="14"
                     FontAttributes="Bold" 
                     ItemsSource="{Binding PaintMaterials}" 
                     ItemDisplayBinding="{Binding PMaterial}" 
@@ -133,6 +145,7 @@
                     >
                 </Picker>
                 <Picker Title="סגנון" 
+                        FontSize="14"
                     FontAttributes="Bold"
                     ItemsSource="{Binding Styles}" 
                     ItemDisplayBinding="{Binding Style1}" 
@@ -149,7 +162,7 @@
                     Grid.Row="1"
                     BackgroundColor="#6da37d"
                     FontAttributes="Bold"
-                    FontSize="18"
+                    FontSize="16"
                 >
                 </Button>
                 <Button
@@ -160,7 +173,7 @@
                     Grid.Row="1"
                     BackgroundColor="#6da37d"
                     FontAttributes="Bold"
-                    FontSize="18"
+                    FontSize="16"
                 >
                 </Button>
             </Grid>
@@ -183,9 +196,9 @@
                 
                 <CollectionView.ItemTemplate>
                         <DataTemplate>
-                        <Grid FlowDirection="RightToLeft" Padding="10" >
+                        <Grid FlowDirection="RightToLeft" Padding="5" >
                             <Grid.RowDefinitions>
-                                    <RowDefinition Height="4*" />
+                                    <RowDefinition Height="2*" />
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
@@ -201,9 +214,9 @@
                                     WidthRequest="100"
                                 HorizontalOptions="Center"
                                 Grid.ColumnSpan="2"/>
-                            <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding ProductName}" HorizontalOptions="Center" FontSize="20" TextColor="#d8f3dc"></Label>
-                            <Label Grid.Row="2" Grid.Column="0" HorizontalOptions="End"  Text="מחיר:" FontSize="20" TextColor="#d8f3dc"/>
-                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Price}" HorizontalOptions="Start" FontSize="20" TextColor="#d8f3dc"></Label>
+                            <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding ProductName}" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="18" TextColor="#d8f3dc"></Label>
+                            <Label Grid.Row="2" Grid.Column="0" HorizontalOptions="End"  Text="מחיר:" FontSize="18" TextColor="#d8f3dc"/>
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Price}" HorizontalOptions="Start" FontSize="18" TextColor="#d8f3dc"></Label>
                             
                         </Grid>
                         </DataTemplate>

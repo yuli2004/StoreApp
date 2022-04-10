@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -45,27 +46,24 @@ namespace StoreApp.ViewModels
         }
         #endregion
 
-        #region open Order page
-
-        public ICommand OnSelectedOrder { get; protected set; }
-
-        #endregion
-
         #region constructor
         public BuyerHistoryViewModel()
         {
-            
             BuyerOrders = new ObservableCollection<Models.Order>(((App)App.Current).CurrentUser.Buyer.Orders);
-            OnSelectedOrder = new Command<Models.Order>(MoveToOrderPage);
+            OnSelectedOrder = new Command<Models.Order>(MoveToOrderPage);            
         }
+        #endregion
 
-        private async void MoveToOrderPage(Models.Order obj)
+        #region open Order page
+        public ICommand OnSelectedOrder { get; protected set; }
+        private async void MoveToOrderPage(Models.Order ord)
         {
             if (SelectedOrder != null)
             {
-                var page = new Views.ViewOrder() { Title = "View Order Page" };
-                var binding = new ViewOrderViewModel() { O = obj };
+                var page = new Views.ViewOrder() { Title = "פרטי הזמנה" };
+                var binding = new ViewOrderViewModel() { O = ord };
                 page.BindingContext = binding;
+                
                 await this.currentApp.MainPage.Navigation.PushAsync(page);
                 SelectedOrder = null;
             }

@@ -3,23 +3,22 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="StoreApp.Views.BuyerHistory"
              xmlns:viewmodels="clr-namespace:StoreApp.ViewModels" 
-             xmlns:models="clr-namespace:StoreApp.Models"
-             
+             xmlns:models="clr-namespace:StoreApp.Models"            
              x:DataType="viewmodels:BuyerHistoryViewModel"
              NavigationPage.HasNavigationBar="True"
              Style="{StaticResource ContentPageStyle}" 
              FlowDirection="RightToLeft"
-             xmlns:fontAwesome="clr-namespace:Fonts"
+             xmlns:fontAwesome="clr-namespace:Fonts"   
+             
+             xmlns:controls="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
+             xmlns:forms="clr-namespace:CarouselView.FormsPlugin.Abstractions;assembly=CarouselView.FormsPlugin.Abstractions"
              >
     <ContentPage.BindingContext>
         <viewmodels:BuyerHistoryViewModel></viewmodels:BuyerHistoryViewModel>
     </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Buyer history!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-
+            
             <CollectionView FlowDirection="RightToLeft" SelectionMode="Single" ItemsSource="{Binding BuyerOrders}" SelectionChangedCommand="{Binding OnSelectedOrder}"  SelectedItem="{Binding SelectedOrder}" SelectionChangedCommandParameter="{Binding SelectedOrder}" EmptyView="No orders">
 
                 <CollectionView.ItemsLayout>
@@ -29,21 +28,26 @@
 
                 <CollectionView.ItemTemplate>
                     <DataTemplate x:DataType="models:Order">
-                        <Grid FlowDirection="RightToLeft" Padding="10" >
+                        <Grid FlowDirection="RightToLeft" Padding="10,5,10,0" RowSpacing="5" >
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="*" />
+                                <RowDefinition Height="35"/>
+                                <RowDefinition Height="35" />
+                                <RowDefinition Height="35" />
+                                <RowDefinition Height="5" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
-                                <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
 
-                           
-                            <Label Grid.Row="0" Grid.Column="0" Text="{Binding Date}" HorizontalOptions="Start" FontSize="20" TextColor="#d8f3dc"></Label>
-                            <Label Grid.Row="0" Grid.Column="1" HorizontalOptions="Center"  Text="{Binding ProductInOrders.Count}" FontSize="20" TextColor="#d8f3dc"/>
-                            <Label Grid.Row="0" Grid.Column="2" Text="{Binding TotalPrice}" HorizontalOptions="End" FontSize="20" TextColor="#d8f3dc"></Label>
 
+                            <Label Grid.Row="0" Grid.Column="1"  Text="{Binding Date}" HorizontalOptions="Start" Style="{StaticResource shoppingCartTextStyle}"/>
+                            <Label Grid.Row="0" Grid.Column="0"  Text="תאריך:" HorizontalOptions="Start" Style="{StaticResource shoppingCartTextStyle}"/>
+                            <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Start"  Text="{Binding ProductInOrders.Count}" Style="{StaticResource shoppingCartTextStyle}"/>
+                            <Label Grid.Row="1" Grid.Column="0"  Text="כמות פריטים:" HorizontalOptions="Start" Style="{StaticResource shoppingCartTextStyle}"/>
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding TotalPrice}" HorizontalOptions="Start" Style="{StaticResource shoppingCartTextStyle}"/>
+                            <Label Grid.Row="2" Grid.Column="0"  Text="סך הכל:" HorizontalOptions="Start" Style="{StaticResource shoppingCartTextStyle}"/>
+                            <BoxView BackgroundColor="#6da37d" Grid.Row="3" Grid.ColumnSpan="2"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

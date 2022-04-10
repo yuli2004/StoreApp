@@ -82,22 +82,8 @@ namespace StoreApp.ViewModels
             InitProducts();
             SearchProductCommand = new Command<string>(OnTextChanged);
             OnSelectedProduct = new Command<Models.Product>(MoveToProductPage);
+            OnSelectedSeller = new Command(MoveToSellerPage);
             IsLoggedUser = false;
-        }
-
-        private async void MoveToProductPage(Models.Product obj)
-        {
-            if (SelectedProduct != null)
-            {
-                var page = new Views.Product() { Title = "Product Page" };
-                var binding = new ProductViewModel() { P = obj };
-                page.BindingContext = binding;
-                await this.currentApp.MainPage.Navigation.PushAsync(page);
-                SelectedProduct = null;
-            }
-
-
-            
         }
         #endregion
 
@@ -201,6 +187,28 @@ namespace StoreApp.ViewModels
                 }
             }
         }
+        private bool isNoSeller;
+        public bool IsNoSeller
+        {
+            get
+            {
+                if (currentApp.CurrentUser != null)
+                {
+                    if (currentApp.CurrentUser.IsSeller)
+                        return false;
+                }
+                return true;
+            }
+            set
+            {
+                if (isNoSeller != value)
+                {
+                    isNoSeller = value;
+                    OnPropertyChanged("IsNoSeller");
+                }
+            }
+
+        }
         #endregion
 
         private int sliderValue;
@@ -223,9 +231,7 @@ namespace StoreApp.ViewModels
             //Copy list to the filtered list
             this.FilteredProducts = new ObservableCollection<Models.Product>(this.allProducts.Where(p=>p.IsActive==true));
             SearchTerm = String.Empty;
-            IsRefreshing = false;
-           
-          
+            IsRefreshing = false;          
         }
 
         #region Search
@@ -356,19 +362,16 @@ namespace StoreApp.ViewModels
 
             foreach (Models.Product pr in allProducts)
             {
-                //if (sliderValue == 0 || sliderValue > pr.Price)
-                //{
-                //    page.FilteredProducts.Add(pr);
-                //    added = true;
-                //}
-
-                if ((Color == null || Color.ColorId == pr.ColorId) 
-                    &&(Style == null || Style.StyleId == pr.StyleId)
-                    &&(SurfaceMaterial == null || SurfaceMaterial.SMaterialId == pr.SMaterialId) 
-                    && (PaintMaterial == null || PaintMaterial.PMaterialId == pr.PMaterialId)
-                    )
+                if (pr.IsActive)
                 {
-                   FilteredProducts.Add(pr);                  
+                    if ((Color == null || Color.ColorId == pr.ColorId)
+                        && (Style == null || Style.StyleId == pr.StyleId)
+                        && (SurfaceMaterial == null || SurfaceMaterial.SMaterialId == pr.SMaterialId)
+                        && (PaintMaterial == null || PaintMaterial.PMaterialId == pr.PMaterialId)
+                        )
+                    {
+                        FilteredProducts.Add(pr);
+                    }
                 }
             }
 
@@ -380,7 +383,6 @@ namespace StoreApp.ViewModels
 
         #region clean command
         public ICommand CleanCommand => new Command(CleanFields);
-
         public async void CleanFields()
         {
             Color = null;
@@ -392,21 +394,44 @@ namespace StoreApp.ViewModels
 
             foreach (Models.Product pr in allProducts)
             {
-                FilteredProducts.Add(pr);
+                if(pr.IsActive)
+                    FilteredProducts.Add(pr);
             }
         }
         #endregion
 
         #region open product page
-
         public ICommand OnSelectedProduct { get;  protected set; }
+        private async void MoveToProductPage(Models.Product obj)
+        {
+            if (SelectedProduct != null)
+            {
+                var page = new Views.Product() { Title = "פרטי מוצר" };
+                var binding = new ProductViewModel() { P = obj };
+                page.BindingContext = binding;
+                await this.currentApp.MainPage.Navigation.PushAsync(page);
+                SelectedProduct = null;
+            }
+        }
 
         #endregion
 
+        #region move to Seller profile
+
+        public ICommand OnSelectedSeller { get; protected set; }
+
+        private async void MoveToSellerPage()
+        {
+            User s = currentApp.CurrentUser;
+            var page = new Views.SellerProfile() { Title = "פרופיל מוכר" };
+            var binding = new SellerProfileViewModel() { S = s };
+            page.BindingContext = binding;
+            await this.currentApp.MainPage.Navigation.PushAsync(page);
+        }
+        #endregion
+
         #region log out
-
         public ICommand LogOutCommand => new Command(LogOut);
-
         public async void LogOut()
         {
             bool answer = await App.Current.MainPage.DisplayAlert("התנתקות", "האם ברצונך להתנתק?", "התנתק", "ביטול", FlowDirection.RightToLeft);
@@ -417,8 +442,9 @@ namespace StoreApp.ViewModels
 
                 Page page = new LogIn();
                 page.Title = "התחברות";
+                
                 //App.Current.MainPage = new NavigationPage(page);
-                App.Current.MainPage.Navigation.PushAsync(page);
+                await App.Current.MainPage.Navigation.PushAsync(page);
             }
         }
         #endregion

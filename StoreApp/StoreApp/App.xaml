@@ -23,14 +23,14 @@
             </Style>
 
             <Style TargetType="Label" x:Key="shoppingCartTextStyle">
-                <Setter Property="FontSize" Value="26"/>
+                <Setter Property="FontSize" Value="18"/>
                 <Setter Property="HorizontalTextAlignment" Value="Center"/>
                 <Setter Property="TextColor" Value="#d8f3dc"/>
             </Style>
 
             <Style x:Key="ticketStyle" TargetType="Label">
                 <Setter Property="BackgroundColor" Value="#6da37d"/>
-                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontSize" Value="16"/>
                 <Setter Property="HorizontalOptions" Value="FillAndExpand"/>
                 <Setter Property="TextColor" Value="#081c15"/>
             </Style>
@@ -68,9 +68,9 @@
             <Style x:Key="ButtonStyle" TargetType="Button">
                 <Setter Property="BackgroundColor" Value="#081c15"/>
                 <Setter Property="FontAttributes" Value="Bold"/>
-                <Setter Property="FontSize" Value="Large"/>
+                <Setter Property="FontSize" Value="18"/>
                 <Setter Property="TextColor" Value="#6da37d"/>
-                <Setter Property="Margin" Value="50, 20, 50, 1"/>
+                <Setter Property="Margin" Value="30, 20, 30, 0"/>
                 <Setter Property="HorizontalOptions"  Value="Center"/>
             </Style>
 
@@ -83,6 +83,7 @@
             <Style TargetType="Picker">
                 <Setter Property="BackgroundColor" Value="#6da37d"/>
             </Style>
+
 
         </ResourceDictionary>
     </Application.Resources>

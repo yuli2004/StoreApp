@@ -21,40 +21,62 @@
              />
             <Grid Padding="10" RowSpacing="5"  FlowDirection="RightToLeft" >
                 <Grid.RowDefinitions >
-                    <RowDefinition Height="50" />
-                    <RowDefinition Height="30" />
-                    <RowDefinition Height="30" />
+                    <RowDefinition Height="55" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    <RowDefinition Height="35" />
+                    
                     <RowDefinition Height="*" />
                     <RowDefinition Height="30" />
                     <RowDefinition Height="30" />
                     <RowDefinition Height="30" />
+                    
+                    <RowDefinition Height="30" />
+                    <RowDefinition Height="30" />
                     <RowDefinition Height="80" />
-                    <RowDefinition Height="50" />
-
-                </Grid.RowDefinitions>
+                    
+                    </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
 
-                <Label Grid.Row="0"  Grid.ColumnSpan="2" Text="{Binding P.ProductName}" HorizontalOptions="Center" FontSize="32" TextColor="#d8f3dc"></Label>
-                <Label Grid.Row="1" Grid.Column="0" Text="מחיר:" HorizontalOptions="Start" FontSize="24" TextColor="#d8f3dc"></Label>
-                <Label Grid.Row="1" Grid.Column="1" Text="{Binding P.Price}" HorizontalOptions="Start" FontSize="24" TextColor="#d8f3dc"></Label>
-                <Label Grid.Row="2" Grid.Column="0" Text="מוכר:" HorizontalOptions="Start" FontSize="24" TextColor="#d8f3dc"></Label>
-                <Label Grid.Row="2" Grid.Column="1" Text="{Binding P.Seller.Username}" HorizontalOptions="Start" FontSize="24" TextColor="#d8f3dc"></Label>
-                <Label Grid.Row="3" Grid.ColumnSpan="2" Padding="5" Text="{Binding P.Details}"  LineBreakMode="WordWrap" HorizontalOptions="Center" FontSize="24" TextColor="#d8f3dc"></Label>
+                <Label Grid.Row="0"  Grid.ColumnSpan="2" Text="{Binding P.ProductName}"  HorizontalOptions="Center" FontSize="28" TextColor="#d8f3dc"></Label>
+                <Label Grid.Row="1" Grid.Column="0" Text="מחיר:" HorizontalOptions="Start" FontSize="18" TextColor="#d8f3dc"></Label>
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding P.Price}" HorizontalOptions="Start" FontSize="18" TextColor="#d8f3dc"></Label>
+                <Label Grid.Row="2" Grid.Column="0" Text="מוכר:" HorizontalOptions="Start" FontSize="18" TextColor="#d8f3dc"></Label>
+                <Label Grid.Row="2" TextDecorations="Underline" Grid.Column="1" HorizontalOptions="Start" FontSize="18" TextColor="#d8f3dc">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="{Binding P.Seller.Username}">
 
-                <Label Grid.Row="4" Grid.Column="0" Text="מאפיינים:" HorizontalOptions="Start" FontSize="24" TextColor="#d8f3dc"></Label>
-                <Label Grid.Row="5" Grid.Column="0" Text="{Binding P.Color.Color1}" Style="{StaticResource ticketStyle}"/>
-                <Label Grid.Row="5" Grid.Column="1" Text="{Binding P.PMaterial.PMaterial}" Style="{StaticResource ticketStyle}"/>
-                <Label Grid.Row="6" Grid.Column="0" Text="{Binding P.SMaterial.SMaterial}" Style="{StaticResource ticketStyle}"/>
-                <Label Grid.Row="6" Grid.Column="1" Text="{Binding P.Style.Style1}" Style="{StaticResource ticketStyle}"/>
+                                    <Span.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding OnSelectedSeller}"/>
+                                    </Span.GestureRecognizers>
+                                </Span>
+                            </FormattedString>
+                        </Label.FormattedText>
+                </Label>
 
-                <Button Grid.Row="7" Grid.ColumnSpan="2" Command="{Binding AddToCart}" Style="{StaticResource ButtonStyle}" Text="הוסף לעגלת הקניות"></Button>
+                 <Label Grid.Row="3" Grid.Column="0" Text="תאריך פרסום:" HorizontalOptions="Start" FontSize="18" TextColor="#d8f3dc"></Label>
+                 <Label Grid.Row="3" Grid.Column="1" Text="{Binding P.AdvertisingDate}" HorizontalOptions="Start" FontSize="18" TextColor="#d8f3dc"></Label>
+                 <Label Grid.Row="4" Grid.ColumnSpan="2" Padding="5" Text="{Binding P.Details}"  LineBreakMode="WordWrap" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="18" TextColor="#d8f3dc"></Label>
 
-                <Label Padding="10" Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding IsOwner}" Text="האם המוצר זמין למכירה?" HorizontalOptions="Start" FontSize="20" TextColor="#d8f3dc"></Label>
-                <Switch Grid.Row="8" Grid.Column="1" HorizontalOptions="Center" IsVisible="{Binding IsOwner}" IsToggled="{Binding IsOnSale}"></Switch>
+                <Label Grid.Row="5" Grid.Column="0" Text="מאפיינים:" HorizontalOptions="Start" FontSize="18" TextColor="#d8f3dc"></Label>
+                <Label Grid.Row="6" Grid.Column="0" Text="{Binding P.Color.Color1}" Style="{StaticResource ticketStyle}"/>
+                <Label Grid.Row="6" Grid.Column="1" Text="{Binding P.PMaterial.PMaterial}" Style="{StaticResource ticketStyle}"/>
+                <Label Grid.Row="7" Grid.Column="0" Text="{Binding P.SMaterial.SMaterial}" Style="{StaticResource ticketStyle}"/>
+                <Label Grid.Row="7" Grid.Column="1" Text="{Binding P.Style.Style1}" Style="{StaticResource ticketStyle}"/>
+                    <Label Grid.Row="8" Grid.Column="0" Text="גובה:" HorizontalOptions="Start" FontSize="18" TextColor="#d8f3dc"/>
+                    <Label Grid.Row="8" Grid.Column="0" Text="{Binding P.Height}" HorizontalOptions="Center" FontSize="18" TextColor="#d8f3dc"/>
+                    <Label Grid.Row="9" Grid.Column="0" Text="רוחב:" HorizontalOptions="Start" FontSize="18" TextColor="#d8f3dc"/>
+                    <Label Grid.Row="9" Grid.Column="0" Text="{Binding P.Width}" HorizontalOptions="Center" FontSize="18" TextColor="#d8f3dc"/>
+
+                    <Button Grid.Row="10" Grid.ColumnSpan="2" Command="{Binding AddToCart}" Style="{StaticResource ButtonStyle}" IsVisible="{Binding IsForSale}" Text="הוסף לעגלת הקניות"></Button>
+
+                <Label Padding="10" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding IsOwner}" Text="האם המוצר זמין למכירה?" HorizontalOptions="Start" VerticalOptions="Center" FontSize="18" TextColor="#d8f3dc"></Label>
+                <Switch Grid.Row="10" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding IsOwner}" IsToggled="{Binding IsOnSale}"></Switch>
                     
                 </Grid>
 

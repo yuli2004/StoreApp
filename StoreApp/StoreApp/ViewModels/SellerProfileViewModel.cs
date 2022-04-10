@@ -6,5 +6,6 @@ namespace StoreApp.ViewModels
 {
     class SellerProfileViewModel: BaseViewModel
     {
+        public Models.User S { get; set; }
     }
 }

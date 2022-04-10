@@ -30,6 +30,7 @@ namespace StoreApp.Views
                 ((HomeViewModel)BindingContext).IsLoggedUser = (((App)Application.Current).CurrentUser != null);
                 ((HomeViewModel)BindingContext).IsBuyer = (((App)Application.Current).CurrentUser == null);
                 ((HomeViewModel)BindingContext).IsSeller = (((App)Application.Current).CurrentUser == null);
+                ((HomeViewModel)BindingContext).IsNoSeller = (((App)Application.Current).CurrentUser == null);
                 ((HomeViewModel)BindingContext).InitProducts();
             }
                 

@@ -74,7 +74,7 @@ namespace StoreApp.ViewModels
                     break;
                 case "BuyerHistory":
                     {
-                        p = new BuyerHistory();
+                        p = new BuyerHistory() { Title = "ההזמנות שלי"};
                         p.BindingContext = new BuyerHistoryViewModel();
                     }
                     break;

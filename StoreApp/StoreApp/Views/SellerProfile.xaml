@@ -16,13 +16,12 @@
     <NavigationPage.TitleView>
         <Grid FlowDirection="RightToLeft">
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="50"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="30"/>
+                <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
-            <ImageButton BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="UploadProduct" HorizontalOptions="Center" Grid.Column="0">
+            <ImageButton IsVisible="true" BackgroundColor="Purple" Command="{Binding NavigateToPageCommand}" CommandParameter="UploadProduct" HorizontalOptions="Center" Grid.Column="0" Grid.Row="0">
                 <ImageButton.Source>
                     <FontImageSource 
                     FontFamily="MySolidFonts"
@@ -32,22 +31,35 @@
                      />
                 </ImageButton.Source>
             </ImageButton>
-            <ImageButton BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="SellerHistory" HorizontalOptions="Center" Grid.Column="1">
-                <ImageButton.Source>
-                    <FontImageSource 
-                    FontFamily="MySolidFonts"
-                    Glyph="{x:Static fontAwesome:IconSolidFonts.BoxesStacked}"
-                    Size="Medium"
-                     Color="#d8f3dc"
-                     />
-                </ImageButton.Source>
-            </ImageButton>
-
         </Grid>
 
     </NavigationPage.TitleView>
+    
     <ContentPage.Content>
         <StackLayout>
+            <Grid FlowDirection="RightToLeft" Margin="5,0,0,5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image 
+                    Source="{Binding S.Seller.Picture}"
+                    Aspect="AspectFill"                   
+                    HorizontalOptions="Center"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    Grid.RowSpan="3"/>
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding S.Username}" HorizontalOptions="Start" HorizontalTextAlignment="Center" FontSize="18" TextColor="#d8f3dc"></Label>
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding S.Email}" HorizontalOptions="Start" FontSize="16" TextColor="#d8f3dc"/>
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding S.Seller.Info}" HorizontalOptions="Start" FontSize="14" TextColor="#d8f3dc"></Label>
+            </Grid>
             <Label Text="Welcome to seller profile!"
                 VerticalOptions="CenterAndExpand" 
                 HorizontalOptions="CenterAndExpand" />

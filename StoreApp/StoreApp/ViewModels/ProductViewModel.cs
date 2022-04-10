@@ -16,13 +16,14 @@ namespace StoreApp.ViewModels
     {
         public Models.Product P { get; set; }
 
+        #region is on sale
         private bool isOnSale;
         public bool IsOnSale
         {
-            get => isOnSale;
+            get{ return P.IsActive; }
             set
             {
-                if(value != isOnSale)
+                if (value != isOnSale)
                 {
                     isOnSale = value;
                     UpdateProduct();
@@ -30,14 +31,42 @@ namespace StoreApp.ViewModels
                 }
             }
         }
+        #endregion
 
+        #region is for sale
+        private bool isForSale;
+        public bool IsForSale
+        {
+            get 
+            {
+                if (currentApp.CurrentUser != null)
+                {
+                    if (currentApp.CurrentUser.IsSeller)
+                        return false;
+                }
+                return P.IsActive; 
+            }
+            set
+            {
+                if (value != isForSale)
+                {
+                    isForSale = value;
+                    OnPropertyChanged("IsForSale");
+                }
+            }
+        }
+        #endregion
+
+        #region update product
         private async Task UpdateProduct()
         {
             P.IsActive = IsOnSale;
             StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
-           await proxy.UpdateProduct(P);
+            await proxy.UpdateProduct(P);
         }
+        #endregion
 
+        #region is owner
         public bool IsOwner
         {
             get
@@ -51,29 +80,45 @@ namespace StoreApp.ViewModels
             }
             
         }
+        #endregion
 
+        #region constructor
         public ProductViewModel()
         {
             AddToCart = new Command(AddProduct);
-            IsOnSale = true;
-
+            OnSelectedSeller = new Command(MoveToSellerPage);
         }
-       
-        public ICommand AddToCart { get; protected set; }
+        #endregion
 
+        #region add to cart
+        public ICommand AddToCart { get; protected set; }
         public async void AddProduct()
         {
             
             ProductInOrder product = new ProductInOrder() { Product = P };
+
             if (currentApp.cart.Count > 0)
                 product.Order = currentApp.cart[0].Order;
             
                 currentApp.cart.Add(product);
             await this.currentApp.MainPage.DisplayAlert("הוספה לסל הקניות", $"{P.ProductName} נוסף לעגלה","אישור");
             await this.currentApp.MainPage.Navigation.PopAsync();
-
-
         }
+        #endregion
 
-   }
+        #region move to Seller profile
+
+        public ICommand OnSelectedSeller { get; protected set; }
+
+        private async void MoveToSellerPage()
+        {
+            User s = P.Seller.UsernameNavigation;
+            var page = new Views.SellerProfile() { Title = "פרופיל מוכר" };
+            var binding = new SellerProfileViewModel() { S = s };
+            page.BindingContext = binding;
+            await this.currentApp.MainPage.Navigation.PushAsync(page);
+        }
+        #endregion
+
+    }
 }

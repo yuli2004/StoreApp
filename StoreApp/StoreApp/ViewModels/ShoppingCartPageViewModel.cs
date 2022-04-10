@@ -75,6 +75,10 @@ namespace StoreApp.ViewModels
                 bool success = await proxy.CreateOrder(o);
                 if(success)
                 {
+                    foreach (ProductInOrder p in o.ProductInOrders)
+                    {
+                        ((App)App.Current).Tables.SoldProducts.Add(p);
+                    }
                     currentApp.cart.Clear();
                     order.Clear();
                     currentApp.Tables= await proxy.CreateLookUpTables();
@@ -105,7 +109,7 @@ namespace StoreApp.ViewModels
             }
         }
 
-      public  ICommand DeleteCommand { get; protected set; }
+        public  ICommand DeleteCommand { get; protected set; }
 
         public ICommand OrderCommand { get; protected set; }
     }
