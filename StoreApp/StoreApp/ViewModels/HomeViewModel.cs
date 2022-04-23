@@ -422,9 +422,9 @@ namespace StoreApp.ViewModels
 
         private async void MoveToSellerPage()
         {
-            User s = currentApp.CurrentUser;
+            Seller s = currentApp.CurrentUser.Seller;
             var page = new Views.SellerProfile() { Title = "פרופיל מוכר" };
-            var binding = new SellerProfileViewModel() { S = s };
+            var binding = new SellerProfileViewModel() { Sl = s };
             page.BindingContext = binding;
             await this.currentApp.MainPage.Navigation.PushAsync(page);
         }
@@ -439,6 +439,12 @@ namespace StoreApp.ViewModels
             {
                 App theApp = (App)App.Current;
                 theApp.CurrentUser = null;
+
+                IsNoUser = true;
+                IsNoSeller = true;
+                IsLoggedUser = false;
+                IsSeller = false;
+                IsBuyer = false;
 
                 Page page = new LogIn();
                 page.Title = "התחברות";

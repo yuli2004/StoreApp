@@ -93,14 +93,22 @@ namespace StoreApp.ViewModels
         #region add to cart
         public ICommand AddToCart { get; protected set; }
         public async void AddProduct()
-        {
-            
+        {           
             ProductInOrder product = new ProductInOrder() { Product = P };
+
+            foreach(ProductInOrder pr in currentApp.cart)
+            {
+                if(P.ProductId == pr.Product.ProductId)
+                {
+                    await this.currentApp.MainPage.DisplayAlert("שגיאה", $"המוצר {P.ProductName} כבר נמצא בעגלת הקניות", "אישור");
+                    return;
+                }
+            }
 
             if (currentApp.cart.Count > 0)
                 product.Order = currentApp.cart[0].Order;
             
-                currentApp.cart.Add(product);
+            currentApp.cart.Add(product);
             await this.currentApp.MainPage.DisplayAlert("הוספה לסל הקניות", $"{P.ProductName} נוסף לעגלה","אישור");
             await this.currentApp.MainPage.Navigation.PopAsync();
         }
@@ -112,9 +120,9 @@ namespace StoreApp.ViewModels
 
         private async void MoveToSellerPage()
         {
-            User s = P.Seller.UsernameNavigation;
+            Seller s = P.Seller;
             var page = new Views.SellerProfile() { Title = "פרופיל מוכר" };
-            var binding = new SellerProfileViewModel() { S = s };
+            var binding = new SellerProfileViewModel() { Sl = s };
             page.BindingContext = binding;
             await this.currentApp.MainPage.Navigation.PushAsync(page);
         }

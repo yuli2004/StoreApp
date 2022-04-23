@@ -19,26 +19,16 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding NavigateToPageCommand}" CommandParameter="Home"           
+        <ToolbarItem Command="{Binding NavigateToPageCommand}" CommandParameter="LogIn"           
                  Order="Primary"
                  Priority="0">
             <ToolbarItem.IconImageSource>
                 <FontImageSource
                     FontFamily="MySolidFonts"
-                    Glyph="{x:Static fontAwesome:IconSolidFonts.House}"
+                    Glyph="{x:Static fontAwesome:IconSolidFonts.User}"
                     Size="Medium"
-                     Color="#d8f3dc"/>
-            </ToolbarItem.IconImageSource>
-        </ToolbarItem>
-        <ToolbarItem Command="{Binding NavigateToPageCommand}" CommandParameter="Home"           
-                 Order="Primary"
-                 Priority="0">
-            <ToolbarItem.IconImageSource>
-                <FontImageSource
-                    FontFamily="MySolidFonts"
-                    Glyph="{x:Static fontAwesome:IconSolidFonts.BagShopping}"
-                    Size="Medium"
-                     Color="#d8f3dc"/>
+                    Color="#d8f3dc"
+                />
             </ToolbarItem.IconImageSource>
         </ToolbarItem>
     </ContentPage.ToolbarItems>

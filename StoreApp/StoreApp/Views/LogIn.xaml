@@ -22,17 +22,6 @@
        
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding NavigateToPageCommand}" CommandParameter="Home"           
-                 Order="Primary"
-                 Priority="0">
-            <ToolbarItem.IconImageSource>
-                 <FontImageSource
-                    FontFamily="MySolidFonts"
-                    Glyph="{x:Static fontAwesome:IconSolidFonts.House}"
-                    Size="Medium"
-                     Color="#d8f3dc"/>
-            </ToolbarItem.IconImageSource>
-        </ToolbarItem>
         <ToolbarItem Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer"           
                  Order="Primary"
                  Priority="0">
@@ -40,17 +29,6 @@
                 <FontImageSource
                     FontFamily="MySolidFonts"
                     Glyph="{x:Static fontAwesome:IconSolidFonts.UserPlus}"
-                    Size="Medium"
-                     Color="#d8f3dc"/>
-            </ToolbarItem.IconImageSource>
-        </ToolbarItem>
-        <ToolbarItem Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer"           
-                 Order="Primary"
-                 Priority="0">
-            <ToolbarItem.IconImageSource>
-                <FontImageSource
-                    FontFamily="MySolidFonts"
-                    Glyph="{x:Static fontAwesome:IconSolidFonts.BagShopping}"
                     Size="Medium"
                      Color="#d8f3dc"/>
             </ToolbarItem.IconImageSource>

@@ -14,7 +14,6 @@ namespace StoreApp.ViewModels
     { 
         public Models.Order O { get; set; }
        
-
         #region order productsInOrder list 
         private List<Models.ProductInOrder> productsInOrderList;
         public List<Models.ProductInOrder> ProductsInOrderList

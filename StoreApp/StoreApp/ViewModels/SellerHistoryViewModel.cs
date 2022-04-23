@@ -44,13 +44,13 @@ namespace StoreApp.ViewModels
                 }
             }
             
-            OnSelectedProduct = new Command<Models.Product>(MoveToProductPage);
+            OnSelectedProduct = new Command<Models.ProductInOrder>(MoveToProductPage);
         }
         #endregion
 
         #region Selected Product
-        private Models.Product selectedProduct;
-        public Models.Product SelectedProduct
+        private Models.ProductInOrder selectedProduct;
+        public Models.ProductInOrder SelectedProduct
         {
             get => selectedProduct;
             set
@@ -68,12 +68,12 @@ namespace StoreApp.ViewModels
 
         public ICommand OnSelectedProduct { get; protected set; }
 
-        private async void MoveToProductPage(Models.Product obj)
+        private async void MoveToProductPage(Models.ProductInOrder obj)
         {
             if (SelectedProduct != null)
             {
                 var page = new Views.Product() { Title = "פרטי מוצר" };
-                var binding = new ProductViewModel() { P = obj };
+                var binding = new ProductViewModel() { P = obj.Product };
                 page.BindingContext = binding;
                 await this.currentApp.MainPage.Navigation.PushAsync(page);
                 SelectedProduct = null;

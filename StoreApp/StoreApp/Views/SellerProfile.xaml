@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:fonts="clr-namespace:Fonts"
              x:Class="StoreApp.Views.SellerProfile"
+             
              xmlns:viewmodels="clr-namespace:StoreApp.ViewModels"
              NavigationPage.HasNavigationBar="True"
              Style="{StaticResource ContentPageStyle}" 
@@ -16,10 +17,10 @@
     <NavigationPage.TitleView>
         <Grid FlowDirection="RightToLeft">
             <Grid.RowDefinitions>
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <ImageButton IsVisible="true" BackgroundColor="Purple" Command="{Binding NavigateToPageCommand}" CommandParameter="UploadProduct" HorizontalOptions="Center" Grid.Column="0" Grid.Row="0">
                 <ImageButton.Source>
@@ -37,7 +38,7 @@
     
     <ContentPage.Content>
         <StackLayout>
-            <Grid FlowDirection="RightToLeft" Margin="5,0,0,5">
+            <Grid BackgroundColor="#6da37d" FlowDirection="RightToLeft" Margin="0" RowSpacing="10" MinimumHeightRequest="100">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="*"/>
@@ -45,24 +46,67 @@
 
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="100"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
 
                 <Image 
-                    Source="{Binding S.Seller.Picture}"
+                    Source="{Binding Sl.Picture}"
                     Aspect="AspectFill"                   
                     HorizontalOptions="Center"
                     Grid.Column="0"
                     Grid.Row="0"
                     Grid.RowSpan="3"/>
-                <Label Grid.Row="0" Grid.Column="1" Text="{Binding S.Username}" HorizontalOptions="Start" HorizontalTextAlignment="Center" FontSize="18" TextColor="#d8f3dc"></Label>
-                <Label Grid.Row="1" Grid.Column="1" Text="{Binding S.Email}" HorizontalOptions="Start" FontSize="16" TextColor="#d8f3dc"/>
-                <Label Grid.Row="2" Grid.Column="1" Text="{Binding S.Seller.Info}" HorizontalOptions="Start" FontSize="14" TextColor="#d8f3dc"></Label>
+                <Label Grid.Row="0" Grid.Column="1" Text="{Binding Sl.Username}" HorizontalOptions="Center" FontSize="18" TextColor="#081c15"></Label>
+                <Label Grid.Row="1" Grid.Column="1" Text="{Binding Sl.UsernameNavigation.Email}" HorizontalOptions="Center" FontSize="16" TextColor="#081c15"/>
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Sl.Info}" HorizontalOptions="Start" FontSize="14" TextColor="#081c15"></Label>
             </Grid>
-            <Label Text="Welcome to seller profile!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            
+            
+            <CollectionView FlowDirection="RightToLeft" SelectionMode="Single" ItemsSource="{Binding SellerProducts}"
+                            SelectionChangedCommand="{Binding OnSelectedProduct}"  SelectedItem="{Binding SelectedProduct}" 
+                            SelectionChangedCommandParameter="{Binding SelectedProduct}">
+
+                <CollectionView.EmptyView>
+                    <StackLayout>
+                        <Label Text="אין מוצרים" FontSize="18" HorizontalTextAlignment="Center" TextColor="#d8f3dc"></Label>
+                    </StackLayout>
+                </CollectionView.EmptyView>
+
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                        Span="2" />
+                </CollectionView.ItemsLayout>
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid FlowDirection="RightToLeft" Padding="5" >
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="2*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Image 
+                                    Source="{Binding Picture}"
+                                    Aspect="AspectFit"
+                                    HeightRequest="100"
+                                    WidthRequest="100"
+                                HorizontalOptions="Center"
+                                Grid.ColumnSpan="2"/>
+                            <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding ProductName}" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="18" TextColor="#d8f3dc"></Label>
+                            <Label Grid.Row="2" Grid.Column="0" HorizontalOptions="End"  Text="מחיר:" FontSize="18" TextColor="#d8f3dc"/>
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Price}" HorizontalOptions="Start" FontSize="18" TextColor="#d8f3dc"></Label>
+
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

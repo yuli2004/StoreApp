@@ -11,6 +11,7 @@ namespace StoreApp.ViewModels
 {
     class ShoppingCartPageViewModel:BaseViewModel
     {
+        #region price
         private double price;
         public double Price
         {
@@ -21,7 +22,9 @@ namespace StoreApp.ViewModels
                 OnPropertyChanged("Price");
             }
         }
+        #endregion
 
+        #region isCart
         private bool isCart;
         public bool IsCart
         {
@@ -39,6 +42,9 @@ namespace StoreApp.ViewModels
             }
 
         }
+        #endregion
+
+        #region order
         private ObservableCollection<ProductInOrder> order;
         public ObservableCollection<ProductInOrder> Order
         {
@@ -53,6 +59,9 @@ namespace StoreApp.ViewModels
                 }
             }
         }
+        #endregion
+
+        #region constructor
         public ShoppingCartPageViewModel()
         {
             Price = 0;
@@ -61,7 +70,10 @@ namespace StoreApp.ViewModels
             DeleteCommand = new Command<ProductInOrder>(DeleteFromCart);
             OrderCommand = new Command(BuyCart);
         }
+        #endregion
 
+        #region buy cart
+        public ICommand OrderCommand { get; protected set; }
         private async void BuyCart()
         {
             if (currentApp.CurrentUser == null)
@@ -71,7 +83,7 @@ namespace StoreApp.ViewModels
             }
             else
             {
-                Order o = new Order() { Buyer = currentApp.CurrentUser.Buyer, Date=DateTime.Now, ProductInOrders= currentApp.cart, TotalPrice=Price };
+                Order o = new Order() { Buyer = currentApp.CurrentUser.Buyer, Date=DateTime.Today, ProductInOrders= currentApp.cart, TotalPrice=Price };
                 bool success = await proxy.CreateOrder(o);
                 if(success)
                 {
@@ -79,6 +91,7 @@ namespace StoreApp.ViewModels
                     {
                         ((App)App.Current).Tables.SoldProducts.Add(p);
                     }
+                    currentApp.CurrentUser.Buyer.Orders.Add(o);
                     currentApp.cart.Clear();
                     order.Clear();
                     currentApp.Tables= await proxy.CreateLookUpTables();
@@ -90,14 +103,21 @@ namespace StoreApp.ViewModels
                     await currentApp.MainPage.DisplayAlert("הזמנה נכשלה", "ביצוע הזמנה נכשל", "אישור");
             }
         }
+        #endregion
 
+        #region delete from cart
+        public ICommand DeleteCommand { get; protected set; }
         private void DeleteFromCart(ProductInOrder obj)
         {
             currentApp.cart.Remove(obj);
             Order.Remove(obj);
             Price -= obj.Product.Price;
+            if (Price == 0)
+                IsCart = false;
         }
+        #endregion
 
+        #region update price
         private void UpdatePrice()
         {
            if(Order.Count>0)
@@ -108,9 +128,7 @@ namespace StoreApp.ViewModels
                 }
             }
         }
-
-        public  ICommand DeleteCommand { get; protected set; }
-
-        public ICommand OrderCommand { get; protected set; }
+        #endregion
+        
     }
 }

@@ -428,7 +428,7 @@ namespace StoreApp.ViewModels
                                 Name = this.imageFileResult.FullPath
                             }, $"{newS.SellerId}.jpg");
                         }
-                        ServerStatus = "שומר נתונים..."; 
+                        //ServerStatus = "שומר נתונים..."; 
 
                         await App.Current.MainPage.DisplayAlert("הצלחה", "שמירת המשתמש הצליחה", "בסדר");
                         await currentApp.MainPage.Navigation.PopAsync();

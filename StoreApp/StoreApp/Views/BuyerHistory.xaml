@@ -43,7 +43,7 @@
 
                             <Label Grid.Row="0" Grid.Column="1"  Text="{Binding Date}" HorizontalOptions="Start" Style="{StaticResource shoppingCartTextStyle}"/>
                             <Label Grid.Row="0" Grid.Column="0"  Text="תאריך:" HorizontalOptions="Start" Style="{StaticResource shoppingCartTextStyle}"/>
-                            <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Start"  Text="{Binding ProductInOrders.Count}" Style="{StaticResource shoppingCartTextStyle}"/>
+                            <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Start"  Text="{Binding  ProductInOrders.Count}" Style="{StaticResource shoppingCartTextStyle}"/>
                             <Label Grid.Row="1" Grid.Column="0"  Text="כמות פריטים:" HorizontalOptions="Start" Style="{StaticResource shoppingCartTextStyle}"/>
                             <Label Grid.Row="2" Grid.Column="1" Text="{Binding TotalPrice}" HorizontalOptions="Start" Style="{StaticResource shoppingCartTextStyle}"/>
                             <Label Grid.Row="2" Grid.Column="0"  Text="סך הכל:" HorizontalOptions="Start" Style="{StaticResource shoppingCartTextStyle}"/>

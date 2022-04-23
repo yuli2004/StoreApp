@@ -7,15 +7,135 @@
              Style="{StaticResource ContentPageStyle}" 
              FlowDirection="RightToLeft"
              xmlns:fontAwesome="clr-namespace:Fonts"
+             
              >
     <ContentPage.BindingContext>
         <viewmodels:UploadProductViewModel></viewmodels:UploadProductViewModel>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to upload product!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+
+                <!-- Photo -->
+                    <Frame Style="{StaticResource Frame}" Margin="25, 10, 25, 5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100" />
+                                <RowDefinition Height="100" />
+                            </Grid.RowDefinitions>
+                            <Image  x:Name="theImage" Source="{Binding ProductImgSrc}" Grid.Column="1"  Grid.Row="0" Grid.RowSpan="2" BackgroundColor="Transparent"  Aspect="AspectFit" />
+
+                            <ImageButton Source="photogallery.png" BackgroundColor="Transparent" Grid.Column="0" Grid.Row="0" Command="{Binding PickImageCommand}"/>
+                            <ImageButton Source="camera.png" Grid.Column="0" Grid.Row="1" BackgroundColor="Transparent" Command="{Binding CameraImageCommand}"/>
+
+                        </Grid>
+                    </Frame>
+
+                <Grid Padding="0" RowSpacing="0"  FlowDirection="RightToLeft" >
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- שם המוצר -->
+                    <Frame Grid.Row="0" Style="{StaticResource Frame}">
+                        <Entry Placeholder="שם הציור" Text="{Binding ProductName}" Style="{StaticResource entryStyle}"
+                               Grid.Row="0" Grid.Column="0"/>
+                    </Frame>
+                    <!-- מחיר -->
+                    <Frame Grid.Row="1" Style="{StaticResource Frame}">
+                        <Entry Placeholder="מחיר" Text="{Binding Price}" Style="{StaticResource entryStyle}"
+                               Grid.Row="1" Grid.Column="0" Keyboard="Numeric"/>
+                    </Frame>
+                    <!-- פרטים -->
+                    <Frame Grid.Row="2" Style="{StaticResource Frame}">
+                        <Entry Placeholder="פרטים נוספים על הציור" Text="{Binding Details}" Style="{StaticResource entryStyle}"
+                               Grid.Row="2" Grid.Column="0"/>
+                    </Frame>
+                    <!-- אורך -->
+                    <Frame Grid.Row="3" Style="{StaticResource Frame}">
+                        <Entry Placeholder="אורך הציור בסנטימטר" Text="{Binding Height}" Style="{StaticResource entryStyle}"
+                               Grid.Row="3" Grid.Column="0" Keyboard="Numeric"/>
+                    </Frame>
+                    <!-- רוחב -->
+                    <Frame Grid.Row="4" Style="{StaticResource Frame}">
+                        <Entry Placeholder="רוחב הציור בסנטימטר" Text="{Binding Width}" Style="{StaticResource entryStyle}"
+                               Grid.Row="4" Grid.Column="0" Keyboard="Numeric"/>
+                    </Frame>
+                </Grid>
+
+                <Grid Padding="25,0,25,20" RowSpacing="5"  FlowDirection="RightToLeft" >
+                    <Grid.RowDefinitions >
+                        <RowDefinition Height="35" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" Text="מאפיינים:" HorizontalOptions="Start" FontSize="18" TextColor="#d8f3dc"></Label>
+                    <!-- צבע -->
+                    <Picker Title="צבע" 
+                        FontSize="14"
+                        FontAttributes="Bold" 
+                        ItemsSource="{Binding Colors}" 
+                        ItemDisplayBinding="{Binding Color1}"
+                        SelectedItem="{Binding Color}"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                    >
+                    </Picker>
+                    <!-- סגנון -->
+                    <Picker Title="סגנון" 
+                        FontSize="14"
+                        FontAttributes="Bold" 
+                        ItemsSource="{Binding Styles}" 
+                        ItemDisplayBinding="{Binding Style1}"
+                        SelectedItem="{Binding Style}"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                    >
+                    </Picker>
+                    <!-- סוג הדף -->
+                    <Picker Title="סוג הדף" 
+                        FontSize="14"
+                        FontAttributes="Bold" 
+                        ItemsSource="{Binding SurfaceMaterials}" 
+                        ItemDisplayBinding="{Binding SMaterial}" 
+                        SelectedItem="{Binding SurfaceMaterial}"
+                        Grid.Column="0"
+                        Grid.Row="2"
+                    >
+                    </Picker>
+                    <!-- סוג הטכניקה -->
+                    <Picker Title="סוג הטכניקה" 
+                        FontSize="14"
+                        FontAttributes="Bold" 
+                        ItemsSource="{Binding PaintMaterials}" 
+                        ItemDisplayBinding="{Binding PMaterial}"
+                        SelectedItem="{Binding PaintMaterial}"
+                        Grid.Column="1"
+                        Grid.Row="2"
+                    >
+                    </Picker>
+
+                    <Button Grid.Row="3" Grid.ColumnSpan="2" Command="{Binding SaveDataCommand}" Style="{StaticResource ButtonStyle}" Text="פרסם"></Button>
+                </Grid>
+                
+                
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

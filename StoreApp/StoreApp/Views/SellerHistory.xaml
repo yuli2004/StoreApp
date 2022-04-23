@@ -32,7 +32,7 @@
                                 <RowDefinition Height="5" />
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="130" />
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
@@ -45,15 +45,15 @@
                                 HorizontalOptions="Center"
                                 Grid.Column="0"
                                 Grid.Row="0"
-                                Grid.RowSpan="2"/>
+                                Grid.RowSpan="3"/>
 
-                            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Product.ProductName}" HorizontalOptions="Start" TextColor="#d8f3dc" FontSize="18"/>
-                            <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Start"  Text="תאריך:" Style="{StaticResource shoppingCartTextStyle}"/>
-                            <Label Grid.Row="1" Grid.Column="2" HorizontalOptions="Start"  Text="{Binding Order.Date}" Style="{StaticResource shoppingCartTextStyle}"/>
-                            <Label Grid.Row="2" Grid.Column="1" HorizontalOptions="Start"  Text="קונה:" Style="{StaticResource shoppingCartTextStyle}"/>
+                            <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Product.ProductName}" HorizontalOptions="Center" TextColor="#d8f3dc" FontSize="18"/>
+                            
+                            <Label Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2"  Text="{Binding Order.Date}" Style="{StaticResource shoppingCartTextStyle}"/>
+                            <Label Grid.Row="2" Grid.Column="1" HorizontalOptions="End"  Text="קונה:" Style="{StaticResource shoppingCartTextStyle}"/>
                             <Label Grid.Row="2" Grid.Column="2" HorizontalOptions="Start"  Text="{Binding Order.Buyer.Username}" Style="{StaticResource shoppingCartTextStyle}"/>
 
-                            <BoxView BackgroundColor="#6da37d" Grid.Row="2" Grid.ColumnSpan="2"/>
+                            <BoxView BackgroundColor="#6da37d" Grid.Row="3" Grid.ColumnSpan="3"/>
                         </Grid>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>

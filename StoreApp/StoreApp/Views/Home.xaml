@@ -80,7 +80,7 @@
                      Color="#d8f3dc"/>
                 </ImageButton.Source>
             </ImageButton>
-            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsSeller}" Command="{Binding OnSelectedSeller}" HorizontalOptions="Center" Grid.Column="2">
+            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsSeller}" Command="{Binding NavigateToPageCommand}" CommandParameter="UploadProduct"  HorizontalOptions="Center" Grid.Column="2">
                 <ImageButton.Source>
                     <FontImageSource 
                     FontFamily="MySolidFonts"
@@ -192,10 +192,9 @@
                     <GridItemsLayout Orientation="Vertical"
                         Span="2" />
                 </CollectionView.ItemsLayout>
-                
-                
+                 
                 <CollectionView.ItemTemplate>
-                        <DataTemplate>
+                    <DataTemplate>
                         <Grid FlowDirection="RightToLeft" Padding="5" >
                             <Grid.RowDefinitions>
                                     <RowDefinition Height="2*" />
@@ -219,8 +218,8 @@
                             <Label Grid.Row="2" Grid.Column="1" Text="{Binding Price}" HorizontalOptions="Start" FontSize="18" TextColor="#d8f3dc"></Label>
                             
                         </Grid>
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
             </CollectionView>
         </StackLayout>
             

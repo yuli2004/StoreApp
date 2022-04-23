@@ -28,9 +28,9 @@ namespace StoreApp.Views
             {
                 ((HomeViewModel)BindingContext).IsNoUser = (((App)Application.Current).CurrentUser == null);
                 ((HomeViewModel)BindingContext).IsLoggedUser = (((App)Application.Current).CurrentUser != null);
-                ((HomeViewModel)BindingContext).IsBuyer = (((App)Application.Current).CurrentUser == null);
-                ((HomeViewModel)BindingContext).IsSeller = (((App)Application.Current).CurrentUser == null);
-                ((HomeViewModel)BindingContext).IsNoSeller = (((App)Application.Current).CurrentUser == null);
+                ((HomeViewModel)BindingContext).IsBuyer = ((HomeViewModel)BindingContext).IsLoggedUser&&(((App)Application.Current).CurrentUser.IsBuyer);
+                ((HomeViewModel)BindingContext).IsSeller = ((HomeViewModel)BindingContext).IsLoggedUser&&(((App)Application.Current).CurrentUser.IsSeller);
+                ((HomeViewModel)BindingContext).IsNoSeller = ((HomeViewModel)BindingContext).IsNoUser || ((HomeViewModel)BindingContext).IsBuyer;
                 ((HomeViewModel)BindingContext).InitProducts();
             }
                 

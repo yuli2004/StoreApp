@@ -6,6 +6,7 @@ using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 using StoreApp.Services;
+using StoreApp.Models;
 
 namespace StoreApp.ViewModels
 {
