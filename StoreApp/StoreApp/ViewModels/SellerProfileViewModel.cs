@@ -8,7 +8,7 @@ using Xamarin.Forms;
 
 namespace StoreApp.ViewModels
 {
-    class SellerProfileViewModel : BaseViewModel
+    public class SellerProfileViewModel : BaseViewModel
     {
         public Models.Seller Sl { get; set; }
 

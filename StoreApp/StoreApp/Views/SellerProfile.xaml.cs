@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StoreApp.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,15 @@ namespace StoreApp.Views
         public SellerProfile()
         {
             InitializeComponent();
+            
         }
+        public SellerProfile(SellerProfileViewModel vm)
+        {
+            BindingContext = vm;
+            InitializeComponent();
+
+        }
+
+        
     }
 }

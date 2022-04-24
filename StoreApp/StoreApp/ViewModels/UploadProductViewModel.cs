@@ -240,13 +240,13 @@ namespace StoreApp.ViewModels
             this.p.Height = this.Height;
             this.p.Width = this.Width;
             this.p.Color = this.Color;
-            this.p.ColorId = this.p.Color.ColorId;
+           
             this.p.Style = this.Style;
-            this.p.StyleId = this.p.Style.StyleId;
+           
             this.p.SMaterial = this.SurfaceMaterial;
-            this.p.SMaterialId = this.p.SMaterial.SMaterialId;
+            
             this.p.PMaterial = this.PaintMaterial;
-            this.p.PMaterialId = this.p.PMaterial.PMaterialId;
+            
             this.ProductImgSrc = this.ProductImgSrc;
 
             ServerStatus = "מתחבר לשרת...";
@@ -260,7 +260,7 @@ namespace StoreApp.ViewModels
             if (currentP == null)
             {
                 await App.Current.MainPage.DisplayAlert("שגיאה", "פרסום המוצר נכשל", "בסדר");
-                await currentApp.MainPage.Navigation.PopAsync();
+                await currentApp.MainPage.Navigation.PopModalAsync();
             }
             else
             {

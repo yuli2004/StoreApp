@@ -80,7 +80,7 @@
                      Color="#d8f3dc"/>
                 </ImageButton.Source>
             </ImageButton>
-            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsSeller}" Command="{Binding NavigateToPageCommand}" CommandParameter="UploadProduct"  HorizontalOptions="Center" Grid.Column="2">
+            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsSeller}" Command="{Binding OnSelectedSeller}" HorizontalOptions="Center" Grid.Column="2">
                 <ImageButton.Source>
                     <FontImageSource 
                     FontFamily="MySolidFonts"

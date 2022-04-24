@@ -423,9 +423,9 @@ namespace StoreApp.ViewModels
         private async void MoveToSellerPage()
         {
             Seller s = currentApp.CurrentUser.Seller;
-            var page = new Views.SellerProfile() { Title = "פרופיל מוכר" };
             var binding = new SellerProfileViewModel() { Sl = s };
-            page.BindingContext = binding;
+            var page = new Views.SellerProfile(binding) { Title = "פרופיל מוכר" };
+            
             await this.currentApp.MainPage.Navigation.PushAsync(page);
         }
         #endregion

@@ -121,9 +121,9 @@ namespace StoreApp.ViewModels
         private async void MoveToSellerPage()
         {
             Seller s = P.Seller;
-            var page = new Views.SellerProfile() { Title = "פרופיל מוכר" };
-            var binding = new SellerProfileViewModel() { Sl = s };
-            page.BindingContext = binding;
+            SellerProfileViewModel sVM = new SellerProfileViewModel() { Sl = s };
+            var page = new Views.SellerProfile(sVM) {  Title = "פרופיל מוכר" };
+          
             await this.currentApp.MainPage.Navigation.PushAsync(page);
         }
         #endregion
