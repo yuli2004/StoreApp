@@ -25,6 +25,14 @@ namespace StoreApp.Views
 
         }
 
-        
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (BindingContext != null)
+            {
+                ((SellerProfileViewModel)BindingContext).IsSeller = (((App)Application.Current).CurrentUser.Seller == );
+            }
+
+        }
     }
 }

@@ -58,7 +58,7 @@
                     Grid.RowSpan="3"/>
                 <Label Grid.Row="0" Grid.Column="1" Text="{Binding Sl.Username}" HorizontalOptions="Center" FontSize="18" TextColor="#081c15"></Label>
                 <Label Grid.Row="1" Grid.Column="1" Text="{Binding Sl.UsernameNavigation.Email}" HorizontalOptions="Center" FontSize="16" TextColor="#081c15"/>
-                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Sl.Info}" HorizontalOptions="Start" FontSize="14" TextColor="#081c15"></Label>
+                <Label Grid.Row="2" Grid.Column="1" Text="{Binding Sl.Info}" LineBreakMode="WordWrap" HorizontalOptions="Start" FontSize="14" TextColor="#081c15"></Label>
             </Grid>
             
             

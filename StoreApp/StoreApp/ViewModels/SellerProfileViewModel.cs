@@ -76,5 +76,28 @@ namespace StoreApp.ViewModels
 
         #endregion
 
+        #region IsSeller
+        private bool isSeller;
+        public bool IsSeller
+        {
+            get
+            {
+                if (currentApp.CurrentUser.Seller == Sl)
+                {
+                    return true;
+                }
+                return false;
+            }
+            set
+            {
+                if (isSeller != value)
+                {
+                    isSeller = value;
+                    OnPropertyChanged("IsSeller");
+                }
+            }
+        }
+        #endregion
+
     }
 }
