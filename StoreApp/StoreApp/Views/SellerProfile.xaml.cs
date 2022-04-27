@@ -1,4 +1,5 @@
-﻿using StoreApp.ViewModels;
+﻿using StoreApp.Models;
+using StoreApp.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,7 +31,11 @@ namespace StoreApp.Views
             base.OnAppearing();
             if (BindingContext != null)
             {
-                ((SellerProfileViewModel)BindingContext).IsSeller = (((App)Application.Current).CurrentUser.Seller == );
+                User curr = ((App)Application.Current).CurrentUser;
+                if (curr == null)
+                    ((SellerProfileViewModel)BindingContext).IsSeller = false;
+                else
+                    ((SellerProfileViewModel)BindingContext).IsSeller = (curr.Seller != null);
             }
 
         }
