@@ -346,7 +346,7 @@ namespace StoreApp.ViewModels
             set
             {
                 paintMaterial = value;
-                OnPropertyChanged("Style");
+                OnPropertyChanged("PaintMaterial");
             }
         }
 

@@ -55,7 +55,7 @@
                 <ImageButton.Source>
                     <FontImageSource 
                     FontFamily="MySolidFonts"
-                    Glyph="{x:Static fontAwesome:IconSolidFonts.ArrowDown}"
+                    Glyph="{x:Static fontAwesome:IconSolidFonts.BoxesStacked}"
                     Size="Medium"
                     Color="#d8f3dc"
                     />

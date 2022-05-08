@@ -84,7 +84,7 @@ namespace StoreApp.ViewModels
             {
                 if (currentApp.CurrentUser == null)
                     return false;
-                else if (currentApp.CurrentUser.Seller == Sl)
+                else if (currentApp.CurrentUser.Seller.SellerId == Sl.SellerId)
                 {
                     return true;
                 }

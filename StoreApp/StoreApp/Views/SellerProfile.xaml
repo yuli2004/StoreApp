@@ -14,14 +14,25 @@
     
 
     <NavigationPage.TitleView>
-        <Grid FlowDirection="RightToLeft">
+        <Grid FlowDirection="RightToLeft" Margin="20,0,20,0">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <ImageButton IsVisible="true" BackgroundColor="Purple" Command="{Binding NavigateToPageCommand}" CommandParameter="UploadProduct" HorizontalOptions="Center" Grid.Column="0" Grid.Row="0">
+            <ImageButton BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="Home" HorizontalOptions="Center" Grid.Column="0" Grid.Row="0">
+                <ImageButton.Source>
+                    <FontImageSource 
+                    FontFamily="MySolidFonts"
+                    Glyph="{x:Static fontAwesome:IconSolidFonts.House}"
+                    Size="Medium"
+                    Color="#d8f3dc"
+                     />
+                </ImageButton.Source>
+            </ImageButton>
+            <ImageButton IsVisible="{Binding IsSeller}" BackgroundColor="Transparent" Command="{Binding NavigateToPageCommand}" CommandParameter="UploadProduct" HorizontalOptions="Center" Grid.Column="1" Grid.Row="0">
                 <ImageButton.Source>
                     <FontImageSource 
                     FontFamily="MySolidFonts"
