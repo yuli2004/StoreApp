@@ -75,7 +75,7 @@ namespace StoreApp.ViewModels
         #region constructor
         public HomeViewModel()
         {
-            SliderValue = 0;
+            //SliderValue = 0;
             
             this.SearchTerm = String.Empty;
             FilteredProducts = new ObservableCollection<Models.Product>(((App)App.Current).Tables.AllProducts.Where(p=>p.IsActive==true));
@@ -211,16 +211,16 @@ namespace StoreApp.ViewModels
         }
         #endregion
 
-        private int sliderValue;
-        public int SliderValue
-        {
-            get { return sliderValue; }
-            set
-            {
-                sliderValue = value;
-                OnPropertyChanged("SliderValue");
-            }
-        }
+        //private int sliderValue;
+        //public int SliderValue
+        //{
+        //    get { return sliderValue; }
+        //    set
+        //    {
+        //        sliderValue = value;
+        //        OnPropertyChanged("SliderValue");
+        //    }
+        //}
 
         public void InitProducts()
         {
@@ -426,7 +426,7 @@ namespace StoreApp.ViewModels
             var binding = new SellerProfileViewModel() { Sl = s };
             var page = new Views.SellerProfile(binding) { Title = "פרופיל מוכר" };
             
-            await this.currentApp.MainPage.Navigation.PushAsync(page);
+             this.currentApp.MainPage=new NavigationPage(page);
         }
         #endregion
 

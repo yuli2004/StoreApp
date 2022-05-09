@@ -83,7 +83,7 @@ namespace StoreApp.ViewModels
             }
             else
             {
-                Order o = new Order() { Buyer = currentApp.CurrentUser.Buyer, Date=DateTime.Today, ProductInOrders= currentApp.cart, TotalPrice=Price };
+                Order o = new Order() { Buyer = currentApp.CurrentUser.Buyer, Date=DateTime.Now, ProductInOrders= currentApp.cart, TotalPrice=Price };
                 bool success = await proxy.CreateOrder(o);
                 if(success)
                 {

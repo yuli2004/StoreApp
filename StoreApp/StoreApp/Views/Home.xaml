@@ -195,7 +195,7 @@
                  
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <Grid FlowDirection="RightToLeft" Padding="5" >
+                        <Grid FlowDirection="RightToLeft" Padding="5">
                             <Grid.RowDefinitions>
                                     <RowDefinition Height="2*" />
                                     <RowDefinition Height="*" />

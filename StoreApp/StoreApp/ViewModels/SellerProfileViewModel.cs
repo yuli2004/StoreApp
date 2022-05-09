@@ -17,7 +17,7 @@ namespace StoreApp.ViewModels
         {
             SellerProducts = new ObservableCollection<Models.Product>();
             //SellerProducts = new ObservableCollection<Models.Product>(((App)App.Current).Tables.AllProducts.Where(p => p.SellerId == S.SellerId && p.IsActive == true));
-            
+            NavigateToHomeCommand = new Command(NavigateToHome);
             OnSelectedProduct = new Command<Models.Product>(MoveToProductPage);
 
         }
@@ -101,5 +101,15 @@ namespace StoreApp.ViewModels
         }
         #endregion
 
+        #region open Home screen
+
+        public ICommand NavigateToHomeCommand { protected set; get; }
+        public void NavigateToHome()
+        {
+            var binding = new SellerProfileViewModel() {};
+            var page = new Views.Home(){ };
+            this.currentApp.MainPage = new NavigationPage(page);
+        }
+        #endregion
     }
 }

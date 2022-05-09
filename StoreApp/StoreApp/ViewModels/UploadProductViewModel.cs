@@ -213,7 +213,7 @@ namespace StoreApp.ViewModels
                 //PMaterialId = 0,
 
                 IsActive = true,
-                AdvertisingDate = DateTime.Today,
+                AdvertisingDate = DateTime.Now,
                 Seller = currentApp.CurrentUser.Seller,
                 SellerId = currentApp.CurrentUser.Seller.SellerId,
             };
