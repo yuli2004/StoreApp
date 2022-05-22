@@ -18,7 +18,9 @@
             <CollectionView x:Name="collectionView" ItemsSource="{Binding Order}">
                 <CollectionView.EmptyView>
                     <StackLayout>
-                        <Label Text="העגלה ריקה" Style="{StaticResource shoppingCartTextStyle}" VerticalTextAlignment="Center"></Label>
+                        <Label Text="העגלה ריקה" Style="{StaticResource shoppingCartTextStyle}" FontSize="24" VerticalTextAlignment="Center"></Label>
+
+                        <Image Source="cart2" BackgroundColor="Transparent"/>
                     </StackLayout>
                 </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>

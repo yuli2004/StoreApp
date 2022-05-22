@@ -230,7 +230,7 @@ namespace StoreApp.ViewModels
 
         #region SaveData
 
-        //The command for saving the contact
+        //The command for saving the product
         public ICommand SaveDataCommand { protected set; get; }
         private async void SaveData()
         { 
@@ -248,6 +248,9 @@ namespace StoreApp.ViewModels
             this.p.PMaterial = this.PaintMaterial;
             
             this.ProductImgSrc = this.ProductImgSrc;
+            this.p.Picture = "photogallery.png";
+            if (this.productImgSrc == null)
+                this.productImgSrc = "photogallery.png";
 
             ServerStatus = "מתחבר לשרת...";
             await App.Current.MainPage.Navigation.PushModalAsync(new Views.ServerStatusPage(this));
@@ -277,6 +280,7 @@ namespace StoreApp.ViewModels
                 ServerStatus = "שומר נתונים...";
 
                 await App.Current.MainPage.DisplayAlert("הצלחה", "פרסום המוצר הצליח", "בסדר");
+                await currentApp.MainPage.Navigation.PopModalAsync();
                 await currentApp.MainPage.Navigation.PopAsync();
             }               
         }
