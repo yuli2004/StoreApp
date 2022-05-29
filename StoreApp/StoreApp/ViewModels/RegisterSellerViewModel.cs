@@ -432,7 +432,7 @@ namespace StoreApp.ViewModels
 
                         await App.Current.MainPage.DisplayAlert("הצלחה", "שמירת המשתמש הצליחה", "בסדר");
                         await currentApp.MainPage.Navigation.PopModalAsync();
-                        await currentApp.MainPage.Navigation.PopAsync();
+                        await currentApp.MainPage.Navigation.PopToRootAsync();
                     }
                 }
 

@@ -31,5 +31,11 @@ namespace StoreApp.Models
         public virtual Seller Seller { get; set; }
         public virtual Style Style { get; set; }
         public virtual List<ProductInOrder> ProductInOrders { get; set; }
+
+        public string GetPicture()
+        {
+            string pic = StoreApp.Services.StoreAPIProxy.GetImageURL() + "/" + ProductId + ".jpg";
+            return pic;
+        }
     }
 }

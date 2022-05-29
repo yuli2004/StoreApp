@@ -83,13 +83,16 @@ namespace StoreApp.ViewModels
             }
             else
             {
-                Order o = new Order() { Buyer = currentApp.CurrentUser.Buyer, Date=DateTime.Now, ProductInOrders= currentApp.cart, TotalPrice=Price };
+                List<ProductInOrder> a = new List<ProductInOrder>(currentApp.cart);
+                Order o = new Order() { Buyer = currentApp.CurrentUser.Buyer, Date=DateTime.Now, ProductInOrders= a, TotalPrice=Price };
                 bool success = await proxy.CreateOrder(o);
                 if(success)
                 {
+                    
                     foreach (ProductInOrder p in o.ProductInOrders)
                     {
                         ((App)App.Current).Tables.SoldProducts.Add(p);
+
                     }
                     currentApp.CurrentUser.Buyer.Orders.Add(o);
                     currentApp.cart.Clear();

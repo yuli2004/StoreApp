@@ -22,16 +22,7 @@
                 <ColumnDefinition Width="40"/>
                 <ColumnDefinition Width="3*"/>
             </Grid.ColumnDefinitions>
-            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsNoUser}" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" HorizontalOptions="Center" Grid.Column="0">
-                <ImageButton.Source>
-                    <FontImageSource 
-                    FontFamily="MySolidFonts"
-                    Glyph="{x:Static fontAwesome:IconSolidFonts.UserPlus}"
-                    Size="Medium"
-                     Color="#d8f3dc"
-                     />
-                </ImageButton.Source>
-            </ImageButton>
+            
             <ImageButton BackgroundColor="Transparent"  IsVisible="{Binding IsLoggedUser}" Command="{Binding LogOutCommand}" HorizontalOptions="Center" Grid.Column="0">
                 <ImageButton.Source>
                     <FontImageSource 
@@ -42,7 +33,7 @@
                      />
                 </ImageButton.Source>
             </ImageButton>
-            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsNoUser}" Command="{Binding NavigateToPageCommand}" CommandParameter="LogIn" HorizontalOptions="Center" Grid.Column="1">
+            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsNoUser}" Command="{Binding NavigateToPageCommand}" CommandParameter="LogIn" HorizontalOptions="Center" Grid.Column="0">
                 <ImageButton.Source>
                     <FontImageSource
                     FontFamily="MySolidFonts"
@@ -61,7 +52,7 @@
                     />
                 </ImageButton.Source>
             </ImageButton>
-            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsBuyer}" Command="{Binding NavigateToPageCommand}" CommandParameter="BuyerHistory" HorizontalOptions="Center" Grid.Column="1">
+            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsBuyer}" Command="{Binding NavigateToPageCommand}" CommandParameter="BuyerHistory" HorizontalOptions="Center" Grid.Column="2">
                     <ImageButton.Source>
                         <FontImageSource 
                     FontFamily="MySolidFonts"
@@ -71,7 +62,7 @@
                      />
                     </ImageButton.Source>
                 </ImageButton>
-            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsNoSeller}" Command="{Binding NavigateToPageCommand}" CommandParameter="ShoppingCart" HorizontalOptions="Center" Grid.Column="2">
+            <ImageButton BackgroundColor="Transparent" IsVisible="{Binding IsNoSeller}" Command="{Binding NavigateToPageCommand}" CommandParameter="ShoppingCart" HorizontalOptions="Center" Grid.Column="1">
                 <ImageButton.Source>
                     <FontImageSource
                     FontFamily="MySolidFonts"

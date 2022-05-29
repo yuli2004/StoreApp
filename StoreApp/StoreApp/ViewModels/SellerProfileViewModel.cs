@@ -11,6 +11,11 @@ namespace StoreApp.ViewModels
     public class SellerProfileViewModel : BaseViewModel
     {
         public Models.Seller Sl { get; set; }
+        public string Img { get
+            {
+                if (Sl != null) return Sl.GetProfilePicture();
+                else return null;
+            } }
 
         #region constructor
         public SellerProfileViewModel()

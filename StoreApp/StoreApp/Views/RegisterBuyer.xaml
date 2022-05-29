@@ -19,18 +19,7 @@
         </Style>
     </ContentPage.Resources>
     <ContentPage.ToolbarItems>
-        <ToolbarItem Command="{Binding NavigateToPageCommand}" CommandParameter="LogIn"           
-                 Order="Primary"
-                 Priority="0">
-            <ToolbarItem.IconImageSource>
-                <FontImageSource
-                    FontFamily="MySolidFonts"
-                    Glyph="{x:Static fontAwesome:IconSolidFonts.User}"
-                    Size="Medium"
-                    Color="#d8f3dc"
-                />
-            </ToolbarItem.IconImageSource>
-        </ToolbarItem>
+        
     </ContentPage.ToolbarItems>
 
     <ContentPage.Content>

@@ -51,6 +51,7 @@ namespace StoreApp.ViewModels
                 if (value != isForSale)
                 {
                     isForSale = value;
+                    P.IsActive = value;
                     OnPropertyChanged("IsForSale");
                 }
             }
@@ -87,6 +88,7 @@ namespace StoreApp.ViewModels
         {
             AddToCart = new Command(AddProduct);
             OnSelectedSeller = new Command(MoveToSellerPage);
+            DeleteProduct = new Command(RemoveProduct);
         }
         #endregion
 
@@ -111,6 +113,17 @@ namespace StoreApp.ViewModels
             currentApp.cart.Add(product);
             await this.currentApp.MainPage.DisplayAlert("הוספה לסל הקניות", $"{P.ProductName} נוסף לעגלה","אישור");
             await this.currentApp.MainPage.Navigation.PopAsync();
+        }
+        #endregion
+
+        #region add to cart
+        public ICommand DeleteProduct { get; protected set; }
+        public async void RemoveProduct()
+        {
+            P.IsActive = false;         
+            IsOnSale = false;
+            IsForSale = false;
+            await currentApp.MainPage.Navigation.PopAsync();
         }
         #endregion
 

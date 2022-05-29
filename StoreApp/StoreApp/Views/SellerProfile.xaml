@@ -61,7 +61,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Image 
-                    Source="{Binding Sl.Picture}"
+                    Source="{Binding Img }"
                     Aspect="AspectFill"                   
                     HorizontalOptions="Center"
                     Grid.Column="0"
