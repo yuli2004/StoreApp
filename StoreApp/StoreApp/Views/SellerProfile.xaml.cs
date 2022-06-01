@@ -37,7 +37,8 @@ namespace StoreApp.Views
                 else
                     ((SellerProfileViewModel)BindingContext).IsSeller = (curr.Seller != null);
             }
-
+            SellerProfileViewModel vm = BindingContext as SellerProfileViewModel;
+            vm.RefreshPosts();
         }
     }
 }

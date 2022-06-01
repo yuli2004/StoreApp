@@ -1,4 +1,6 @@
-﻿using System;
+﻿using StoreApp.Models;
+using StoreApp.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -12,10 +14,10 @@ namespace StoreApp.ViewModels
     {
         public Models.Seller Sl { get; set; }
         public string Img { get
-            {
+        {
                 if (Sl != null) return Sl.GetProfilePicture();
                 else return null;
-            } }
+        } }
 
         #region constructor
         public SellerProfileViewModel()
@@ -114,6 +116,14 @@ namespace StoreApp.ViewModels
             var binding = new SellerProfileViewModel() {};
             var page = new Views.Home(){ };
             this.currentApp.MainPage = new NavigationPage(page);
+        }
+        #endregion
+
+        #region refresh
+        public async void RefreshPosts()
+        {
+            OnPropertyChanged("SellerProducts");
+
         }
         #endregion
     }

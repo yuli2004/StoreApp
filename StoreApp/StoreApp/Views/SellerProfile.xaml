@@ -102,7 +102,7 @@
                             </Grid.ColumnDefinitions>
 
                             <Image 
-                                    Source="{Binding Picture}"
+                                    Source="{Binding ImageSource}"
                                     Aspect="AspectFit"
                                     HeightRequest="100"
                                     WidthRequest="100"

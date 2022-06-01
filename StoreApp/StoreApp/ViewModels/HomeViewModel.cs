@@ -211,17 +211,6 @@ namespace StoreApp.ViewModels
         }
         #endregion
 
-        //private int sliderValue;
-        //public int SliderValue
-        //{
-        //    get { return sliderValue; }
-        //    set
-        //    {
-        //        sliderValue = value;
-        //        OnPropertyChanged("SliderValue");
-        //    }
-        //}
-
         public void InitProducts()
         {
             IsRefreshing = true;
@@ -413,7 +402,6 @@ namespace StoreApp.ViewModels
                 SelectedProduct = null;
             }
         }
-
         #endregion
 
         #region move to Seller profile

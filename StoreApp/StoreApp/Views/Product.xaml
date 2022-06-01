@@ -16,7 +16,7 @@
         <StackLayout>
 
             <Image 
-                 Source="{Binding P.Picture}"
+                 Source="{Binding Img}"
                  Aspect="AspectFit"
              />
             <Grid Padding="10" RowSpacing="5"  FlowDirection="RightToLeft" >
@@ -33,7 +33,7 @@
                     
                     <RowDefinition Height="30" />
                     <RowDefinition Height="30" />
-                    <RowDefinition Height="50" />
+                    <RowDefinition Height="75" />
                     
                     </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
@@ -76,8 +76,8 @@
                     <Button Grid.Row="10" Grid.ColumnSpan="2" Command="{Binding AddToCart}" Style="{StaticResource ButtonStyle}" IsVisible="{Binding IsForSale}" Text="הוסף לעגלת הקניות"></Button>
 
                 <Label Padding="10" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding IsOwner}" Text="האם ברצונך למחוק את המוצר?" HorizontalOptions="Start" VerticalOptions="Center" FontSize="18" TextColor="#d8f3dc"></Label>
-                    <!-- <Switch Grid.Row="10" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding IsOwner}" IsToggled="{Binding IsOnSale}"></Switch> -->
-                    <ImageButton BackgroundColor="Transparent" Grid.Row="10" Grid.Column="1" Command="{Binding DeleteProduct}">
+                    <Switch Grid.Row="10" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding IsOwner}" IsToggled="{Binding IsOnSale}"></Switch>
+                    <!--"<ImageButton BackgroundColor="Transparent" Grid.Row="10" Grid.Column="1" Command="{Binding DeleteProduct}" IsVisible="{Binding IsOwner}">
                         <ImageButton.Source>
                             <FontImageSource
                         FontFamily="MySolidFonts"
@@ -85,7 +85,7 @@
                         Size="Subtitle"
                         Color="#d8f3dc"/>
                         </ImageButton.Source>
-                    </ImageButton>
+                    </ImageButton>-->
 
                 </Grid>
 

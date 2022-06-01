@@ -15,6 +15,14 @@ namespace StoreApp.ViewModels
    public class ProductViewModel:BaseViewModel
     {
         public Models.Product P { get; set; }
+        public string Img
+        {
+            get
+            {
+                if (P != null) return P.GetPicture();
+                else return null;
+            }
+        }
 
         #region is on sale
         private bool isOnSale;
@@ -116,7 +124,7 @@ namespace StoreApp.ViewModels
         }
         #endregion
 
-        #region add to cart
+        #region delete product
         public ICommand DeleteProduct { get; protected set; }
         public async void RemoveProduct()
         {

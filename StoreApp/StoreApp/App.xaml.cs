@@ -38,6 +38,7 @@ namespace StoreApp
             StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
            
             Tables = await proxy.CreateLookUpTables();
+            Tables.AllProducts = await proxy.GetSearchResults(string.Empty);
            
              MainPage=new NavigationPage(new Home());
         }
