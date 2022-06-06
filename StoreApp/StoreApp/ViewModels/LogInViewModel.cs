@@ -43,14 +43,15 @@ namespace StoreApp.ViewModels
         }
         #endregion
 
-        public ICommand LogInCommand { protected set; get; }
-
+        #region constructor
         public LogInViewModel()
         {
             LogInCommand = new Command(LogInSubmit);
             
         }
+        #endregion
 
+        #region server status
         private string serverStatus;
         public string ServerStatus
         {
@@ -61,7 +62,10 @@ namespace StoreApp.ViewModels
                 OnPropertyChanged("ServerStatus");
             }
         }
+        #endregion
 
+        #region log in command
+        public ICommand LogInCommand { protected set; get; }
         public async void LogInSubmit()
         {
             ServerStatus = "מתחבר לשרת...";
@@ -82,5 +86,6 @@ namespace StoreApp.ViewModels
                 await theApp.MainPage.Navigation.PopToRootAsync();
             }
         }
+        #endregion
     }
 }

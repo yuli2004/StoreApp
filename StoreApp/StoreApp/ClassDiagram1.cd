@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="StoreApp.Models.Buyer">
+    <Position X="5.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAAAAAAACAQAAAAAAAQAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Buyer.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StoreApp.Models.Color">
+    <Position X="3" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAQ=</HashCode>
+      <FileName>Models\Color.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StoreApp.Models.LookupTables">
+    <Position X="5.75" Y="9.25" Width="1.5" />
+    <Members>
+      <Property Name="BuyersList" Hidden="true" />
+      <Property Name="SellersList" Hidden="true" />
+      <Property Name="UsersList" Hidden="true" />
+    </Members>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQAACCAAAAAAAAAAAAAAAAACBCAAhAAAAgA=</HashCode>
+      <FileName>Models\LookupTables.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StoreApp.Models.Order">
+    <Position X="7.75" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAQAAAAAQAAQAABQAAAAAAAAAA=</HashCode>
+      <FileName>Models\Order.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Buyer" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="StoreApp.Models.PaintMaterial">
+    <Position X="7.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEAAAAAAAgAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\PaintMaterial.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StoreApp.Models.Product">
+    <Position X="5.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAyAAARQABAAAAkAEAAEAAgAAAAQAARAAAhAAICgA=</HashCode>
+      <FileName>Models\Product.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Color" />
+      <Property Name="PMaterial" />
+      <Property Name="SMaterial" />
+      <Property Name="Style" />
+      <Property Name="Seller" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="StoreApp.Models.ProductInOrder">
+    <Position X="7.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAECAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\ProductInOrder.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Product" />
+      <Property Name="Order" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="StoreApp.Models.Seller">
+    <Position X="3" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAACEQAAAAQAAAAAAQAAAAAAAEQAAAQ=</HashCode>
+      <FileName>Models\Seller.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StoreApp.Models.Style">
+    <Position X="3" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAQ=</HashCode>
+      <FileName>Models\Style.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StoreApp.Models.SurfaceMaterial">
+    <Position X="7.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Models\SurfaceMaterial.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="StoreApp.Models.User">
+    <Position X="3" Y="9" Width="1.5" />
+    <AssociationLine Name="Buyer" Type="StoreApp.Models.Buyer">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.152" Y="0.206" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAEAAAAQAQAAAAQAAAAAACAAAAAAAACAA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Buyer" />
+      <Property Name="Seller" />
+    </ShowAsAssociation>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

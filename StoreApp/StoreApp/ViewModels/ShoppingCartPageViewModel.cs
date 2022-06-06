@@ -124,12 +124,12 @@ namespace StoreApp.ViewModels
         private void UpdatePrice()
         {
            if(Order.Count>0)
-            {
+           {
                 foreach(ProductInOrder p in Order)
                 {
                     Price += p.Product.Price;
                 }
-            }
+           }
         }
         #endregion
         

@@ -13,17 +13,21 @@ namespace StoreApp.ViewModels
     public class SellerProfileViewModel : BaseViewModel
     {
         public Models.Seller Sl { get; set; }
-        public string Img { get
-        {
-                if (Sl != null) return Sl.GetProfilePicture();
-                else return null;
-        } }
+        public string Img
+        { 
+            get
+            {
+                if (Sl != null) 
+                    return Sl.GetProfilePicture();
+                else 
+                    return null;
+            } 
+        }
 
         #region constructor
         public SellerProfileViewModel()
         {
             SellerProducts = new ObservableCollection<Models.Product>();
-            //SellerProducts = new ObservableCollection<Models.Product>(((App)App.Current).Tables.AllProducts.Where(p => p.SellerId == S.SellerId && p.IsActive == true));
             NavigateToHomeCommand = new Command(NavigateToHome);
             OnSelectedProduct = new Command<Models.Product>(MoveToProductPage);
 

@@ -242,17 +242,16 @@ namespace StoreApp.ViewModels
             {
                 foreach (Models.Product pr in this.allProducts)
                 {
-                    string contactString = $"{pr.ProductName}|{pr.Details}|{pr.Color}|{pr.Style}|{pr.SMaterial}|{pr.PMaterialId}";
-
-                    if (!this.FilteredProducts.Contains(pr) &&
-                        contactString.Contains(search))
+                    string contactString = 
+                        $"{pr.ProductName}|{pr.Details}|{pr.Color}|{pr.Style}|{pr.SMaterial}|{pr.PMaterial}";
+                    bool containsPr = this.FilteredProducts.Contains(pr);
+                    bool containsStr = contactString.Contains(search);
+                    if (!containsPr && containsStr)
                         this.FilteredProducts.Add(pr);
-                    else if (this.FilteredProducts.Contains(pr) &&
-                        !contactString.Contains(search))
+                    else if (containsPr && !containsStr)
                         this.FilteredProducts.Remove(pr);
                 }
             }
-
             this.FilteredProducts = new ObservableCollection<Models.Product>(this.FilteredProducts);
         }
         #endregion
@@ -405,9 +404,7 @@ namespace StoreApp.ViewModels
         #endregion
 
         #region move to Seller profile
-
         public ICommand OnSelectedSeller { get; protected set; }
-
         private async void MoveToSellerPage()
         {
             Seller s = currentApp.CurrentUser.Seller;
