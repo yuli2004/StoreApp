@@ -34,7 +34,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="150"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Column="0"   Aspect="AspectFill"  Source="mandalabackground" Opacity="0.6"></Image>
+                <Image Grid.Column="0"   Aspect="AspectFill"  Source="mandalabackground" Opacity="0.5"></Image>
                 <Label Text="התחברות" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Style="{StaticResource FormTitle}"></Label>
 
                 <Button Text="אין משתמש? הירשם כאן" Command="{Binding NavigateToPageCommand}" CommandParameter="RegisterBuyer" 

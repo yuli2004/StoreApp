@@ -13,8 +13,6 @@ namespace StoreApp.Models
 
         public  List<Product> AllProducts { get; set; }
         public List<ProductInOrder> SoldProducts { get; set; }
-        public List<Buyer> BuyersList { get; set; }
-        public List<Seller> SellersList { get; set; }
-        public List<User> UsersList { get; set; }
+
     }
 }

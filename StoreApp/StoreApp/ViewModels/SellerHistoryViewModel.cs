@@ -11,6 +11,7 @@ namespace StoreApp.ViewModels
 {
     class SellerHistoryViewModel: BaseViewModel
     {
+
         #region Seller sold products list
         private ObservableCollection<Models.ProductInOrder> sellerSoldProducts;
         public ObservableCollection<Models.ProductInOrder> SellerSoldProducts

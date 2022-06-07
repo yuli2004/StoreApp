@@ -45,7 +45,7 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="150"/>
                 </Grid.RowDefinitions>
-                <Image Grid.Column="0"   Aspect="AspectFill"  Source="mandalabackground" Opacity="0.6"></Image>
+                <Image Grid.Column="0"   Aspect="AspectFill"  Source="mandalabackground" Opacity="0.5"></Image>
                 <Label Text="הרשמת מוכר" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Style="{StaticResource FormTitle}"></Label>
             </Grid>
 
@@ -54,14 +54,13 @@
                 <!-- שם החנות -->
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                        <Label Text="{Binding UsernameError}" IsVisible="{Binding ShowUsernameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
+                        <Label Text="{Binding UsernameError}" IsVisible="{Binding ShowUsernameError}" Style="{StaticResource labelErrorStyle}"/>
                 </Grid>
                 <Frame Style="{StaticResource Frame}">
                         <Entry Placeholder="הכנס את שם החנות" Text="{Binding Username}" Style="{StaticResource entryStyle}"/>
@@ -70,13 +69,12 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
 
-                    <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
+                    <Label Text="{Binding NameError}" IsVisible="{Binding ShowNameError}" Style="{StaticResource labelErrorStyle}"/>
                 </Grid>
                 <Frame Style="{StaticResource Frame}">
                     <Entry Placeholder="הכנס את שמך" Text="{Binding Name}" Style="{StaticResource entryStyle}"/>
@@ -85,12 +83,11 @@
                 <Grid>
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" HorizontalTextAlignment="End" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
+                    <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" Style="{StaticResource labelErrorStyle}"/>
                 </Grid>
                 <Frame Style="{StaticResource Frame}">
                     <Entry Placeholder="הכנס סיסמה" HorizontalTextAlignment="End" IsPassword="True" Text="{Binding Password}" Style="{StaticResource entryStyle}"/>
@@ -99,13 +96,12 @@
                 <!-- דואר אלקטרוני-->
                 <Grid>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" Grid.Column="1" Style="{StaticResource labelErrorStyle}"/>
+                    <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" Style="{StaticResource labelErrorStyle}"/>
                 </Grid>
                 <Frame Style="{StaticResource Frame}">
                     <Entry Keyboard="Email" Placeholder="הכנס דואר אלקטרוני" Text="{Binding Email}" Style="{StaticResource entryStyle}"/>
