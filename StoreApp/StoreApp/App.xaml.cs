@@ -39,7 +39,7 @@ namespace StoreApp
            
             Tables = await proxy.CreateLookUpTables();
             Tables.AllProducts = await proxy.GetSearchResults(string.Empty);
-           
+            Tables.SoldProducts = await proxy.GetSoldProducts();
              MainPage=new NavigationPage(new Home());
         }
 

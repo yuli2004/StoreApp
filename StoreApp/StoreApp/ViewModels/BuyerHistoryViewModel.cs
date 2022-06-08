@@ -61,7 +61,7 @@ namespace StoreApp.ViewModels
             if (SelectedOrder != null)
             {
                 var page = new Views.ViewOrder() { Title = "פרטי הזמנה" };
-                var binding = new ViewOrderViewModel() { O = ord };
+                var binding = new ViewOrderViewModel() { O = ord, ProductsInOrderList=ord.ProductInOrders };
                 page.BindingContext = binding;
                 
                 await this.currentApp.MainPage.Navigation.PushAsync(page);

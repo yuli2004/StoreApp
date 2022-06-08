@@ -11,8 +11,25 @@ using Xamarin.Forms;
 namespace StoreApp.ViewModels
 {
     class ViewOrderViewModel:BaseViewModel
-    { 
-        public Models.Order O { get; set; }
+    {
+        private Models.Order o;
+        public Models.Order O { get { return o; } set { o = value; InitProducts(); }
+            }
+
+        private void InitProducts()
+        {
+            if(o!=null)
+            {
+                ProductsInOrderList = O.ProductInOrders;
+                ProductsList = new ObservableCollection<Models.Product>();
+                foreach (Models.ProductInOrder p in ProductsInOrderList)
+                {
+                    int id = p.ProductId;
+                    ProductsList.Add((((App)App.Current).Tables.SoldProducts).FirstOrDefault(pr => pr.ProductId == id));
+                }
+            }
+        }
+    
        
         #region order productsInOrder list 
         private List<Models.ProductInOrder> productsInOrderList;
@@ -20,7 +37,9 @@ namespace StoreApp.ViewModels
         {
             get
             {
-                return O.ProductInOrders;
+                if (O != null)
+                    return O.ProductInOrders;
+                else return null;
             }
             set
             {
@@ -40,13 +59,7 @@ namespace StoreApp.ViewModels
         {
             get
             {
-                productsInOrderList = O.ProductInOrders;
-                productsList = new ObservableCollection<Models.Product>();
-                foreach (Models.ProductInOrder p in productsInOrderList)
-                {
-                    int id = p.ProductId;
-                    productsList.Add((((App)App.Current).Tables.AllProducts).First(pr => pr.ProductId == id));
-                }
+               
                 return this.productsList;
             }
             set

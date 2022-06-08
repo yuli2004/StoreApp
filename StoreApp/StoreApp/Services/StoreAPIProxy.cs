@@ -354,8 +354,38 @@ namespace StoreApp.Services
         }
         #endregion
 
+        #region GetSoldProducts
+        public async Task<List<Product>> GetSoldProducts()
+        {
+            try
+            {
+                HttpResponseMessage response = await this.client.GetAsync($"{this.baseUri}/GetSoldProducts");
+                if (response.IsSuccessStatusCode)
+                {
+                    JsonSerializerOptions options = new JsonSerializerOptions
+                    {
+                        ReferenceHandler = ReferenceHandler.Preserve, //avoid reference loops!
+                        PropertyNameCaseInsensitive = true
+                    };
+                    string content = await response.Content.ReadAsStringAsync();
+                    List<Product> result = JsonSerializer.Deserialize<List<Product>>(content, options);
+                    return result;
+                }
+                else
+                {
+                    return new List<Product>();
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return new List<Product>();
+            }
+        }
+        #endregion
+
         #region Update Product
-        public  Task UpdateProduct(Product p)
+        public Task UpdateProduct(Product p)
         {
             throw new NotImplementedException();
         }

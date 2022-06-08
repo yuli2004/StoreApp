@@ -431,7 +431,6 @@ namespace StoreApp.ViewModels
                         //ServerStatus = "שומר נתונים..."; 
 
                         await App.Current.MainPage.DisplayAlert("הצלחה", "שמירת המשתמש הצליחה", "בסדר");
-                        await currentApp.MainPage.Navigation.PopModalAsync();
                         await currentApp.MainPage.Navigation.PopToRootAsync();
                     }
                 }

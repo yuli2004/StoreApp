@@ -91,13 +91,13 @@ namespace StoreApp.ViewModels
                     
                     foreach (ProductInOrder p in o.ProductInOrders)
                     {
-                        ((App)App.Current).Tables.SoldProducts.Add(p);
+                        ((App)App.Current).Tables.SoldProducts.Add(p.Product);
 
                     }
                     currentApp.CurrentUser.Buyer.Orders.Add(o);
                     currentApp.cart.Clear();
                     order.Clear();
-                    currentApp.Tables= await proxy.CreateLookUpTables();
+                    currentApp.Tables.AllProducts = await proxy.GetSearchResults(string.Empty); 
                     await currentApp.MainPage.DisplayAlert("ההזמנה בוצעה", "תודה על ההזמנה שלך!", "אישור");
 
                     await currentApp.MainPage.Navigation.PopAsync();

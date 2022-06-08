@@ -36,15 +36,16 @@ namespace StoreApp.ViewModels
         public SellerHistoryViewModel()
         {
             sellerSoldProducts = new ObservableCollection<Models.ProductInOrder>();
-            foreach (Product pr in currentApp.CurrentUser.Seller.Products)
-            {
-                foreach(ProductInOrder p in ((App)App.Current).Tables.SoldProducts)
-                {
-                    if (p.ProductId == pr.ProductId)
-                        sellerSoldProducts.Add(p);
-                }
-            }
             
+            foreach(Product p in ((App)App.Current).Tables.SoldProducts)
+            {
+                if (p.SellerId == currentApp.CurrentUser.Seller.SellerId)
+                {
+                    ProductInOrder pr = currentApp.CurrentUser.Seller.
+                    sellerSoldProducts.Add(p);
+                }
+                    
+            }
             OnSelectedProduct = new Command<Models.ProductInOrder>(MoveToProductPage);
         }
         #endregion
