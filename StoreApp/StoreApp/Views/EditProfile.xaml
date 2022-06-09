@@ -12,11 +12,117 @@
     <ContentPage.BindingContext>
         <viewmodels:EditProfileViewModel></viewmodels:EditProfileViewModel>
     </ContentPage.BindingContext>
+    <ContentPage.Resources>
+        <Style TargetType="StackLayout" x:Key="EditProfileStack">
+            <Setter Property="Orientation" Value="Vertical"/>
+            <Setter Property="FlowDirection" Value="RightToLeft"/>
+        </Style>
+
+        <Style TargetType="Frame" x:Key="Frame">
+            <Setter Property="CornerRadius" Value="10"/>
+            <Setter Property="BackgroundColor"  Value="#6da37d"/>
+            <Setter Property="Margin" Value="25, 1, 25, 1"/>
+        </Style>
+
+    </ContentPage.Resources>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to edit profile!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <ScrollView>
+            <StackLayout Style="{StaticResource EditProfileStack}">
+
+                <Grid Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="150"/>
+                    </Grid.RowDefinitions>
+                    <Image Grid.Column="0"   Aspect="AspectFill"  Source="mandalabackground" Opacity="0.5"></Image>
+                    <Label Text="עדכון פרטים" HorizontalOptions="Center" VerticalOptions="CenterAndExpand" Style="{StaticResource FormTitle}"></Label>
+                </Grid>
+
+                <StackLayout>
+
+                    <!-- שם המוכר -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+
+                    </Grid>
+                    <Frame Style="{StaticResource Frame}">
+                        <Entry Placeholder="שם המוכר" Text="{Binding Name}" Style="{StaticResource entryStyle}"/>
+                    </Frame>
+                    <!-- סיסמה -->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Label Text="{Binding PasswordError}" IsVisible="{Binding ShowPasswordError}" Style="{StaticResource labelErrorStyle}"/>
+                    </Grid>
+                    <Frame Style="{StaticResource Frame}">
+                        <Entry Placeholder="סיסמה חדשה" HorizontalTextAlignment="End" IsPassword="True" Text="{Binding Password}" Style="{StaticResource entryStyle}"/>
+                    </Frame>
+
+                    <!-- דואר אלקטרוני-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Label Text="{Binding EmailError}" IsVisible="{Binding ShowEmailError}" Style="{StaticResource labelErrorStyle}"/>
+                    </Grid>
+                    <Frame Style="{StaticResource Frame}">
+                        <Entry Keyboard="Email" Placeholder="אימייל חדש" Text="{Binding Email}" Style="{StaticResource entryStyle}"/>
+                    </Frame>
+
+                    <!-- Photo -->
+                    <Frame Style="{StaticResource Frame}" Margin="25, 10, 25, 5">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="100" />
+
+                            </Grid.RowDefinitions>
+                            <Image  x:Name="theImage" Source="{Binding SellerImgSrc}"    Grid.Column="2"  Grid.Row="0" BackgroundColor="Transparent"  Aspect="AspectFit" />
+
+                            <ImageButton Source="photogallery.png" BackgroundColor="Transparent" Grid.Column="1" Grid.Row="0" Command="{Binding PickImageCommand}"/>
+                            <ImageButton Source="camera.png" Grid.Column="0" Grid.Row="0" BackgroundColor="Transparent" Command="{Binding CameraImageCommand}"/>
+
+                        </Grid>
+                    </Frame>
+
+                    <!-- תיאור-->
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        
+                    </Grid>
+                    <Frame Style="{StaticResource Frame}">
+                        <Entry Placeholder="פרטים נוספים" Text="{Binding Info}" Style="{StaticResource entryStyle}"/>
+                    </Frame>
+
+                </StackLayout>
+
+                <Button Command="{Binding SaveDataCommand}" Text="עדכון" Style="{StaticResource ButtonStyle}" Margin="25"/>
+
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

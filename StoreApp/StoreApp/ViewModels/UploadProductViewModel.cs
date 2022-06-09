@@ -283,8 +283,9 @@ namespace StoreApp.ViewModels
                 ServerStatus = "שומר נתונים...";
 
                 await App.Current.MainPage.DisplayAlert("הצלחה", "פרסום המוצר הצליח", "בסדר");
-                currentApp.CurrentUser.Seller.Products.Add(p);
-               await currentApp.MainPage.Navigation.PopModalAsync();
+                currentApp.CurrentUser.Seller.Products.Add(newP);
+                currentApp.Tables.AllProducts.Add(newP);
+                await currentApp.MainPage.Navigation.PopModalAsync();
                 await currentApp.MainPage.Navigation.PopAsync();
             }               
         }

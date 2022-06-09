@@ -221,6 +221,41 @@ namespace StoreApp.Services
         }
         #endregion
 
+        #region Edit Profile
+        public async Task<User> EditProfileAsync(User user)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.Hebrew, UnicodeRanges.BasicLatin),
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<User>(user, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/EditProfile", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    User ret = JsonSerializer.Deserialize<User>(jsonContent, options);
+
+                    return ret;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine(ee.Message);
+                return null;
+            }
+        }
+        #endregion
+
         #region UserExistsByEmailAsync
         public async Task<bool> UserExistsByEmailAsync(string email)
         {
