@@ -128,6 +128,7 @@ namespace StoreApp.ViewModels
         public ICommand DeleteProduct { get; protected set; }
         public async void RemoveProduct()
         {
+            bool success = await proxy.RemoveProduct(P);
             P.IsActive = false;         
             IsOnSale = false;
             IsForSale = false;

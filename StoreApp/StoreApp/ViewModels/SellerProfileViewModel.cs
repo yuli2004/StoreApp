@@ -27,6 +27,8 @@ namespace StoreApp.ViewModels
         #region constructor
         public SellerProfileViewModel()
         {
+            //StoreAPIProxy proxy = StoreAPIProxy.CreateProxy();
+            //this.Img =proxy.Get
             SellerProducts = new ObservableCollection<Models.Product>();
             NavigateToHomeCommand = new Command(NavigateToHome);
             OnSelectedProduct = new Command<Models.Product>(MoveToProductPage);

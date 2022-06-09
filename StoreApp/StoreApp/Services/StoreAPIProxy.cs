@@ -355,7 +355,7 @@ namespace StoreApp.Services
         #endregion
 
         #region GetSoldProducts
-        public async Task<List<Product>> GetSoldProducts()
+        public async Task<List<ProductInOrder>> GetSoldProducts()
         {
             try
             {
@@ -368,18 +368,18 @@ namespace StoreApp.Services
                         PropertyNameCaseInsensitive = true
                     };
                     string content = await response.Content.ReadAsStringAsync();
-                    List<Product> result = JsonSerializer.Deserialize<List<Product>>(content, options);
+                    List<ProductInOrder> result = JsonSerializer.Deserialize<List<ProductInOrder>>(content, options);
                     return result;
                 }
                 else
                 {
-                    return new List<Product>();
+                    return new List<ProductInOrder>();
                 }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return new List<Product>();
+                return new List<ProductInOrder>();
             }
         }
         #endregion
@@ -459,6 +459,41 @@ namespace StoreApp.Services
             {
                 Console.WriteLine(ee.Message);
                 return null;
+            }
+        }
+        #endregion
+
+        #region Remove Product
+        public async Task<bool> RemoveProduct(Product p)
+        {
+            try
+            {
+                JsonSerializerOptions options = new JsonSerializerOptions
+                {
+                    ReferenceHandler = ReferenceHandler.Preserve,
+                    Encoder = JavaScriptEncoder.Create(UnicodeRanges.Hebrew, UnicodeRanges.BasicLatin),
+                    PropertyNameCaseInsensitive = true
+                };
+                string jsonObject = JsonSerializer.Serialize<Product>(p, options);
+                StringContent content = new StringContent(jsonObject, Encoding.UTF8, "application/json");
+
+                HttpResponseMessage response = await this.client.PostAsync($"{this.baseUri}/RemoveProduct", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    string jsonContent = await response.Content.ReadAsStringAsync();
+                    bool ret = JsonSerializer.Deserialize<bool>(jsonContent, options);
+
+                    return ret;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ee)
+            {
+                Console.WriteLine(ee.Message);
+                return false;
             }
         }
         #endregion

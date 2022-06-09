@@ -75,8 +75,9 @@
 
                     <Button Grid.Row="10" Grid.ColumnSpan="2" Command="{Binding AddToCart}" Style="{StaticResource ButtonStyle}" IsVisible="{Binding IsForSale}" Text="הוסף לעגלת הקניות"></Button>
 
-                <Label Padding="10" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding IsOwner}" Text="האם ברצונך למחוק את המוצר?" HorizontalOptions="Start" VerticalOptions="Center" FontSize="18" TextColor="#d8f3dc"></Label>
-                    <Switch Grid.Row="10" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding IsOwner}" IsToggled="{Binding IsOnSale}"></Switch>
+                    <Button Grid.Row="10" Grid.ColumnSpan="2" Command="{Binding DeleteProduct}" Style="{StaticResource ButtonStyle}" IsVisible="{Binding IsOwner}" Text="מחק את המוצר"></Button>
+                    <!--<Label Padding="10" Grid.Row="10" Grid.Column="0" Grid.ColumnSpan="2" IsVisible="{Binding IsOwner}" Text="האם ברצונך למחוק את המוצר?" HorizontalOptions="Start" VerticalOptions="Center" FontSize="18" TextColor="#d8f3dc"></Label>
+                    <Switch Grid.Row="10" Grid.Column="1" HorizontalOptions="End" IsVisible="{Binding IsOwner}" IsToggled="{Binding IsOnSale}"></Switch>-->
                     <!--"<ImageButton BackgroundColor="Transparent" Grid.Row="10" Grid.Column="1" Command="{Binding DeleteProduct}" IsVisible="{Binding IsOwner}">
                         <ImageButton.Source>
                             <FontImageSource

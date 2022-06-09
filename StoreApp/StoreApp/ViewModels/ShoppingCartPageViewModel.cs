@@ -91,7 +91,7 @@ namespace StoreApp.ViewModels
                     
                     foreach (ProductInOrder p in o.ProductInOrders)
                     {
-                        ((App)App.Current).Tables.SoldProducts.Add(p.Product);
+                        ((App)App.Current).Tables.SoldProducts.Add(p);
 
                     }
                     currentApp.CurrentUser.Buyer.Orders.Add(o);

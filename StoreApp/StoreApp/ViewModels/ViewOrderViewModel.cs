@@ -25,7 +25,7 @@ namespace StoreApp.ViewModels
                 foreach (Models.ProductInOrder p in ProductsInOrderList)
                 {
                     int id = p.ProductId;
-                    ProductsList.Add((((App)App.Current).Tables.SoldProducts).FirstOrDefault(pr => pr.ProductId == id));
+                    ProductsList.Add((((App)App.Current).Tables.SoldProducts).FirstOrDefault(pr => pr.ProductId == id).Product);
                 }
             }
         }

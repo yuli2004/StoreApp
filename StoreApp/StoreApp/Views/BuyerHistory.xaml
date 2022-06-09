@@ -19,7 +19,9 @@
     <ContentPage.Content>
         <StackLayout>
             
-            <CollectionView FlowDirection="RightToLeft" SelectionMode="Single" ItemsSource="{Binding BuyerOrders}" SelectionChangedCommand="{Binding OnSelectedOrder}"  SelectedItem="{Binding SelectedOrder}" SelectionChangedCommandParameter="{Binding SelectedOrder}" EmptyView="No orders">
+            <CollectionView FlowDirection="RightToLeft" SelectionMode="Single" ItemsSource="{Binding BuyerOrders}" 
+                            SelectionChangedCommand="{Binding OnSelectedOrder}"  SelectedItem="{Binding SelectedOrder}" 
+                            SelectionChangedCommandParameter="{Binding SelectedOrder}" EmptyView="אין הזמנות">
 
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Vertical" />

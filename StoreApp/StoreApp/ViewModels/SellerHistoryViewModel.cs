@@ -37,11 +37,10 @@ namespace StoreApp.ViewModels
         {
             sellerSoldProducts = new ObservableCollection<Models.ProductInOrder>();
             
-            foreach(Product p in ((App)App.Current).Tables.SoldProducts)
+            foreach(ProductInOrder p in ((App)App.Current).Tables.SoldProducts)
             {
-                if (p.SellerId == currentApp.CurrentUser.Seller.SellerId)
+                if (p.Product.SellerId == currentApp.CurrentUser.Seller.SellerId)
                 {
-                    ProductInOrder pr = currentApp.CurrentUser.Seller.
                     sellerSoldProducts.Add(p);
                 }
                     

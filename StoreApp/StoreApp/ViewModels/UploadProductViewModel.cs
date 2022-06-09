@@ -207,15 +207,15 @@ namespace StoreApp.ViewModels
                 //Price = 0,
                 //Height = 0,
                 //Width = 0,
-                //SMaterial = null,
-                //SMaterialId = 0,
-                //PMaterial = null,
-                //PMaterialId = 0,
 
                 IsActive = true,
                 AdvertisingDate = DateTime.Now,
                 Seller = currentApp.CurrentUser.Seller,
                 SellerId = currentApp.CurrentUser.Seller.SellerId,
+                Color = null,
+                Style = null,
+                SMaterial = null,
+                PMaterial = null,
             };
             
             //Setup default image photo
@@ -234,18 +234,20 @@ namespace StoreApp.ViewModels
         public ICommand SaveDataCommand { protected set; get; }
         private async void SaveData()
         { 
+            if(ProductName==null|| Details==null|| Price==0||height==0||width==0||Color==null||Style==null||SurfaceMaterial==null||PaintMaterial==null)
+            {
+                await App.Current.MainPage.DisplayAlert("שגיאה", "ישנם שדות ריקים", "בסדר");               
+                return;
+            }
              
             this.p.ProductName = this.ProductName;
             this.p.Details = this.Details;
             this.p.Price = this.Price;
             this.p.Height = this.Height;
             this.p.Width = this.Width;
-            this.p.Color = this.Color;
-           
-            this.p.Style = this.Style;
-           
-            this.p.SMaterial = this.SurfaceMaterial;
-            
+            this.p.Color = this.Color;           
+            this.p.Style = this.Style;          
+            this.p.SMaterial = this.SurfaceMaterial;           
             this.p.PMaterial = this.PaintMaterial;
             
             this.ProductImgSrc = this.ProductImgSrc;
