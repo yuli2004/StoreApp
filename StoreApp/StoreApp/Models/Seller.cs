@@ -25,9 +25,11 @@ namespace StoreApp.Models
         //this method returns the profile picture url
         public string GetProfilePicture()
         {
+            Random r = new Random();
+            int i = r.Next(0, 100);
             if (Picture == "photogallery.png")
             {
-                string pic = StoreApp.Services.StoreAPIProxy.GetImageURL() + "/" + SellerId + ".jpg";
+                string pic = StoreApp.Services.StoreAPIProxy.GetImageURL() + "/" + SellerId + ".jpg"+ "?" + i;
                 return pic;
             }
             else

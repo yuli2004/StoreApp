@@ -242,8 +242,10 @@ namespace StoreApp.ViewModels
                         //}
                         //ServerStatus = "שומר נתונים..."; 
                         currentApp.CurrentUser = newS;
+                        currentApp.CurrentUser.Seller.Picture = $"{currentApp.CurrentUser.Seller.SellerId}.jpg";
                         await App.Current.MainPage.DisplayAlert("הצלחה", "שמירת המשתמש הצליחה", "בסדר");
                         await currentApp.MainPage.Navigation.PopToRootAsync();
+                        await currentApp.MainPage.Navigation.PopModalAsync();
                     }
                 }
             }

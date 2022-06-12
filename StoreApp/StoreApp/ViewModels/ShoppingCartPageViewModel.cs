@@ -92,7 +92,7 @@ namespace StoreApp.ViewModels
                     foreach (ProductInOrder p in o.ProductInOrders)
                     {
                         ((App)App.Current).Tables.SoldProducts.Add(p);
-
+                        p.Product.IsActive = false;
                     }
                     currentApp.CurrentUser.Buyer.Orders.Add(o);
                     currentApp.cart.Clear();

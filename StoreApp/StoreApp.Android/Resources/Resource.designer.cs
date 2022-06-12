@@ -15066,13 +15066,16 @@ namespace StoreApp.Droid
 			public const int tooltip_frame_light = 2131165347;
 			
 			// aapt resource value: 0x7F0700A4
-			public const int Up = 2131165348;
+			public const int trashcan = 2131165348;
 			
 			// aapt resource value: 0x7F0700A5
-			public const int userProfile = 2131165349;
+			public const int Up = 2131165349;
 			
 			// aapt resource value: 0x7F0700A6
-			public const int watermark = 2131165350;
+			public const int userProfile = 2131165350;
+			
+			// aapt resource value: 0x7F0700A7
+			public const int watermark = 2131165351;
 			
 			static Drawable()
 			{

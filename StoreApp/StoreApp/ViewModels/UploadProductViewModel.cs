@@ -207,7 +207,6 @@ namespace StoreApp.ViewModels
                 //Price = 0,
                 //Height = 0,
                 //Width = 0,
-
                 IsActive = true,
                 AdvertisingDate = DateTime.Now,
                 Seller = currentApp.CurrentUser.Seller,

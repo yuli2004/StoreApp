@@ -129,6 +129,7 @@ namespace StoreApp.ViewModels
         public async void RefreshPosts()
         {
             OnPropertyChanged("SellerProducts");
+            OnPropertyChanged("Img");
 
         }
         #endregion

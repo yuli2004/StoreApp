@@ -204,9 +204,9 @@
                                     WidthRequest="100"
                                 HorizontalOptions="Center"
                                 Grid.ColumnSpan="2"/>
-                            <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding ProductName}" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="18" TextColor="#d8f3dc"></Label>
-                            <Label Grid.Row="2" Grid.Column="0" HorizontalOptions="End"  Text="מחיר:" FontSize="18" TextColor="#d8f3dc"/>
-                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Price}" HorizontalOptions="Start" FontSize="18" TextColor="#d8f3dc"></Label>
+                            <Label Grid.Row="1" Grid.ColumnSpan="2" Text="{Binding ProductName}" HorizontalOptions="Center" HorizontalTextAlignment="Center" FontSize="18" TextColor="#d8f3dc" Margin="0,5,0,0"></Label>
+                            <Label Grid.Row="2" Grid.Column="0" HorizontalOptions="End"  Text="מחיר:" FontSize="18" TextColor="#d8f3dc" Margin="0,0,0,15"/>
+                            <Label Grid.Row="2" Grid.Column="1" Text="{Binding Price}" HorizontalOptions="Start" FontSize="18" TextColor="#d8f3dc" Margin="0,0,0,15"></Label>
                             
                         </Grid>
                     </DataTemplate>

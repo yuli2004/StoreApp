@@ -18,13 +18,15 @@
             <CollectionView x:Name="collectionView" ItemsSource="{Binding Order}">
                 <CollectionView.EmptyView>
                     <StackLayout>
-                            <Label Text="" HeightRequest="50" FontSize="24" VerticalTextAlignment="Center"></Label>
-                            <Frame Margin="120,0,120,0" CornerRadius="5" BackgroundColor="#6da37d" Padding="10">
+                            <Label Text="" HeightRequest="50" FontSize="28" VerticalTextAlignment="Center"></Label>
+                            <Frame Margin="50,0,50,0" CornerRadius="5" BackgroundColor="#6da37d" Padding="10">
                                 <Label Text="העגלה ריקה" BackgroundColor="#6da37d" TextColor="Black" Style="{StaticResource shoppingCartTextStyle}" FontSize="24" VerticalTextAlignment="Center"></Label>
                             </Frame>
-                            <Label Text="" HeightRequest="50" FontSize="24" VerticalTextAlignment="Center"></Label>
-                            <Image Source="cart3" BackgroundColor="Transparent" HeightRequest="200"/>
-                    </StackLayout>
+                            <Label Margin="50,-10,50,-10" BackgroundColor="#6da37d" Text="" HeightRequest="50" FontSize="24" VerticalTextAlignment="Center"></Label>
+                            <Frame Margin="50,0,50,0" CornerRadius="5" BackgroundColor="#6da37d" Padding="20">
+                                <Image Source="cart3" BackgroundColor="Transparent" HeightRequest="200"/>
+                            </Frame>
+                        </StackLayout>
                 </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
 
@@ -33,8 +35,7 @@
                             <SwipeView.LeftItems>
                                 <SwipeItems>
                                     <SwipeItem 
-                                    IconImageSource="{x:Static fontAwesome:IconSolidFonts.TrashCan}"
-                                    Text="מחק"
+                                    IconImageSource="trashcan"
                                     BackgroundColor="IndianRed"
                                     Command="{Binding Source={x:Reference collectionView}, Path=BindingContext.DeleteCommand}"
                                     CommandParameter="{Binding}"                               
@@ -46,6 +47,7 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="40" />
                                     <RowDefinition Height="40" />
+                                    <RowDefinition Height="5" />
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="1.5*" />
@@ -65,8 +67,8 @@
                                 <Label Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Text="{Binding Product.ProductName}" HorizontalOptions="Start" FontSize="16" TextColor="#d8f3dc"></Label>
                                 <Label Grid.Row="1" Grid.Column="1" HorizontalOptions="Start"  Text="מחיר:" FontSize="16" TextColor="#d8f3dc"/>
                                 <Label Grid.Row="1" Grid.Column="2" Text="{Binding Product.Price}" HorizontalOptions="Start" FontSize="16" TextColor="#d8f3dc"></Label>
-
-                            </Grid>
+                                    <BoxView BackgroundColor="#6da37d" Grid.Row="2" Grid.ColumnSpan="3"/>
+                                </Grid>
                         </SwipeView>
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
@@ -76,7 +78,8 @@
             <Label IsVisible="{Binding IsCart}" Style="{StaticResource shoppingCartTextStyle}" Text="סך הכל:" FontSize="22" ></Label>
                 <Label IsVisible="{Binding IsCart}" Style="{StaticResource shoppingCartTextStyle}" Text="{Binding Price}" FontSize="22"></Label>
 
-                <Button Style="{StaticResource ButtonStyle}" BackgroundColor="#6da37d" TextColor="#081c15" IsVisible="{Binding IsCart}" Command="{Binding OrderCommand}" Text="בצע הזמנה"/>
+                <Button Style="{StaticResource ButtonStyle}" BackgroundColor="#6da37d" TextColor="#081c15" IsVisible="{Binding IsCart}" 
+                        Command="{Binding OrderCommand}" Text="בצע הזמנה" Margin="5"/>
             
         </StackLayout>
         </StackLayout>
