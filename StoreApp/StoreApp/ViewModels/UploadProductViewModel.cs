@@ -56,42 +56,51 @@ namespace StoreApp.ViewModels
         #endregion
 
         #region price
-        private double price;
+        private double? price;
 
-        public double Price
+        public double? Price
         {
             get => price;
             set
             {
-                price = value;
+                if (value.HasValue)
+                    price = (double)value;
+                else
+                    price = null;
                 OnPropertyChanged("Price");
             }
         }
         #endregion
 
         #region height
-        private int height;
+        private int? height;
 
-        public int Height
+        public int? Height
         {
             get => height;
             set
             {
-                height = value;
+                if (value.HasValue)
+                    height = (int)value;
+                else
+                    height = null;
                 OnPropertyChanged("Height");
             }
         }
         #endregion
 
         #region width
-        private int width;
+        private int? width;
 
-        public int Width
+        public int? Width
         {
             get => width;
             set
             {
-                width = value;
+                if (value.HasValue)
+                    width = (int)value;
+                else
+                    width = null;
                 OnPropertyChanged("Width");
             }
         }
@@ -199,6 +208,7 @@ namespace StoreApp.ViewModels
         #region constructor
         public UploadProductViewModel()
         {
+            Price = null;
             App theApp = (App)App.Current;
             p = new Product()
             {
@@ -241,9 +251,9 @@ namespace StoreApp.ViewModels
              
             this.p.ProductName = this.ProductName;
             this.p.Details = this.Details;
-            this.p.Price = this.Price;
-            this.p.Height = this.Height;
-            this.p.Width = this.Width;
+            this.p.Price = this.Price == null ? 0 : (double)this.Price;
+            this.p.Height = this.Height == null ? 0 : (int)this.Height;
+            this.p.Width = this.Width == null ? 0 : (int)this.Width;
             this.p.Color = this.Color;           
             this.p.Style = this.Style;          
             this.p.SMaterial = this.SurfaceMaterial;           
